@@ -10,10 +10,9 @@
 			<label index="plugin.t3stores.flexform.tab.common">Common</label>
 			<label index="plugin.t3stores.flexform.tab.tssetup">TS-Setup</label>
 			<label index="plugin.t3stores.flexform.tssetup">plugin.tx_t3stores.</label>
-			<label index="plugin.t3stores.flexform.tab.SponsorList">List of stores</label>
 			<label index="plugin.t3stores.flexform.action">View</label>
-			<label index="plugin.t3stores.flexform.action.SponsorList">List of stores</label>
-			<label index="plugin.t3stores.flexform.action.storeshow">Store single view</label>
+			<label index="plugin.t3stores.flexform.action.StoreList">List of stores</label>
+			<label index="plugin.t3stores.flexform.action.StoreShow">Store single view</label>
 			<label index="plugin.t3stores.flexform.template">HTML-Template</label>
 
 			<label index="plugin.t3stores.flexform.stores">Stores</label>
@@ -21,7 +20,7 @@
 			<label index="plugin.t3stores.flexform.stores.limit">Limit list size</label>
 			<label index="plugin.t3stores.flexform.stores.singlepid">Detailspage</label>
 
-			<label index="tx_t3stores_stores">Sponsor</label>
+			<label index="tx_t3stores_stores">Store</label>
 			<label index="tx_t3stores_stores_tabcontact">Contact</label>
 			<label index="tx_t3stores_stores_name1">Name</label>
 			<label index="tx_t3stores_stores_name2">More name</label>
@@ -40,8 +39,8 @@
 
 		</languageKey>
 		<languageKey index="de" type="array">
-			<label index="plugin.t3stores.flexform.action.SponsorList">Liste von Filialen</label>
-			<label index="plugin.t3stores.flexform.action.storeshow">Filiale Detailansicht</label>
+			<label index="plugin.t3stores.flexform.action.StoreList">Liste von Filialen</label>
+			<label index="plugin.t3stores.flexform.action.StoreShow">Filiale Detailansicht</label>
 
 			<label index="plugin.t3stores.flexform.stores">Filialen</label>
 			<label index="plugin.t3stores.flexform.stores.rand">Zufällige Sortierung</label>

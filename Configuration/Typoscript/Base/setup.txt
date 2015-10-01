@@ -1,0 +1,22 @@
+# setup
+includeLibs.tx_rnbase_controller = EXT:rn_base/class.tx_rnbase_controller.php
+
+
+
+plugin.tx_t3stores                = USER
+#plugin.tx_t3stores.flexform       = flexform_main.xml
+plugin.tx_t3stores.userFunc       = tx_rnbase_controller->main
+plugin.tx_t3stores.defaultAction  = \System25\T3stores\Action\StoreList
+plugin.tx_t3stores.qualifier      = t3stores
+plugin.tx_t3stores.templatePath   = EXT:t3stores/Resources/Private/Templates
+plugin.tx_t3stores.locallangFilename = EXT:t3stores/Resources/Private/Language/locallang.xml
+
+
+tt_content.list.20.tx_t3stores    =< plugin.tx_t3stores
+
+# Ab hier Konfiguration der einzelnen Views 
+plugin.tx_t3stores {
+  liststoresTemplate = {$plugin.tx_t3stores.storelistTemplate}
+
+  liststores.store =< lib.t3stores.store
+}
