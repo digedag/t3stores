@@ -20,22 +20,22 @@
 			<label index="plugin.t3stores.flexform.stores.limit">Limit list size</label>
 			<label index="plugin.t3stores.flexform.stores.singlepid">Detailspage</label>
 
-			<label index="tx_t3stores_stores">Store</label>
-			<label index="tx_t3stores_stores_tabcontact">Contact</label>
-			<label index="tx_t3stores_stores_name1">Name</label>
-			<label index="tx_t3stores_stores_name2">More name</label>
-			<label index="tx_t3stores_stores_description">Description</label>
-			<label index="tx_t3stores_stores_openingtime">Opening times</label>
-			<label index="tx_t3stores_stores_pictures">Pictures</label>
-			<label index="tx_t3stores_stores_phone">Phone</label>
-			<label index="tx_t3stores_stores_contactperson">Contact person</label>
-			<label index="tx_t3stores_stores_address">Address</label>
-			<label index="tx_t3stores_stores_zip">Zip</label>
-			<label index="tx_t3stores_stores_city">City</label>
-			<label index="tx_t3stores_stores_countrycode">Country Code</label>
-			<label index="tx_t3stores_stores_lng">Longitude</label>
-			<label index="tx_t3stores_stores_lat">Latitude</label>
-			<label index="tx_t3stores_stores_hasreport">Enable link to details page</label>
+			<label index="tx_t3stores_store">Store</label>
+			<label index="tx_t3stores_store_tabcontact">Contact</label>
+			<label index="tx_t3stores_store_name1">Name</label>
+			<label index="tx_t3stores_store_name2">More name</label>
+			<label index="tx_t3stores_store_description">Description</label>
+			<label index="tx_t3stores_store_openingtime">Opening times</label>
+			<label index="tx_t3stores_store_pictures">Pictures</label>
+			<label index="tx_t3stores_store_phone">Phone</label>
+			<label index="tx_t3stores_store_contactperson">Contact person</label>
+			<label index="tx_t3stores_store_address">Address</label>
+			<label index="tx_t3stores_store_zip">Zip</label>
+			<label index="tx_t3stores_store_city">City</label>
+			<label index="tx_t3stores_store_countrycode">Country Code</label>
+			<label index="tx_t3stores_store_lng">Longitude</label>
+			<label index="tx_t3stores_store_lat">Latitude</label>
+			<label index="tx_t3stores_store_hasreport">Enable link to details page</label>
 
 		</languageKey>
 		<languageKey index="de" type="array">

@@ -1,13 +1,25 @@
 <?php
 tx_rnbase::load('tx_rnbase_util_TSFAL');
 
+$wecmap = array();
+$wecmap['wec_map']['isMappable'] = 1;
+$wecmap['wec_map']['addressFields'] = array(
+		'street' => 'address',
+		'city' => 'city',
+		'zip' => 'zip',
+		'country' => 'countrycode',
+);
+
 return array(
 	'ctrl' => array(
-		'title' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xlf:tx_t3stores_store',
-		'label' => 'title',
+		'title' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store',
+		'label' => 'name',
+		'label_alt' => 'city',
+		'label_alt_force' => 1,
 //		'label_userFunc' => 'EXT:templavoila/Classes/Service/UserFunc/Label.php:&Extension\Templavoila\Service\UserFunc\Label->getLabel',
 		'searchFields' => 'uid,name,address,city,zip,contactperson',
 		'tstamp' => 'tstamp',
+		'EXT' => $wecmap,
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'sortby' => 'sorting',
@@ -35,7 +47,7 @@ return array(
 				),
 				'name' => Array (
 						'exclude' => 1,
-						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_name',
+						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_name',
 						'config' => Array (
 								'type' => 'input',
 								'size' => '30',
@@ -44,7 +56,7 @@ return array(
 				),
 				'address' => Array (
 						'exclude' => 1,
-						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_address',
+						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_address',
 						'config' => Array (
 								'type' => 'input',
 								'size' => '30',
@@ -53,7 +65,7 @@ return array(
 				),
 				'zip' => Array (
 						'exclude' => 1,
-						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_zip',
+						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_zip',
 						'config' => Array (
 								'type' => 'input',
 								'size' => '30',
@@ -62,7 +74,7 @@ return array(
 				),
 				'city' => Array (
 						'exclude' => 1,
-						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_city',
+						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_city',
 						'config' => Array (
 								'type' => 'input',
 								'size' => '30',
@@ -71,7 +83,7 @@ return array(
 				),
 				'countrycode' => Array (
 					'exclude' => 1,
-					'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_countrycode',
+					'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_countrycode',
 					'config' => Array (
 						'type' => 'input',
 						'size' => '10',
@@ -81,7 +93,7 @@ return array(
 				),
 				'lng' => Array (
 					'exclude' => 1,
-					'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_lng',
+					'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_lng',
 					'config' => Array (
 						'type' => 'input',
 						'size' => '20',
@@ -91,7 +103,7 @@ return array(
 				),
 				'lat' => Array (
 					'exclude' => 1,
-					'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_lat',
+					'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_lat',
 					'config' => Array (
 						'type' => 'input',
 						'size' => '20',
@@ -101,7 +113,7 @@ return array(
 				),
 				'phone' => Array (
 						'exclude' => 1,
-						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_phone',
+						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_phone',
 						'config' => Array (
 								'type' => 'input',
 								'size' => '30',
@@ -110,7 +122,7 @@ return array(
 				),
 				'contactperson' => Array (
 						'exclude' => 1,
-						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_contactperson',
+						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_contactperson',
 						'config' => Array (
 								'type' => 'input',
 								'size' => '30',
@@ -119,7 +131,7 @@ return array(
 				),
 				'hasreport' => array (
 						'exclude' => 1,
-						'label'   => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_hasreport',
+						'label'   => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_hasreport',
 						'config'  => array (
 								'type'    => 'check',
 								'default' => '0'
@@ -127,7 +139,7 @@ return array(
 				),
 				'openingtime' => Array (
 						'exclude' => 1,
-						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_openingtime',
+						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_openingtime',
 						'config' => Array (
 								'type' => 'text',
 								'cols' => '30',
@@ -136,7 +148,7 @@ return array(
 				),
 				'description' => Array (
 						'exclude' => 1,
-						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_stores_description',
+						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_description',
 						'config' => Array (
 								'type' => 'text',
 								'cols' => '30',

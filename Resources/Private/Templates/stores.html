@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+
+###STORELIST###
+<h2>Filialen</h2>
+###SEARCHFORM###
+
+###ITEMS###
+###ITEM###
+<address>
+  <strong>###ITEM_NAME###</strong><br>
+###ITEM_ADDRESS###<br/>
+###ITEM_ZIP### ###ITEM_CITY###<br/>
+  <abbr title="Telefon">Tel.:</abbr> ###ITEM_PHONE###<br/>
+  Entfernung: ###ITEM_DISTANCE### km
+</address>
+<br/>
+
+
+###ITEM###
+###ITEMS###
+
+###STORELIST###
+
+###SEARCH_FORM###
+<form action="###ACTION_URI###" method="GET">
+<input type="hidden" name="id" value="###ACTION_PID###" />
+<div class="form-group">
+    <label for="t3stores_location">Ihr Standort</label>
+    <input type="text" class="form-control" id="t3stores_location" name="t3stores[location]" placeholder="Suchbegriff" value="###SEARCH_LOCATION###">
+</div>
+</form>
+###SEARCH_FORM###
+
+</body>
+</html>

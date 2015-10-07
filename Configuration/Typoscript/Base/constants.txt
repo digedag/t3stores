@@ -1,0 +1,7 @@
+#constants
+plugin.tx_t3stores {
+  # cat=T3stores/storeshow; type=string;label=HTML Template of store details view
+  storeshowTemplate = EXT:t3sponsors/templates/sponsorshow.html
+  # cat=T3stores/storelist; type=string;label=HTML Template of store list view
+  storelistTemplate = EXT:t3stores/Resources/Private/Templates/stores.html
+}

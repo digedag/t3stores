@@ -1,7 +1,6 @@
 <?php
-namespace System25\T3stores\Action;
+namespace System25\T3stores\Service;
 
-use System25\T3stores\Util\ServiceRegistry;
 /***************************************************************
  *  Copyright notice
  *
@@ -25,23 +24,20 @@ use System25\T3stores\Util\ServiceRegistry;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-\tx_rnbase::load('tx_rnbase_action_BaseIOC');
-\tx_rnbase::load('tx_rnbase_filter_BaseFilter');
+\tx_rnbase::load('tx_rnbase_util_DB');
 
-class StoreList extends \tx_rnbase_action_BaseIOC {
-	protected function handleRequest(&$parameters, &$configurations, &$viewdata) {
- 		$srv = ServiceRegistry::getStoreService();
-
- 		$filter = \tx_rnbase_filter_BaseFilter::createFilter($parameters, $configurations, $viewdata, $this->getConfId(). 'item.filter.');
- 		$fields = array();
-		$options = array();
-		$filter->init($fields, $options);
-
-		$items = $srv->search($fields, $options);
-		$viewdata->offsetSet('items', $items);
-		return null;
+class Store extends \TYPO3\CMS\Core\Service\AbstractService {
+	/**
+	 * Search database for stores
+	 *
+	 * @param array $fields
+	 * @param array $options
+	 * @return array[System25\T3stores\Model\Store]
+	 */
+	public function search($fields, $options) {
+		\tx_rnbase::load('tx_rnbase_util_SearchBase');
+		$searcher = \tx_rnbase_util_SearchBase::getInstance('System25\T3stores\Search\Store');
+		return $searcher->search($fields, $options);
 	}
 	
-	public function getTemplateName() { return 'storelist';}
-	public function getViewClassName() { return 'tx_rnbase_view_List';} // '\System25\T3stores\View\StoreList'
 }

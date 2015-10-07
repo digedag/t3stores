@@ -14,9 +14,21 @@ plugin.tx_t3stores.locallangFilename = EXT:t3stores/Resources/Private/Language/l
 
 tt_content.list.20.tx_t3stores    =< plugin.tx_t3stores
 
+lib.t3stores.store {
+#  distance.number_format.decimal = 2
+  distance.stdWrap.numberFormat.decimals = 2 
+}
+
 # Ab hier Konfiguration der einzelnen Views 
 plugin.tx_t3stores {
-  liststoresTemplate = {$plugin.tx_t3stores.storelistTemplate}
+  storelistTemplate = {$plugin.tx_t3stores.storelistTemplate}
 
-  liststores.store =< lib.t3stores.store
+  storelist {
+    item =< lib.t3stores.store
+    item.filter {
+      class = System25\T3stores\Filter\Store
+      template = EXT:t3stores/Resources/Private/Templates/stores.html
+      subpart = ###SEARCH_FORM###
+    }
+  }
 }
