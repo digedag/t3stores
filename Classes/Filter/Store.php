@@ -48,6 +48,7 @@ class Store extends \tx_rnbase_filter_BaseFilter {
 			$this->geoCode = $geoCoder->lookupGeoCode($this->searchLocation);
 		}
 		if($this->geoCode) {
+			//$options['debug'] = 1;
 			$options['forcewrapper'] = 1;
 			$lat = $this->geoCode['lat'];
 			$long = $this->geoCode['lng'];
@@ -55,7 +56,7 @@ class Store extends \tx_rnbase_filter_BaseFilter {
 					* SIN(`lat` * PI() / 180) + COS('.$lat.' * PI() / 180) 
 					* COS(`lat` * PI() / 180) * COS(('.$long.' - `lng`) * PI() / 180)) 
 					* 180 / PI()) * 60 * 1.1515 * 1.60934) AS `distance`';
-			$options['orderby'][SEARCH_FIELD_CUSTOM] = 'distance desc';
+			$options['orderby'][SEARCH_FIELD_CUSTOM] = 'distance asc';
 		}
 		return TRUE;
 	}
