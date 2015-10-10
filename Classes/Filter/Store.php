@@ -60,7 +60,16 @@ class Store extends \tx_rnbase_filter_BaseFilter {
 		}
 		return TRUE;
 	}
-
+	/* (non-PHPdoc)
+	 * @see tx_rnbase_filter_BaseFilter::hideResult()
+	 */
+	public function hideResult() {
+		if(!$this->getConfigurations()->getBool($this->getConfId().'hideResultInitial'))
+			return FALSE;
+		$params = $this->getParameters()->getAll();
+		return $params ? FALSE : TRUE;
+	}
+	
 	function parseTemplate($template, &$formatter, $confId, $marker = 'FILTER') {
 		if(!\tx_rnbase_util_BaseMarker::containsMarker($template, 'SEARCHFORM'))
 			return $template;
