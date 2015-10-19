@@ -37,6 +37,20 @@
 			<label index="tx_t3stores_store_lat">Latitude</label>
 			<label index="tx_t3stores_store_hasreport">Enable link to details page</label>
 
+			<label index="tx_t3stores_promotion">Promotion</label>
+			<label index="tx_t3stores_promotion_name">Name</label>
+
+			<label index="tx_t3stores_offergroup">Offer group</label>
+			<label index="tx_t3stores_offergroup_taboffers">Offers</label>
+			<label index="tx_t3stores_offergroup_name">Name</label>
+			<label index="tx_t3stores_offergroup_offers">Angebote</label>
+			<label index="tx_t3stores_offergroup_description">Beschreibung</label>
+
+			<label index="tx_t3stores_offer">Offer</label>
+			<label index="tx_t3stores_offer_name">Name</label>
+			<label index="tx_t3stores_offer_hint">Hint</label>
+			<label index="tx_t3stores_offer_price">Price</label>
+
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="plugin.t3stores.flexform.action.StoreList">Liste von Filialen</label>
@@ -62,6 +76,20 @@
 			<label index="tx_t3stores_stores_lng">Longitude</label>
 			<label index="tx_t3stores_stores_lat">Latitude</label>
 			<label index="tx_t3stores_stores_hasreport">Link zur Detailseite</label>
+
+			<label index="tx_t3stores_promotion">Aktion</label>
+			<label index="tx_t3stores_promotion_name">Name</label>
+
+			<label index="tx_t3stores_offergroup">Angebotsgruppe</label>
+			<label index="tx_t3stores_offergroup_name">Name</label>
+			<label index="tx_t3stores_offergroup_taboffers">Angebote</label>
+			<label index="tx_t3stores_offergroup_description">Beschreibung</label>
+			<label index="tx_t3stores_offergroup_offers">Angebote</label>
+
+			<label index="tx_t3stores_offer">Angebot</label>
+			<label index="tx_t3stores_offer_name">Name</label>
+			<label index="tx_t3stores_offer_hint">Hinweis</label>
+			<label index="tx_t3stores_offer_price">Preis</label>
 
 		</languageKey>
 	</data>
