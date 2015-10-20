@@ -4,4 +4,6 @@ plugin.tx_t3stores {
   storeshowTemplate = EXT:t3sponsors/templates/sponsorshow.html
   # cat=T3stores/storelist; type=string;label=HTML Template of store list view
   storelistTemplate = EXT:t3stores/Resources/Private/Templates/stores.html
+  # cat=T3stores/offergrouplist; type=string;label=HTML Template of offer group list view
+  offergrouplistTemplate = EXT:t3stores/Resources/Private/Templates/offers.html
 }

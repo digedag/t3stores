@@ -18,10 +18,18 @@ lib.t3stores.store {
 #  distance.number_format.decimal = 2
   distance.stdWrap.numberFormat.decimals = 2 
 }
+lib.t3stores.offer {
+  pricestr.stdWrap.numberFormat.decimals = 2
+  pricestr.stdWrap.wrap = |&nbsp;&euro;
+}
+lib.t3stores.offergroup {
+  offer =< lib.t3stores.offer
+}
 
 # Ab hier Konfiguration der einzelnen Views 
 plugin.tx_t3stores {
   storelistTemplate = {$plugin.tx_t3stores.storelistTemplate}
+  offergrouplistTemplate = {$plugin.tx_t3stores.offergrouplistTemplate}
 
   storelist {
     item =< lib.t3stores.store
@@ -30,5 +38,13 @@ plugin.tx_t3stores {
       template = EXT:t3stores/Resources/Private/Templates/stores.html
       subpart = ###SEARCH_FORM###
     }
+  }
+
+  offergrouplist {
+    template.markerclass = System25\T3stores\Marker\OfferGroupMarker
+    item.filter {
+      class = tx_rnbase_filter_BaseFilter
+    }
+    item =< lib.t3stores.offergroup
   }
 }

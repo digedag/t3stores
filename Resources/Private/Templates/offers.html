@@ -1,0 +1,96 @@
+<html>
+<head>
+
+</head>
+<body>
+
+###OFFERGROUPLIST###
+
+<script type="text/javascript">
+var offers;
+offers = offers || (function () {
+	var offers = {};
+	return {
+		updateOffer: function(offerUid, field) {
+			var weight = parseFloat( field.value.replace( /,/,"." ));
+			weight = isNaN(weight) ? 0 : weight;
+			var offer = offers[offerUid];
+			var price = Math.round(weight * offer.price);
+			offer.sum = price;
+			jQuery( "#sum_" + offerUid ).html( this.formatPrice(price) );
+			this.updateSum();
+			
+		},
+		formatPrice: function(price) {
+			return (price/100).toFixed(2);
+		},
+		updateSum: function() {
+			var sum = 0;
+			jQuery.each(offers, function(idx, offer) {
+				sum += offer.sum;
+			});
+			jQuery( "#sum" ).html(this.formatPrice(sum));
+		},
+		initOffer: function(uid, price) {
+			console.info("Add "+ uid + " " + price);
+			offers[uid] = {
+					uid: uid,
+					price: price,
+					sum: 0
+			}
+		},
+	};
+})();
+
+</script>
+###ITEMS###
+<form action="###ACTION_URI###">
+
+###ITEM###
+
+<div>
+<strong>###ITEM_NAME###</strong><br/>
+###ITEM_DESCRIPTION###
+</div>
+
+###ITEM_OFFERS###
+<table class="table table-striped table-condensed">
+<tr>
+<th>Menge</th>
+<th>Artikel</th>
+<th>Preis in €</th>
+<th>Gesamtpreis</th>
+</tr>
+
+###ITEM_OFFER###
+<script type="text/javascript">
+offers.initOffer(###ITEM_OFFER_UID###, ###ITEM_OFFER_PRICE###);
+</script>
+
+<tr>
+	<td>
+<div class="input-group">
+      <div class="input-group-addon input-sm">kg</div>
+      <input type="text" class="form-control input-sm" id="exampleInputAmount" placeholder="0,00" style="width:70px" onChange="offers.updateOffer(###ITEM_OFFER_UID###, this)" >
+      <input type="hidden" class="form-control" name="t3stores[###ITEM_OFFER_UID###][price]">
+</div>
+	</td>
+	<td>###ITEM_OFFER_NAME###<br><small>###ITEM_OFFER_HINT###</small> </td>
+	<td class="text-right">###ITEM_OFFER_PRICESTR###/kg</td>
+	<td><span id="sum_###ITEM_OFFER_UID###">0,00</span> &euro;</td>
+</tr>
+###ITEM_OFFER###
+</table>
+###ITEM_OFFERS###
+
+###ITEM###
+</form>
+###ITEMS###
+<div>
+<strong>Gesamtpreis:</strong> <span id="sum"></span> &euro;
+</div>
+
+###OFFERGROUPLIST###
+
+</body>
+</html>
