@@ -66,6 +66,10 @@
 			<label index="tx_t3stores_order_pickup">Pickup date</label>
 			<label index="tx_t3stores_order_positionprice">Price of positions</label>
 			<label index="tx_t3stores_order_totalprice">Total price</label>
+			<label index="tx_t3stores_order_mailtext">Mailtext</label>
+			<label index="tx_t3stores_order_tabpositions">Order positions</label>
+			<label index="tx_t3stores_order_positions">Positions</label>
+			
 
 			<label index="tx_t3stores_orderposition">Order position</label>
 			<label index="tx_t3stores_orderposition_title">Title</label>
@@ -128,6 +132,9 @@
 			<label index="tx_t3stores_order_pickup">Abholtag</label>
 			<label index="tx_t3stores_order_positionprice">Preis der Position</label>
 			<label index="tx_t3stores_order_totalprice">Gesamtpreis</label>
+			<label index="tx_t3stores_order_mailtext">Text der Kunden-Email</label>
+			<label index="tx_t3stores_order_tabpositions">Auftragspositionen</label>
+			<label index="tx_t3stores_order_positions">Positionen</label>
 
 			<label index="tx_t3stores_orderposition">Auftragsposition</label>
 			<label index="tx_t3stores_orderposition_title">Titel</label>

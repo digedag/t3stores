@@ -128,17 +128,34 @@ return array(
 			)
 		),
 		'mailtext' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_order_mailtext',
+			'config' => Array (
+				'type' => 'text',
+				'cols' => '40',
+				'rows' => '15',
+				'eval' => 'trim',
+			)
+		),
+		'positions' => Array(
 				'exclude' => 1,
-				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_order_mailtext',
-				'config' => Array (
-						'type' => 'input',
-						'size' => '30',
-						'eval' => 'trim',
-				)
+				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_order_positions',
+				'config' => Array(
+						'type' => 'inline',
+						'foreign_table' => 'tx_t3stores_orderposition',
+						'foreign_field' => 'orderuid',
+						'foreign_sortby' => 'uid',
+						'maxitems' => 100,
+						'appearance' => Array(
+								'collapseAll' => 1,
+								'expandSingle' => 1,
+						),
+				),
 		),
 	),
 	'types' => array(
 			'0' => array('showitem' => 'promotion,customername,customeraddress,customerzip,customerzip,customercity,customerphone,
-			customeremail,store,pickup,positionprice,totalprice,mailtext')
+			customeremail,store,pickup,positionprice,totalprice,mailtext,
+			--div--;LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_order_tabpositions,positions')
 	)
 );
