@@ -40,6 +40,8 @@
 
 			<label index="tx_t3stores_promotion">Promotion</label>
 			<label index="tx_t3stores_promotion_name">Name</label>
+			<label index="tx_t3stores_promotion_discount">Discount in percent</label>
+			<label index="tx_t3stores_promotion_pickupdates">Pickup dates</label>
 
 			<label index="tx_t3stores_offergroup">Offer group</label>
 			<label index="tx_t3stores_offergroup_taboffers">Offers</label>
@@ -51,6 +53,25 @@
 			<label index="tx_t3stores_offer_name">Name</label>
 			<label index="tx_t3stores_offer_hint">Hint</label>
 			<label index="tx_t3stores_offer_price">Price</label>
+			<label index="tx_t3stores_offer_pricelabel">Label for price</label>
+
+			<label index="tx_t3stores_order">Order</label>
+			<label index="tx_t3stores_order_customername">Customer Name</label>
+			<label index="tx_t3stores_order_customeraddress">Customer Address</label>
+			<label index="tx_t3stores_order_customerzip">Customer ZIP</label>
+			<label index="tx_t3stores_order_customercity">Customer City</label>
+			<label index="tx_t3stores_order_customerphone">Customer Phone</label>
+			<label index="tx_t3stores_order_customeremail">Customer Email</label>
+			<label index="tx_t3stores_order_emailtext">Email Text</label>
+			<label index="tx_t3stores_order_pickup">Pickup date</label>
+			<label index="tx_t3stores_order_positionprice">Price of positions</label>
+			<label index="tx_t3stores_order_totalprice">Total price</label>
+
+			<label index="tx_t3stores_orderposition">Order position</label>
+			<label index="tx_t3stores_orderposition_title">Title</label>
+			<label index="tx_t3stores_orderposition_price">Base price</label>
+			<label index="tx_t3stores_orderposition_total">Total pice</label>
+			<label index="tx_t3stores_orderposition_amount">Amount</label>
 
 		</languageKey>
 		<languageKey index="de" type="array">
@@ -81,6 +102,8 @@
 
 			<label index="tx_t3stores_promotion">Aktion</label>
 			<label index="tx_t3stores_promotion_name">Name</label>
+			<label index="tx_t3stores_promotion_discount">Rabatt in Prozent</label>
+			<label index="tx_t3stores_promotion_pickupdates">Abholtermine</label>
 
 			<label index="tx_t3stores_offergroup">Angebotsgruppe</label>
 			<label index="tx_t3stores_offergroup_name">Name</label>
@@ -92,6 +115,25 @@
 			<label index="tx_t3stores_offer_name">Name</label>
 			<label index="tx_t3stores_offer_hint">Hinweis</label>
 			<label index="tx_t3stores_offer_price">Preis</label>
+			<label index="tx_t3stores_offer_pricelabel">Preisbezeichnung</label>
+
+			<label index="tx_t3stores_order">Auftrag</label>
+			<label index="tx_t3stores_order_customername">Name des Kunden</label>
+			<label index="tx_t3stores_order_customeraddress">Straße</label>
+			<label index="tx_t3stores_order_customerzip">PLZ</label>
+			<label index="tx_t3stores_order_customercity">Stadt</label>
+			<label index="tx_t3stores_order_customerphone">Telefon</label>
+			<label index="tx_t3stores_order_customeremail">Email</label>
+			<label index="tx_t3stores_order_emailtext">Email Text</label>
+			<label index="tx_t3stores_order_pickup">Abholtag</label>
+			<label index="tx_t3stores_order_positionprice">Preis der Position</label>
+			<label index="tx_t3stores_order_totalprice">Gesamtpreis</label>
+
+			<label index="tx_t3stores_orderposition">Auftragsposition</label>
+			<label index="tx_t3stores_orderposition_title">Titel</label>
+			<label index="tx_t3stores_orderposition_price">Einzelpreis</label>
+			<label index="tx_t3stores_orderposition_total">Gesamtpreis</label>
+			<label index="tx_t3stores_orderposition_amount">Menge</label>
 
 		</languageKey>
 	</data>

@@ -36,6 +36,8 @@ CREATE TABLE tx_t3stores_promotion (
 	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
 
 	name varchar(255) DEFAULT '' NOT NULL,
+	discount tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	pickupdates tinytext,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -77,6 +79,50 @@ CREATE TABLE tx_t3stores_offer (
 	offergroup int(11) DEFAULT '0' NOT NULL,
 	hint varchar(255) DEFAULT '' NOT NULL,
 	price int(11) unsigned DEFAULT '0' NOT NULL,
+	pricelabel varchar(255) DEFAULT '' NOT NULL,
+
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+);
+
+CREATE TABLE tx_t3stores_order (
+	uid int(11) DEFAULT '0' NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+	crdate int(11) unsigned DEFAULT '0' NOT NULL,
+	cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+
+	promotion int(11) DEFAULT '0' NOT NULL,
+	customername varchar(100) DEFAULT '' NOT NULL,
+	customeraddress varchar(100) DEFAULT '' NOT NULL,
+	customerzip varchar(10) DEFAULT '' NOT NULL,
+	customercity varchar(100) DEFAULT '' NOT NULL,
+	customerphone varchar(100) DEFAULT '' NOT NULL,
+	customeremail varchar(255) DEFAULT '' NOT NULL,
+	mailtext text,
+	store int(11) DEFAULT '0' NOT NULL,
+	pickup date DEFAULT '0000-00-00',
+	positionprice int(11) unsigned DEFAULT '0' NOT NULL,
+	totalprice int(11) unsigned DEFAULT '0' NOT NULL,
+
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+);
+
+CREATE TABLE tx_t3stores_orderposition (
+	uid int(11) DEFAULT '0' NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+	crdate int(11) unsigned DEFAULT '0' NOT NULL,
+	cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+
+	orderuid int(11) unsigned DEFAULT '0' NOT NULL,
+	title varchar(255) DEFAULT '' NOT NULL,
+	price int(11) unsigned DEFAULT '0' NOT NULL,
+	total int(11) unsigned DEFAULT '0' NOT NULL,
+	amount float(10,2) DEFAULT '0.00' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

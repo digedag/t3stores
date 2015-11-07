@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+###ORDERCREATE###
+
+
+<form action="###ACTION_URI###" method="POST" data-toggle="validator" role="form" >
+<input type="hidden" name="id" value="###ACTION_PID###"/>
+<input type="hidden" name="t3stores[action]" value="###ACTION_CTRL###"/>
+
+
+
+<div class="well">
+<p>Sie haben folgende Artikel gewählt:</p>
+###ORDER_POSITIONS###
+<table class="table table-condensed">
+###ORDER_POSITION###
+<tr>
+	<td class="text-right">###ORDER_POSITION_DCAMOUNT### <input type="hidden" name="t3stores[offer][###ORDER_POSITION_OFFER_UID###][amount]" value="###ORDER_POSITION_AMOUNT###"  /> </td>
+	<td>###ORDER_POSITION_TITLE###
+	</td>
+	<td class="text-right">###ORDER_POSITION_PRICESTR###</td>
+	<td class="text-right">###ORDER_POSITION_TOTALSTR###</td>
+</tr>
+###ORDER_POSITION###
+<tr>
+	<td colspan="2"></td>
+	<td>abzgl. Online-Rabatt (###ORDER_PROMOTION_DISCOUNT###):</td>
+	<td class="text-right">###ORDER_DISCOUNTVALUESTR###</td>
+</tr>
+<tr>
+	<td colspan="2"></td>
+	<td>Gesamtpreis:</td>
+	<td class="text-right"tal>###ORDER_TOTALPRICESTR###</td>
+</tr>
+</table>
+###ORDER_POSITIONS###
+</div>
+
+<div class="well form-horizontal">
+	<h2>2. Schritt - Adressdaten und Abholdatum</h2>
+	<p>
+	Tragen Sie jetzt Ihre Adressdaten, Ihre eMail-Adresse und den gewünschten Abholtermin ein.
+	</p>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputName">Name</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputName" name="t3stores[order][customername]" placeholder="Ihr Name" required>
+			<span class="help-block with-errors"></span>
+		</div>
+	</div>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputName">Anschrift</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputName" name="t3stores[order][customeraddress]" placeholder="Strasse mit Hausnummer" required>
+			<span class="help-block with-errors"></span>
+		</div>
+	</div>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputZip">PLZ*</label>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" id="inputZip" name="t3stores[order][customerzip]" placeholder="PLZ" required>
+		</div>
+		<label class="col-sm-1 control-label" for="inputCity">Ort*</label>
+		<div class="col-sm-7">
+			<input type="text" class="form-control" id="inputCity" name="t3stores[order][customercity]" placeholder="Ort" required>
+		</div>
+	</div>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputPhone">Telefon</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputPhone" name="t3stores[order][customerphone]" placeholder="Ihre Telefonnummer">
+		</div>
+	</div>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputEmail">Email*</label>
+		<div class="col-sm-10">
+			<div class="input-group">
+				<span class="input-group-addon" id="sizing-email">@</span>
+				<input type="email" class="form-control" aria-describedby="sizing-email" id="inputEmail" name="t3stores[order][customeremail]" placeholder="Ihre Emailadresse" required>
+			</div>
+			<span class="help-block with-errors"></span>
+		</div>
+	</div>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputEmail">Abholtermin</label>
+		<div class="col-sm-10">
+		###PROMOTION_PICKUPDATES###
+		###PROMOTION_PICKUPDATE###
+			<div class="radio">
+				<label><input type="radio" name="t3stores[order][pickup]" id="optionsRadios###PROMOTION_PICKUPDATE_UID###" value="###PROMOTION_PICKUPDATE_UID###" required>###PROMOTION_PICKUPDATE_DAY###</label>
+			</div>
+		###PROMOTION_PICKUPDATE###
+		###PROMOTION_PICKUPDATES###
+		</div>
+	</div>
+
+</div>
+
+<div class="well form-horizontal" id="stores">
+	<h2>3. Schritt - Bestimmen Sie Ihr Abholfachgeschäft</h2>
+	<p>Suchen Sie über die PLZ oder den Ort nach ihrer gewünschten Filiale.</p>
+
+	<div class="form-group form-group-sm" style="margin-top:10px">
+		<label class="col-sm-2 control-label" for="inputEmail">Filiale</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control typeahead" id="inputName" name="t3stores[store_search]" placeholder="Suchen Sie nach ihrer Abhol-Filiale" required/>
+			<input type="hidden" class="form-control" id="storeUID" name="t3stores[order][store]" value=""/>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+var storeData = [
+
+###STORES###
+###STORE###
+{search:'###STORE_ZIP### ###STORE_NAME### ###STORE_CITY### ###STORE_ADDRESS###' , 
+	value: '###STORE_NAME### - ###STORE_CITY###, ###STORE_ADDRESS### ',
+	name: '###STORE_NAME###', city: '###STORE_CITY###', zip: '###STORE_ZIP###',
+	address: '###STORE_ADDRESS###', uid: '###STORE_UID###'
+	},
+###STORE###
+###STORES###
+];
+
+</script>
+
+<div class="well form-horizontal">
+	<h2>Bestellung ausführen</h2>
+	<p>Sie erhalten nach Klicken auf "Bestellung absenden" eine Bestätigungs-eMail mit allen Daten.
+Bei Übermittlungsproblemen kontaktieren Sie uns bitte unter der Tel.Nr.: (03724) 1840-0.
+	</p>
+	<input type="submit" name="t3stores[finish]" class="btn btn-primary" value="Bestellung absenden" />
+</div>
+</form>
+
+
+<script type="text/javascript" src="typo3conf/ext/t3stores/Resources/Public/Scripts/validator.js"></script>
+<script type="text/javascript" src="typo3conf/ext/t3stores/Resources/Public/Scripts/handlebars.min-v4.0.3.js"></script>
+<script type="text/javascript" src="typo3conf/ext/t3stores/Resources/Public/Scripts/typeahead.bundle.js" ></script>
+
+<script type="text/javascript" src="typo3conf/ext/t3stores/Resources/Public/Scripts/orders.js" ></script>
+
+###ORDERCREATE###
+
+
+
+###ORDERSHOW###
+
+<div class="well">
+	<h2>Vielen Dank für ihre Bestellung!</h2>
+Auftragsnummer: ###ORDER_UID###
+
+###ORDER_POSITIONS###
+<table class="table table-condensed">
+###ORDER_POSITION###
+<tr>
+	<td class="text-right">###ORDER_POSITION_DCAMOUNT### <input type="hidden" name="t3stores[offer][###ORDER_POSITION_OFFER_UID###][amount]" value="###ORDER_POSITION_AMOUNT###"  /> </td>
+	<td>###ORDER_POSITION_TITLE###
+	</td>
+	<td class="text-right">###ORDER_POSITION_PRICESTR###</td>
+	<td class="text-right">###ORDER_POSITION_TOTALSTR###</td>
+</tr>
+###ORDER_POSITION###
+<tr>
+	<td colspan="2"></td>
+	<td>abzgl. Online-Rabatt:</td>
+	<td class="text-right">###ORDER_DISCOUNTVALUESTR###</td>
+</tr>
+<tr>
+	<td colspan="2"></td>
+	<td>Gesamtpreis:</td>
+	<td class="text-right"tal>###ORDER_TOTALPRICESTR###</td>
+</tr>
+</table>
+###ORDER_POSITIONS###
+
+
+</div>
+###ORDERSHOW###
+
+###ORDEREMAIL###
+
+Sehr geehrte(r) Herr/Frau ###ORDER_CUSTOMERNAME###,
+vielen Dank für Ihre Bestellung / Reservierung vom ###ORDER_CRDATE###
+
+###ORDER_POSITIONS###
+###ORDER_POSITION###
+###ORDER_POSITION_DCAMOUNT### ###ORDER_POSITION_TITLE### ###ORDER_POSITION_TOTALSTR###
+###ORDER_POSITION###
+------
+abzgl. Online-Rabatt: ###ORDER_DISCOUNTVALUESTR###
+Gesamtsumme: ca. ###ORDER_TOTALPRICESTR###
+###ORDER_POSITIONS###
+
+Auf den Gesamtbetrag gewähren wir Ihnen ###PROMOTION_DISCOUNT###% Online-Rabatt
+(wird bei Abholung in der Filiale berechnet)
+Ihr gewählter Abholtermin: ###ORDER_PICKUP###";
+
+
+###ORDEREMAIL###
+
+
+</body>
+</html>

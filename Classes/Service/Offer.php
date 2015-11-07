@@ -25,8 +25,9 @@ namespace System25\T3stores\Service;
  ***************************************************************/
 
 \tx_rnbase::load('tx_rnbase_util_DB');
+\tx_rnbase::load('tx_rnbase_sv1_Base');
 
-class Offer extends \TYPO3\CMS\Core\Service\AbstractService {
+class Offer extends \tx_rnbase_sv1_Base {
 	/**
 	 * Search database for stores
 	 *
@@ -34,15 +35,23 @@ class Offer extends \TYPO3\CMS\Core\Service\AbstractService {
 	 * @param array $options
 	 * @return array[System25\T3stores\Model\Store]
 	 */
-	public function search($fields, $options) {
-		\tx_rnbase::load('tx_rnbase_util_SearchBase');
-		$searcher = \tx_rnbase_util_SearchBase::getInstance('System25\T3stores\Search\Offer');
-		return $searcher->search($fields, $options);
+// 	public function search($fields, $options) {
+// 		\tx_rnbase::load('tx_rnbase_util_SearchBase');
+// 		$searcher = \tx_rnbase_util_SearchBase::getInstance('System25\T3stores\Search\Offer');
+// 		return $searcher->search($fields, $options);
+// 	}
+	public function getSearchClass() {
+		return 'System25\T3stores\Search\Offer';
 	}
-	
+
 	public function searchOfferGroup($fields, $options) {
 		\tx_rnbase::load('tx_rnbase_util_SearchBase');
 		$searcher = \tx_rnbase_util_SearchBase::getInstance('System25\T3stores\Search\OfferGroup');
+		return $searcher->search($fields, $options);
+	}
+	public function searchPromotion($fields, $options) {
+		\tx_rnbase::load('tx_rnbase_util_SearchBase');
+		$searcher = \tx_rnbase_util_SearchBase::getInstance('System25\T3stores\Search\Promotion');
 		return $searcher->search($fields, $options);
 	}
 }

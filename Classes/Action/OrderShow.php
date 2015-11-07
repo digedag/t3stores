@@ -2,6 +2,8 @@
 namespace System25\T3stores\Action;
 
 use System25\T3stores\Util\ServiceRegistry;
+use System25\T3stores\Model\Order;
+use System25\T3stores\Model\OrderPosition;
 /***************************************************************
  *  Copyright notice
  *
@@ -28,27 +30,21 @@ use System25\T3stores\Util\ServiceRegistry;
 \tx_rnbase::load('tx_rnbase_action_BaseIOC');
 \tx_rnbase::load('tx_rnbase_filter_BaseFilter');
 \tx_rnbase::load('tx_rnbase_view_List');
+\tx_rnbase::load('tx_rnbase_util_Dates');
 
-class OfferGroupList extends \tx_rnbase_action_BaseIOC {
+
+class OrderShow extends \tx_rnbase_action_BaseIOC {
 	protected function handleRequest(&$parameters, &$configurations, &$viewdata) {
- 		$srv = ServiceRegistry::getOfferService();
 
- 		$filter = \tx_rnbase_filter_BaseFilter::createFilter($parameters, $configurations, $viewdata, $this->getConfId(). 'item.filter.');
- 		$fields = array();
-		$options = array();
-		$filter->init($fields, $options);
-		$items = $srv->searchOfferGroup($fields, $options);
-		$viewdata->offsetSet('items', $items);
-		$data = array();
-		$link = $this->createLink($configurations, $this->getConfId().'form.actionURI', array('action' => '\System25\T3stores\Action\OrderCreate'));
-		$data['ACTION_PID'] = $link->destination;
-		$data['ACTION_URI'] = $link->makeUrl(false);
-		$data['ACTION_CTRL'] = '\System25\T3stores\Action\OrderCreate';
-		$viewdata->offsetSet(\tx_rnbase_view_List::VIEWDATA_MARKER, $data);
+		$itemId = $parameters->getInt('uid');
+		$item = \tx_rnbase::makeInstance('\System25\T3stores\Model\Order', $itemId);
+
+		$viewdata->offsetSet('order', $item);
 		return null;
 	}
 
-	public function getTemplateName() { return 'offergrouplist';}
-	public function getViewClassName() { return 'tx_rnbase_view_List';} // '\System25\T3stores\View\StoreList'
+
+	public function getTemplateName() { return 'ordershow';}
+	public function getViewClassName() { return 'System25\T3stores\View\OrderShow';}
 
 }

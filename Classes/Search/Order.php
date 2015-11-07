@@ -27,29 +27,29 @@ namespace System25\T3stores\Search;
 \tx_rnbase::load('tx_rnbase_util_SearchBase');
 \tx_rnbase::load('tx_rnbase_util_Misc');
 
-class Offer extends \tx_rnbase_util_SearchBase {
+class Order extends \tx_rnbase_util_SearchBase {
 	protected function getTableMappings() {
 		$tableMapping = array();
-		$tableMapping['OFFER'] = 'tx_t3stores_offer';
+		$tableMapping['ORDER'] = 'tx_t3stores_order';
 		// Hook to append other tables
-		\tx_rnbase_util_Misc::callHook('t3stores','search_Offer_getTableMapping_hook',
-			array('tableMapping' => &$tableMapping), $this);
+		\tx_rnbase_util_Misc::callHook('t3stores','search_Order_getTableMapping_hook',
+		array('tableMapping' => &$tableMapping), $this);
 		return $tableMapping;
 	}
 
 	protected function getBaseTable() {
-		return 'tx_t3stores_offer';
+		return 'tx_t3stores_order';
 	}
-	protected function getBaseTableAlias() {return 'OFFER';}
+	protected function getBaseTableAlias() {return 'ORDER';}
 	public function getWrapperClass() {
-		return '\System25\T3stores\Model\Offer';
+		return '\System25\T3stores\Model\Order';
 	}
 
 	protected function getJoins($tableAliases) {
 		$join = '';
 		// Hook to append other tables
-		\tx_rnbase_util_Misc::callHook('t3stores','search_Offer_getJoins_hook',
-			array('join' => &$join, 'tableAliases' => $tableAliases), $this);
+		\tx_rnbase_util_Misc::callHook('t3stores','search_Order_getJoins_hook',
+		array('join' => &$join, 'tableAliases' => $tableAliases), $this);
 
 		return $join;
 	}

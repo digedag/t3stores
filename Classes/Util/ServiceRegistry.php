@@ -46,4 +46,11 @@ class ServiceRegistry {
 	public static function getOfferService() {
 		return \tx_rnbase_util_Misc::getService('t3stores', 'offer');
 	}
+	/**
+	 * Liefert den Offer-Service
+	 * @return \System25\T3stores\Service\Order
+	 */
+	public static function getOrderService() {
+		return \tx_rnbase_util_Misc::getService('t3stores', 'order');
+	}
 }

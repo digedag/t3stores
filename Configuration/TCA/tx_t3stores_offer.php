@@ -71,9 +71,17 @@ return array(
 						'eval' => 'int',
 				)
 		),
+		'pricelabel' => Array (
+				'exclude' => 1,
+				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_offer_pricelabel',
+				'config' => Array (
+						'type' => 'input',
+						'size' => '30',
+						'eval' => 'trim',
+				)
+		),
 	),
 	'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1,name,hint,offergroup,price')
+			'0' => array('showitem' => 'hidden;;1;;1-1-1,name,hint,offergroup,price,pricelabel')
 	)
 );
-				

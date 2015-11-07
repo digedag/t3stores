@@ -10,17 +10,24 @@ t3lib_extMgm::addService($_EXTKEY,  't3stores' /* sv type */,  'System25\T3store
 		'title' => 'Store', 'description' => 'Handles stores', 'subtype' => 'store',
 		'available' => TRUE, 'priority' => 50, 'quality' => 50,
 		'os' => '', 'exec' => '',
-//		'classFile' => t3lib_extMgm::extPath($_EXTKEY).'sv1/class.tx_t3sponsors_sv1_Sponsor.php',
 		'className' => 'System25\T3stores\Service\Store',
 	)
 );
 
 t3lib_extMgm::addService($_EXTKEY,  't3stores' /* sv type */,  'System25\T3stores\Service\Offer' /* sv key */,
-array(
-'title' => 'Offer', 'description' => 'Handles offers', 'subtype' => 'offer',
-'available' => TRUE, 'priority' => 50, 'quality' => 50,
-'os' => '', 'exec' => '',
-//		'classFile' => t3lib_extMgm::extPath($_EXTKEY).'sv1/class.tx_t3sponsors_sv1_Sponsor.php',
-'className' => 'System25\T3stores\Service\Offer',
-)
+	array(
+		'title' => 'Offer', 'description' => 'Handles offers', 'subtype' => 'offer',
+		'available' => TRUE, 'priority' => 50, 'quality' => 50,
+		'os' => '', 'exec' => '',
+		'className' => 'System25\T3stores\Service\Offer',
+	)
+);
+
+t3lib_extMgm::addService($_EXTKEY,  't3stores' /* sv type */,  'System25\T3stores\Service\Order' /* sv key */,
+	array(
+		'title' => 'Order', 'description' => 'Handles orders', 'subtype' => 'order',
+		'available' => TRUE, 'priority' => 50, 'quality' => 50,
+		'os' => '', 'exec' => '',
+		'className' => 'System25\T3stores\Service\Order',
+	)
 );

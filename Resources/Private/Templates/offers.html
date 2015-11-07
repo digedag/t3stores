@@ -32,7 +32,6 @@ offers = offers || (function () {
 			jQuery( "#sum" ).html(this.formatPrice(sum));
 		},
 		initOffer: function(uid, price) {
-			console.info("Add "+ uid + " " + price);
 			offers[uid] = {
 					uid: uid,
 					price: price,
@@ -43,8 +42,11 @@ offers = offers || (function () {
 })();
 
 </script>
+###ACTION_URI###
+<form action="###ACTION_URI###" method="POST" >
+<input type="hidden" name="id" value="###ACTION_PID###"/>
+<input type="hidden" name="t3stores[action]" value="###ACTION_CTRL###"/>
 ###ITEMS###
-<form action="###ACTION_URI###">
 
 ###ITEM###
 
@@ -69,11 +71,11 @@ offers.initOffer(###ITEM_OFFER_UID###, ###ITEM_OFFER_PRICE###);
 
 <tr>
 	<td>
-<div class="input-group">
-      <div class="input-group-addon input-sm">kg</div>
-      <input type="text" class="form-control input-sm" id="exampleInputAmount" placeholder="0,00" style="width:70px" onChange="offers.updateOffer(###ITEM_OFFER_UID###, this)" >
-      <input type="hidden" class="form-control" name="t3stores[###ITEM_OFFER_UID###][price]">
-</div>
+		<div class="input-group">
+			<div class="input-group-addon input-sm">kg</div>
+			<input type="text" class="form-control input-sm" name="t3stores[offer][###ITEM_OFFER_UID###][amount]" placeholder="0,00" style="width:70px" onChange="offers.updateOffer(###ITEM_OFFER_UID###, this)" >
+			<input type="hidden" class="form-control" name="t3stores[offer][###ITEM_OFFER_UID###][price]">
+		</div>
 	</td>
 	<td>###ITEM_OFFER_NAME###<br><small>###ITEM_OFFER_HINT###</small> </td>
 	<td class="text-right">###ITEM_OFFER_PRICESTR###/kg</td>
@@ -84,11 +86,12 @@ offers.initOffer(###ITEM_OFFER_UID###, ###ITEM_OFFER_PRICE###);
 ###ITEM_OFFERS###
 
 ###ITEM###
-</form>
 ###ITEMS###
 <div>
-<strong>Gesamtpreis:</strong> <span id="sum"></span> &euro;
+<strong>Gesamtpreis:</strong> <span id="sum">0,00</span> &euro;
 </div>
+<input type="submit" class="btn btn-primary" value="Weiter" />
+</form>
 
 ###OFFERGROUPLIST###
 

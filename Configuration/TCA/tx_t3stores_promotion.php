@@ -24,26 +24,43 @@ return array(
 			'maxDBListItems' => 60,
 	),
 	'columns' => array(
-				'hidden' => array (
-						'exclude' => 1,
-						'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-						'config'  => array (
-								'type'    => 'check',
-								'default' => '0'
-						)
-				),
-				'name' => Array (
-						'exclude' => 1,
-						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_promotion_name',
-						'config' => Array (
-								'type' => 'input',
-								'size' => '30',
-								'eval' => 'trim',
-						)
-				),
+		'hidden' => array (
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+			'config'  => array (
+				'type'    => 'check',
+				'default' => '0'
+			)
+		),
+		'name' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_promotion_name',
+			'config' => Array (
+				'type' => 'input',
+				'size' => '30',
+				'eval' => 'trim',
+			)
+		),
+		'discount' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_promotion_discount',
+			'config' => Array (
+				'type' => 'input',
+				'size' => '8',
+				'eval' => 'int',
+			)
+		),
+		'pickupdates' => Array (
+				'exclude' => 1,
+				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_promotion_pickupdates',
+				'config' => Array (
+						'type' => 'text',
+						'cols' => '40',
+						'rows' => '6',
+				)
+		),
 	),
 	'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1,name')
+			'0' => array('showitem' => 'hidden;;1;;1-1-1,name, discount, pickupdates')
 	)
 );
-				

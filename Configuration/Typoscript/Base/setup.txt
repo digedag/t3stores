@@ -14,6 +14,30 @@ plugin.tx_t3stores.locallangFilename = EXT:t3stores/Resources/Private/Language/l
 
 tt_content.list.20.tx_t3stores    =< plugin.tx_t3stores
 
+lib.t3stores.price.stdWrap {
+  numberFormat.decimals = 2
+  wrap = |&nbsp;&euro;
+}
+lib.t3stores.promotion {
+  discount.wrap = |%
+  pickupdate.day.strftime = %d.%m.%Y
+}
+lib.t3stores.order {
+  promotion =< lib.t3stores.promotion
+  position =< lib.t3stores.orderposition
+  positionpricestr < lib.t3stores.price
+  discountvaluestr < lib.t3stores.price
+  totalpricestr < lib.t3stores.price
+}
+lib.t3stores.orderposition {
+	dcamount.field = amount
+	dcamount.wrap =|&nbsp;kg
+	offer =< lib.t3stores.offer
+  pricestr < lib.t3stores.price
+  pricestr.stdWrap.wrap = |&nbsp;&euro;/kg
+  totalstr < lib.t3stores.price
+}
+
 lib.t3stores.store {
 #  distance.number_format.decimal = 2
   distance.stdWrap.numberFormat.decimals = 2 
@@ -30,6 +54,8 @@ lib.t3stores.offergroup {
 plugin.tx_t3stores {
   storelistTemplate = {$plugin.tx_t3stores.storelistTemplate}
   offergrouplistTemplate = {$plugin.tx_t3stores.offergrouplistTemplate}
+  ordercreateTemplate = {$plugin.tx_t3stores.ordercreateTemplate}
+  ordershowTemplate = {$plugin.tx_t3stores.ordershowTemplate}
 
   storelist {
     item =< lib.t3stores.store
@@ -46,5 +72,14 @@ plugin.tx_t3stores {
       class = tx_rnbase_filter_BaseFilter
     }
     item =< lib.t3stores.offergroup
+  }
+  ordercreate {
+    promotion =< lib.t3stores.promotion
+    order =< lib.t3stores.order
+    emailTemplate = {$plugin.tx_t3stores.orderemailTemplate}
+  }
+  ordershow {
+    promotion =< lib.t3stores.promotion
+    order =< lib.t3stores.order
   }
 }

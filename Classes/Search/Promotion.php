@@ -27,29 +27,38 @@ namespace System25\T3stores\Search;
 \tx_rnbase::load('tx_rnbase_util_SearchBase');
 \tx_rnbase::load('tx_rnbase_util_Misc');
 
-class Offer extends \tx_rnbase_util_SearchBase {
+class Promotion extends \tx_rnbase_util_SearchBase {
 	protected function getTableMappings() {
 		$tableMapping = array();
+		$tableMapping['PROMOTION'] = 'tx_t3stores_promotion';
+		$tableMapping['OFFERGROUP'] = 'tx_t3stores_offergroup';
 		$tableMapping['OFFER'] = 'tx_t3stores_offer';
 		// Hook to append other tables
-		\tx_rnbase_util_Misc::callHook('t3stores','search_Offer_getTableMapping_hook',
-			array('tableMapping' => &$tableMapping), $this);
+		\tx_rnbase_util_Misc::callHook('t3stores','search_Promotion_getTableMapping_hook',
+				array('tableMapping' => &$tableMapping), $this);
 		return $tableMapping;
 	}
 
 	protected function getBaseTable() {
-		return 'tx_t3stores_offer';
+		return 'tx_t3stores_promotion';
 	}
-	protected function getBaseTableAlias() {return 'OFFER';}
+	protected function getBaseTableAlias() {return 'PROMOTION';}
 	public function getWrapperClass() {
-		return '\System25\T3stores\Model\Offer';
+		return '\System25\T3stores\Model\Promotion';
 	}
 
 	protected function getJoins($tableAliases) {
 		$join = '';
+		if(isset($tableAliases['OFFER']) || isset($tableAliases['OFFERGROUP'])) {
+			$join .= ' JOIN tx_t3stores_offergroup OFFERGROUP ON OFFERGROUP.promotion = PROMOTION.uid';
+		}
+		if(isset($tableAliases['OFFER'])) {
+			$join .= ' JOIN tx_t3stores_offer OFFER ON OFFER.group = OFFERGROUP.promotion';
+		}
+
 		// Hook to append other tables
-		\tx_rnbase_util_Misc::callHook('t3stores','search_Offer_getJoins_hook',
-			array('join' => &$join, 'tableAliases' => $tableAliases), $this);
+		\tx_rnbase_util_Misc::callHook('t3stores','search_Promotion_getJoins_hook',
+				array('join' => &$join, 'tableAliases' => $tableAliases), $this);
 
 		return $join;
 	}
