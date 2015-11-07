@@ -29,8 +29,14 @@ use System25\T3stores\Model\OrderPosition;
 \tx_rnbase::load('tx_rnbase_sv1_Base');
 
 class Order extends \tx_rnbase_sv1_Base {
-	public function createOrder(\System25\T3stores\Model\Order $order) {
+	/**
+	 * Persist new order in database
+	 * @param \System25\T3stores\Model\Order $order
+	 * @return model
+	 */
+	public function createOrder(\System25\T3stores\Model\Order $order, $promotion) {
 		$data = array();
+		$data['pid'] = $promotion->getPid();
 		$cols = array_keys(\tx_rnbase_util_TCA::getTcaColumns('tx_t3stores_order'));
 		foreach ($cols As $colName) {
 			if(array_key_exists($colName, $order->record)) {
@@ -40,7 +46,7 @@ class Order extends \tx_rnbase_sv1_Base {
 		$newOrder = $this->handleCreation($data);
 		// Now the positions
 		foreach($order->getPositions() As $position) {
-			$newPositionUid = $this->createPosition($position, $newOrder->getUid());
+			$newPositionUid = $this->createPosition($position, $newOrder->getUid(), $promotion->getPid());
 			$newOrder->addPosition(new OrderPosition($newPositionUid));
 		}
 		return $newOrder;
@@ -53,11 +59,12 @@ class Order extends \tx_rnbase_sv1_Base {
 	 * @param int	$orderUid
 	 * @return int	UID of just created record
 	 */
-	protected function createPosition(OrderPosition $position, $orderUid) {
+	protected function createPosition(OrderPosition $position, $orderUid, $pid) {
 		$data = array();
 		$table = 'tx_t3stores_orderposition';
 		$data['crdate'] = $data['tstamp'] = time();
 		$data['orderuid'] = $orderUid;
+		$data['pid'] = $pid;
 
 		$cols = array_keys(\tx_rnbase_util_TCA::getTcaColumns('tx_t3stores_orderposition'));
 		foreach ($cols As $colName) {

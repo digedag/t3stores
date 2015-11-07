@@ -73,7 +73,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 			$order->record['pickup'] = \tx_rnbase_util_Dates::date_tstamp2mysql($day->record['day']);
 		}
 		$orderSrv = ServiceRegistry::getOrderService();
-		$newOrder = $orderSrv->createOrder($order);
+		$newOrder = $orderSrv->createOrder($order, $promotion);
 		// Mail verschicken
 
 		// Redirect
