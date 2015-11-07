@@ -42,7 +42,6 @@ offers = offers || (function () {
 })();
 
 </script>
-###ACTION_URI###
 <form action="###ACTION_URI###" method="POST" >
 <input type="hidden" name="id" value="###ACTION_PID###"/>
 <input type="hidden" name="t3stores[action]" value="###ACTION_CTRL###"/>
@@ -50,6 +49,7 @@ offers = offers || (function () {
 
 ###ITEM###
 
+<div class="well">
 <div>
 <strong>###ITEM_NAME###</strong><br/>
 ###ITEM_DESCRIPTION###
@@ -84,7 +84,7 @@ offers.initOffer(###ITEM_OFFER_UID###, ###ITEM_OFFER_PRICE###);
 ###ITEM_OFFER###
 </table>
 ###ITEM_OFFERS###
-
+</div>
 ###ITEM###
 ###ITEMS###
 <div>
