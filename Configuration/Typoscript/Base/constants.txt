@@ -1,15 +1,23 @@
 #constants
 plugin.tx_t3stores {
-  # cat=T3stores/storeshow; type=string;label=HTML Template of store details view
+  # cat=T3stores (Templates)/storeshow; type=string;label=HTML Template of store details view
   storeshowTemplate = EXT:t3sponsors/templates/sponsorshow.html
-  # cat=T3stores/storelist; type=string;label=HTML Template of store list view
+  # cat=T3stores (Templates)/storelist; type=string;label=HTML Template of store list view
   storelistTemplate = EXT:t3stores/Resources/Private/Templates/stores.html
-  # cat=T3stores/offergrouplist; type=string;label=HTML Template of offer group list view
+  # cat=T3stores (Templates)/offergrouplist; type=string;label=HTML Template of offer group list view
   offergrouplistTemplate = EXT:t3stores/Resources/Private/Templates/offers.html
-  # cat=T3stores/ordercreate; type=string;label=HTML Template of order creation
+  # cat=T3stores (Templates)/ordercreate; type=string;label=HTML Template of order creation
   ordercreateTemplate = EXT:t3stores/Resources/Private/Templates/orders.html
-  # cat=T3stores/ordershow; type=string;label=HTML Template of order show
+  # cat=T3stores (Templates)/ordershow; type=string;label=HTML Template of order show
   ordershowTemplate = EXT:t3stores/Resources/Private/Templates/orders.html
-  # cat=T3stores/orderemail; type=string;label=Template of order email
-  orderemailTemplate = EXT:t3stores/Resources/Private/Templates/orders.html
+  # cat=T3stores (Emails)/orderemailcustomer; type=string;label=Template of order email to customer
+  orderemailTemplateCustomer = EXT:t3stores/Resources/Private/Templates/orders.html
+  # cat=T3stores (Emails)/orderemailstore; type=string;label=Template of order email to store
+  orderemailTemplateStore = EXT:t3stores/Resources/Private/Templates/orders.html
+  # cat=T3stores (Emails)/orderemailcustomerfrom; type=string;label=From address for customer mail
+  orderemailCustomerFrom = info@yourdomain.com
+  # cat=T3stores (Emails)/orderemailcustomerfromname; type=string;label=From name for customer mail
+  orderemailCustomerFromName = Your company
+  # cat=T3stores (Emails)/orderemailcustomerreply; type=string;label=Reply address for customer mail
+  orderemailCustomerReply = reply@yourdomain.com
 }

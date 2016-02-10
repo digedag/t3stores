@@ -75,6 +75,12 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		$orderSrv = ServiceRegistry::getOrderService();
 		$newOrder = $orderSrv->createOrder($order, $promotion);
 		// Mail verschicken
+		if($configurations->getBool($this->getConfId().'sendMail2Customer')) {
+			$orderSrv->sendConfirmationMail($order, $promotion, $configurations, $this->getConfId().'sendMail2Customer.', true);
+		}
+		if($configurations->getBool($this->getConfId().'sendMail2Store')) {
+			$orderSrv->sendConfirmationMail($order, $promotion, $configurations, $this->getConfId().'sendMail2Store.', false);
+		}
 
 		// Redirect
 		$link = $this->createLink($configurations, $this->getConfId().'redirectURI', array('action' => '\System25\T3stores\Action\OrderShow', 'uid'=>$newOrder->getUid()));

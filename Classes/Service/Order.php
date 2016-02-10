@@ -27,8 +27,49 @@ use System25\T3stores\Model\OrderPosition;
 
 \tx_rnbase::load('tx_rnbase_util_DB');
 \tx_rnbase::load('tx_rnbase_sv1_Base');
+\tx_rnbase::load('tx_rnbase_util_Logger');
 
 class Order extends \tx_rnbase_sv1_Base {
+	/**
+	 *
+	 * @param \System25\T3stores\Model\Order $order
+	 * @param \System25\T3stores\Model\Promotion $promotion
+	 * @param \tx_rnbase_configurations $configurations
+	 * @param string $confId
+	 */
+	public function sendConfirmationMail(\System25\T3stores\Model\Order $order, $promotion, $configurations, $confId, $saveToOrder) {
+		\tx_rnbase::load('tx_rnbase_util_Templates');
+		$fileName = $configurations->get($confId.'template');
+		$subpart = $configurations->get($confId.'subpart');
+		$template = \tx_rnbase_util_Templates::getSubpartFromFile($fileName, $subpart);
+
+		$marker = \tx_rnbase::makeInstance('System25\T3stores\Marker\OrderMarker');
+		$mailtext = $marker->parseTemplate($template, $order, $configurations->getFormatter(), $confId.'order.');
+		$marker = \tx_rnbase::makeInstance('System25\T3stores\Marker\PromotionMarker');
+		$mailtext = $marker->parseTemplate($mailtext, $promotion, $configurations->getFormatter(), $confId.'promotion.', 'PROMOTION');
+
+		$emailFrom = $configurations->get($confId.'emailFrom');
+		$emailFromName = $configurations->get($confId.'emailFromName');
+		$emailReply = $configurations->get($confId.'emailReply');
+		$parts = explode(LF, $mailtext, 2);		// First line is subject
+		$subject=trim($parts[0]);
+		$mailtext=trim($parts[1]);
+		/* @var $mail \tx_rnbase_util_Mail */
+		$mail = \tx_rnbase::makeInstance('tx_rnbase_util_Mail');
+		$mail->setSubject($subject);
+		$mail->setFrom($emailFrom, $emailFromName);
+		$mail->setTo($order->getCustomeremail(), $order->getCustomername());
+		if($emailReply)
+			$mail->setReplyTo($emailReply);
+
+		if($configurations->getBool($confId.'isHtmlMail')) {
+			$mail->setHtmlPart($mailtext);
+		}
+		else
+			$mail->setTextPart($mailtext);
+		\tx_rnbase_util_Logger::info('Order mail send for '.$order->getUid(), 't3stores', array('to' => $order->getCustomeremail()));
+		$mail->send();
+	}
 	/**
 	 * Persist new order in database
 	 * @param \System25\T3stores\Model\Order $order

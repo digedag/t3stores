@@ -76,7 +76,16 @@ plugin.tx_t3stores {
   ordercreate {
     promotion =< lib.t3stores.promotion
     order =< lib.t3stores.order
-    emailTemplate = {$plugin.tx_t3stores.orderemailTemplate}
+    sendMail2Customer = 1
+    sendMail2Customer {
+      template = {$plugin.tx_t3stores.orderemailTemplateCustomer}
+      subpart = ###CUSTOMERMAIL###
+      order =< lib.t3stores.order
+      promotion =< lib.t3stores.promotion
+      emailFrom = {$plugin.tx_t3stores.orderemailCustomerFrom}
+      emailFromName = {$plugin.tx_t3stores.orderemailCustomerFromName}
+      emailReply = {$plugin.tx_t3stores.orderemailCustomerReply}
+    }
   }
   ordershow {
     promotion =< lib.t3stores.promotion
