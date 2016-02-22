@@ -50,12 +50,30 @@ lib.t3stores.offergroup {
   offer =< lib.t3stores.offer
 }
 
+lib.t3stores.product {
+	dcthumbnail = IMG_RESOURCE
+	dcthumbnail.file {
+		import.cObject = USER
+		import.cObject {
+			# Mit dieser Methode wird nur die erste Referenz ausgewertet 
+			userFunc=tx_rnbase_util_TSFAL->fetchFirstReference
+			refField=images
+			refTable=tx_t3stores_product
+		}
+		treatIdAsReference = 1
+		maxW = 200
+	}
+	dcimage < .dcthumbnail
+	dcimage.file.maxW = 1500
+}
+
 # Ab hier Konfiguration der einzelnen Views 
 plugin.tx_t3stores {
   storelistTemplate = {$plugin.tx_t3stores.storelistTemplate}
   offergrouplistTemplate = {$plugin.tx_t3stores.offergrouplistTemplate}
   ordercreateTemplate = {$plugin.tx_t3stores.ordercreateTemplate}
   ordershowTemplate = {$plugin.tx_t3stores.ordershowTemplate}
+  productlistTemplate = {$plugin.tx_t3stores.productlistTemplate}
 
   storelist {
     item =< lib.t3stores.store
@@ -90,5 +108,8 @@ plugin.tx_t3stores {
   ordershow {
     promotion =< lib.t3stores.promotion
     order =< lib.t3stores.order
+  }
+  productlist {
+  	item =< lib.t3stores.product
   }
 }

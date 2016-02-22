@@ -25,6 +25,10 @@
                     <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.OfferGroupList</numIndex>
                     <numIndex index="1">\System25\T3stores\Action\OfferGroupList</numIndex>
                   </numIndex>
+                  <numIndex index="100" type="array">
+                    <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.ProductList</numIndex>
+                    <numIndex index="1">\System25\T3stores\Action\ProductList</numIndex>
+                  </numIndex>
 
                 </items>
                 <multiple>0</multiple>
@@ -60,6 +64,34 @@
 				</el>
 			</ROOT>
 		</s_offergroup>
+		<s_productlist>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.ProductList</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+          <productlist.item.filter.fields.CATMM.UID_LOCAL.OP_IN_INT>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:lang/locallang_tca.xlf:sys_category.categories</label>
+              <config>
+                <type>select</type>
+                <foreign_table>sys_category</foreign_table>
+                <foreign_table_where>AND sys_category.sys_language_uid IN (-1, 0) ORDER BY sys_category.sorting ASC</foreign_table_where>
+                <multiple>1</multiple>
+                <maxitems>999</maxitems>
+                <size>10</size>
+                <renderMode>tree</renderMode>
+                <treeConfig>
+                	<parentField>parent</parentField>
+                </treeConfig>
+              </config>
+            </TCEforms>
+          </productlist.item.filter.fields.CATMM.UID_LOCAL.OP_IN_INT>
+				</el>
+			</ROOT>
+		</s_productlist>
 		<s_tssetup>
 			<ROOT>
 				<TCEforms>
