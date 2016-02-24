@@ -4,7 +4,7 @@ namespace System25\T3stores\Util;
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2015 Rene Nitzsche (rene@system25.de)
+*  (c) 2015-2016 Rene Nitzsche (rene@system25.de)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -38,6 +38,13 @@ class ServiceRegistry {
 	 */
 	public static function getProductService() {
 		return \tx_rnbase_util_Misc::getService('t3stores', 'product');
+	}
+	/**
+	 * Liefert den Job-Service
+	 * @return \System25\T3stores\Service\Job
+	 */
+	public static function getJobService() {
+		return \tx_rnbase_util_Misc::getService('t3stores', 'job');
 	}
 	/**
 	 * Liefert den Store-Service

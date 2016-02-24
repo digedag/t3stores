@@ -14,6 +14,15 @@ tx_rnbase_util_Extensions::addService($_EXTKEY,  't3stores' /* sv type */,  'Sys
 	)
 );
 
+tx_rnbase_util_Extensions::addService($_EXTKEY,  't3stores' /* sv type */,  'System25\T3stores\Service\Job' /* sv key */,
+	array(
+		'title' => 'Job', 'description' => 'Handles jobs', 'subtype' => 'job',
+		'available' => TRUE, 'priority' => 50, 'quality' => 50,
+		'os' => '', 'exec' => '',
+		'className' => 'System25\T3stores\Service\Job',
+	)
+);
+
 tx_rnbase_util_Extensions::addService($_EXTKEY,  't3stores' /* sv type */,  'System25\T3stores\Service\Store' /* sv key */,
 	array(
 		'title' => 'Store', 'description' => 'Handles stores', 'subtype' => 'store',

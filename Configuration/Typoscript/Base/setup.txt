@@ -73,6 +73,7 @@ plugin.tx_t3stores {
   offergrouplistTemplate = {$plugin.tx_t3stores.offergrouplistTemplate}
   ordercreateTemplate = {$plugin.tx_t3stores.ordercreateTemplate}
   ordershowTemplate = {$plugin.tx_t3stores.ordershowTemplate}
+  joblistTemplate = {$plugin.tx_t3stores.joblistTemplate}
   productlistTemplate = {$plugin.tx_t3stores.productlistTemplate}
 
   storelist {

@@ -1,5 +1,5 @@
 <?php
-namespace System25\T3stores\Service;
+namespace System25\T3stores\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -24,20 +24,10 @@ namespace System25\T3stores\Service;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-\tx_rnbase::load('tx_rnbase_util_DB');
+\tx_rnbase::load('Tx_Rnbase_Domain_Model_Base');
 
-class Product extends \TYPO3\CMS\Core\Service\AbstractService {
-	/**
-	 * Search database for products
-	 *
-	 * @param array $fields
-	 * @param array $options
-	 * @return array[System25\T3stores\Model\Product]
-	 */
-	public function search($fields, $options) {
-		\tx_rnbase::load('tx_rnbase_util_SearchBase');
-		$searcher = \tx_rnbase_util_SearchBase::getInstance('System25\T3stores\Search\Product');
-		return $searcher->search($fields, $options);
-	}
+class Job extends \Tx_Rnbase_Domain_Model_Base {
+
+	public function getTableName(){return 'tx_t3stores_job';}
 
 }

@@ -11,6 +11,7 @@
 			<label index="plugin.t3stores.flexform.tab.tssetup">TS-Setup</label>
 			<label index="plugin.t3stores.flexform.tssetup">plugin.tx_t3stores.</label>
 			<label index="plugin.t3stores.flexform.action">View</label>
+			<label index="plugin.t3stores.flexform.action.JobList">List of jobs</label>
 			<label index="plugin.t3stores.flexform.action.ProductList">List of products</label>
 			<label index="plugin.t3stores.flexform.action.StoreList">List of stores</label>
 			<label index="plugin.t3stores.flexform.action.OfferGroupList">List of offer groups</label>
@@ -59,8 +60,12 @@
 			<label index="tx_t3stores_product">Product</label>
 			<label index="tx_t3stores_product_name">Name</label>
 			<label index="tx_t3stores_product_description">Description</label>
-			<label index="tx_t3stores_product_categories">Categories</label>
 			<label index="tx_t3stores_product_images">Images</label>
+
+			<label index="tx_t3stores_job">Job</label>
+			<label index="tx_t3stores_job_title">Title</label>
+			<label index="tx_t3stores_job_description">Description</label>
+			<label index="tx_t3stores_job_images">Images</label>
 
 			<label index="tx_t3stores_order">Order</label>
 			<label index="tx_t3stores_order_customername">Customer Name</label>
@@ -86,6 +91,7 @@
 
 		</languageKey>
 		<languageKey index="de" type="array">
+			<label index="plugin.t3stores.flexform.action.JobList">Liste von Jobs</label>
 			<label index="plugin.t3stores.flexform.action.ProductList">Liste von Produkten</label>
 			<label index="plugin.t3stores.flexform.action.StoreList">Liste von Filialen</label>
 			<label index="plugin.t3stores.flexform.action.OfferGroupList">Liste von Angebotsgruppen</label>
@@ -133,6 +139,11 @@
 			<label index="tx_t3stores_product_name">Name</label>
 			<label index="tx_t3stores_product_description">Beschreibung</label>
 			<label index="tx_t3stores_product_images">Bilder</label>
+
+			<label index="tx_t3stores_job">Job</label>
+			<label index="tx_t3stores_job_title">Titel</label>
+			<label index="tx_t3stores_job_description">Beschreibung</label>
+			<label index="tx_t3stores_job_images">Bilder</label>
 
 			<label index="tx_t3stores_order">Auftrag</label>
 			<label index="tx_t3stores_order_customername">Name des Kunden</label>
