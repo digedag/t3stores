@@ -41,6 +41,15 @@ return array(
 						'eval' => 'trim',
 				)
 		),
+		'shortname' => Array (
+				'exclude' => 1,
+				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_product_shortname',
+				'config' => Array (
+						'type' => 'input',
+						'size' => '30',
+						'eval' => 'trim',
+				)
+		),
 		'description' => Array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_product_description',
@@ -81,6 +90,6 @@ return array(
 		'images' => tx_rnbase_util_TSFAL::getMediaTCA('images', array()),
 	),
 	'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1,name,description;;;richtext[cut|copy|paste|formatblock|textcolor|bold|italic|underline|left|center|right|orderedlist|unorderedlist|outdent|indent|link|table|image|line|chMode]:rte_transform[mode=ts_css|imgpath=uploads/tx_cfcleague/rte/], categories, images')
+			'0' => array('showitem' => 'hidden;;1;;1-1-1,name,shortname,description;;;richtext[cut|copy|paste|formatblock|textcolor|bold|italic|underline|left|center|right|orderedlist|unorderedlist|outdent|indent|link|table|image|line|chMode]:rte_transform[mode=ts_css|imgpath=uploads/tx_cfcleague/rte/], categories, images')
 	)
 );

@@ -59,6 +59,7 @@
 
 			<label index="tx_t3stores_product">Product</label>
 			<label index="tx_t3stores_product_name">Name</label>
+			<label index="tx_t3stores_product_shortname">Shortname</label>
 			<label index="tx_t3stores_product_description">Description</label>
 			<label index="tx_t3stores_product_images">Images</label>
 
@@ -137,6 +138,7 @@
 
 			<label index="tx_t3stores_product">Produkt</label>
 			<label index="tx_t3stores_product_name">Name</label>
+			<label index="tx_t3stores_product_shortname">Kurzname</label>
 			<label index="tx_t3stores_product_description">Beschreibung</label>
 			<label index="tx_t3stores_product_images">Bilder</label>
 

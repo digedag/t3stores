@@ -141,6 +141,7 @@ CREATE TABLE tx_t3stores_product (
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
 
 	name varchar(255) DEFAULT '' NOT NULL,
+	shortname varchar(255) DEFAULT '' NOT NULL,
 	categories int(11) DEFAULT '0' NOT NULL,
 	description text,
 	images int(11) DEFAULT '0' NOT NULL,
