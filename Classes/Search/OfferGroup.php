@@ -36,21 +36,21 @@ class OfferGroup extends \tx_rnbase_util_SearchBase {
 		array('tableMapping' => &$tableMapping), $this);
 		return $tableMapping;
 	}
-	
+
 	protected function getBaseTable() {
 		return 'tx_t3stores_offergroup';
 	}
 	protected function getBaseTableAlias() {return 'OFFERGROUP';}
 	public function getWrapperClass() {
-		return '\System25\T3stores\Model\OfferGroup';
+		return 'System25\T3stores\Model\OfferGroup';
 	}
-	
+
 	protected function getJoins($tableAliases) {
 		$join = '';
 		// Hook to append other tables
 		\tx_rnbase_util_Misc::callHook('t3stores','search_OfferGroup_getJoins_hook',
 		array('join' => &$join, 'tableAliases' => $tableAliases), $this);
-	
+
 		return $join;
 	}
 	protected function useAlias() {

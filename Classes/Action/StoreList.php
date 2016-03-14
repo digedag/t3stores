@@ -41,7 +41,7 @@ class StoreList extends \tx_rnbase_action_BaseIOC {
 		$viewdata->offsetSet('items', $items);
 		return null;
 	}
-	
+
 	public function getTemplateName() { return 'storelist';}
-	public function getViewClassName() { return 'tx_rnbase_view_List';} // '\System25\T3stores\View\StoreList'
+	public function getViewClassName() { return 'tx_rnbase_view_List';}
 }

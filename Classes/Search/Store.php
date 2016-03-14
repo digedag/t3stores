@@ -36,21 +36,21 @@ class Store extends \tx_rnbase_util_SearchBase {
 		array('tableMapping' => &$tableMapping), $this);
 		return $tableMapping;
 	}
-	
+
 	protected function getBaseTable() {
 		return 'tx_t3stores_store';
 	}
 	protected function getBaseTableAlias() {return 'STORE';}
 	public function getWrapperClass() {
-		return '\System25\T3stores\Model\Store';
+		return 'System25\T3stores\Model\Store';
 	}
-	
+
 	protected function getJoins($tableAliases) {
 		$join = '';
 		// Hook to append other tables
 		\tx_rnbase_util_Misc::callHook('t3stores','search_Store_getJoins_hook',
 		array('join' => &$join, 'tableAliases' => $tableAliases), $this);
-	
+
 		return $join;
 	}
 	protected function useAlias() {

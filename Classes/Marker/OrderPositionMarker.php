@@ -46,7 +46,7 @@ class OrderPositionMarker extends \tx_rnbase_util_SimpleMarker {
 	}
 
 	protected function addOffer($template, $item, $formatter, $confId, $markerPrefix) {
-		$marker = \tx_rnbase::makeInstance('\System25\T3stores\Marker\OfferMarker');
+		$marker = \tx_rnbase::makeInstance('System25\T3stores\Marker\OfferMarker');
 		$child = $item->getOffer();
 		return $marker->parseTemplate($template, $child, $formatter, $confId, $markerPrefix);
 	}

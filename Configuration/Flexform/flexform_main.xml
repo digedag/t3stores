@@ -19,19 +19,19 @@
                 <items type="array">
                   <numIndex index="10" type="array">
                     <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.StoreList</numIndex>
-                    <numIndex index="1">\System25\T3stores\Action\StoreList</numIndex>
+                    <numIndex index="1">System25\T3stores\Action\StoreList</numIndex>
                   </numIndex>
                   <numIndex index="50" type="array">
                     <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.OfferGroupList</numIndex>
-                    <numIndex index="1">\System25\T3stores\Action\OfferGroupList</numIndex>
+                    <numIndex index="1">System25\T3stores\Action\OfferGroupList</numIndex>
                   </numIndex>
                   <numIndex index="100" type="array">
                     <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.ProductList</numIndex>
-                    <numIndex index="1">\System25\T3stores\Action\ProductList</numIndex>
+                    <numIndex index="1">System25\T3stores\Action\ProductList</numIndex>
                   </numIndex>
                   <numIndex index="150" type="array">
                     <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.JobList</numIndex>
-                    <numIndex index="1">\System25\T3stores\Action\JobList</numIndex>
+                    <numIndex index="1">System25\T3stores\Action\JobList</numIndex>
                   </numIndex>
 
                 </items>

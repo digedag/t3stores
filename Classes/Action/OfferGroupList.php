@@ -40,15 +40,15 @@ class OfferGroupList extends \tx_rnbase_action_BaseIOC {
 		$items = $srv->searchOfferGroup($fields, $options);
 		$viewdata->offsetSet('items', $items);
 		$data = array();
-		$link = $this->createLink($configurations, $this->getConfId().'form.actionURI', array('action' => '\System25\T3stores\Action\OrderCreate'));
+		$link = $this->createLink($configurations, $this->getConfId().'form.actionURI', array('action' => 'System25\T3stores\Action\OrderCreate'));
 		$data['ACTION_PID'] = $link->destination;
 		$data['ACTION_URI'] = $link->makeUrl(false);
-		$data['ACTION_CTRL'] = '\System25\T3stores\Action\OrderCreate';
+		$data['ACTION_CTRL'] = 'System25\T3stores\Action\OrderCreate';
 		$viewdata->offsetSet(\tx_rnbase_view_List::VIEWDATA_MARKER, $data);
 		return null;
 	}
 
 	public function getTemplateName() { return 'offergrouplist';}
-	public function getViewClassName() { return 'tx_rnbase_view_List';} // '\System25\T3stores\View\StoreList'
+	public function getViewClassName() { return 'tx_rnbase_view_List';} // 'System25\T3stores\View\StoreList'
 
 }

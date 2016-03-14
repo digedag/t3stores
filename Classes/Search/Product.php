@@ -43,7 +43,7 @@ class Product extends \tx_rnbase_util_SearchBase {
 	}
 	protected function getBaseTableAlias() {return 'PRODUCT';}
 	public function getWrapperClass() {
-		return '\System25\T3stores\Model\Product';
+		return 'System25\T3stores\Model\Product';
 	}
 
 	protected function getJoins($tableAliases) {

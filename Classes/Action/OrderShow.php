@@ -37,7 +37,7 @@ class OrderShow extends \tx_rnbase_action_BaseIOC {
 	protected function handleRequest(&$parameters, &$configurations, &$viewdata) {
 
 		$itemId = $parameters->getInt('uid');
-		$item = \tx_rnbase::makeInstance('\System25\T3stores\Model\Order', $itemId);
+		$item = \tx_rnbase::makeInstance('System25\T3stores\Model\Order', $itemId);
 
 		$viewdata->offsetSet('order', $item);
 		return null;

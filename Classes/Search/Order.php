@@ -42,7 +42,7 @@ class Order extends \tx_rnbase_util_SearchBase {
 	}
 	protected function getBaseTableAlias() {return 'ORDER';}
 	public function getWrapperClass() {
-		return '\System25\T3stores\Model\Order';
+		return 'System25\T3stores\Model\Order';
 	}
 
 	protected function getJoins($tableAliases) {

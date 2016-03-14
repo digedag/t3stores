@@ -41,7 +41,7 @@ class OfferGroupMarker extends \tx_rnbase_util_SimpleMarker {
 	protected function prepareTemplate($template, $item, $formatter, $confId, $marker) {
 		if($this->containsMarker($template, $marker.'_OFFERS'))
 			$template = $this->addOffers($template, $item, $formatter, $confId.'offer.', $marker.'_OFFER');
-		
+
 		return $template;
 	}
 
@@ -61,12 +61,12 @@ class OfferGroupMarker extends \tx_rnbase_util_SimpleMarker {
 		\tx_rnbase_util_SearchBase::setConfigFields($fields, $formatter->configurations, $confId.'fields.');
 		\tx_rnbase_util_SearchBase::setConfigOptions($options, $formatter->configurations, $confId.'options.');
 		$children = $srv->search($fields, $options);
-	
+
 		$listBuilder = \tx_rnbase::makeInstance('tx_rnbase_util_ListBuilder');
 		$out = $listBuilder->render($children,
-				false, $template, '\System25\T3stores\Marker\OfferMarker',
+				false, $template, 'System25\T3stores\Marker\OfferMarker',
 				$confId, $markerPrefix, $formatter);
 		return $out;
 	}
-	
+
 }

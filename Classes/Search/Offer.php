@@ -42,7 +42,7 @@ class Offer extends \tx_rnbase_util_SearchBase {
 	}
 	protected function getBaseTableAlias() {return 'OFFER';}
 	public function getWrapperClass() {
-		return '\System25\T3stores\Model\Offer';
+		return 'System25\T3stores\Model\Offer';
 	}
 
 	protected function getJoins($tableAliases) {

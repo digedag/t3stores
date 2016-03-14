@@ -43,7 +43,7 @@ class Job extends \tx_rnbase_util_SearchBase {
 	}
 	protected function getBaseTableAlias() {return 'JOB';}
 	public function getWrapperClass() {
-		return '\System25\T3stores\Model\Job';
+		return 'System25\T3stores\Model\Job';
 	}
 
 	protected function getJoins($tableAliases) {

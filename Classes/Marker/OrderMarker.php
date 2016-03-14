@@ -48,7 +48,7 @@ class OrderMarker extends \tx_rnbase_util_SimpleMarker {
 	}
 
 	protected function addPromotion($template, $item, $formatter, $confId, $markerPrefix) {
-		$marker = \tx_rnbase::makeInstance('\System25\T3stores\Marker\PromotionMarker');
+		$marker = \tx_rnbase::makeInstance('System25\T3stores\Marker\PromotionMarker');
 		$child = $item->getPromotion();
 		return $marker->parseTemplate($template, $child, $formatter, $confId, $markerPrefix);
 	}
@@ -74,7 +74,7 @@ class OrderMarker extends \tx_rnbase_util_SimpleMarker {
 
 		$listBuilder = \tx_rnbase::makeInstance('tx_rnbase_util_ListBuilder');
 		$out = $listBuilder->render($positions,
-				false, $template, '\System25\T3stores\Marker\OrderPositionMarker',
+				false, $template, 'System25\T3stores\Marker\OrderPositionMarker',
 				$confId, $markerPrefix, $formatter);
 		return $out;
 	}

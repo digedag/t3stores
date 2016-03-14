@@ -43,5 +43,5 @@ class ProductList extends \tx_rnbase_action_BaseIOC {
 	}
 
 	public function getTemplateName() { return 'productlist';}
-	public function getViewClassName() { return 'tx_rnbase_view_List';} // '\System25\T3stores\View\StoreList'
+	public function getViewClassName() { return 'tx_rnbase_view_List';}
 }

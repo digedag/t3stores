@@ -44,7 +44,7 @@ class Promotion extends \tx_rnbase_util_SearchBase {
 	}
 	protected function getBaseTableAlias() {return 'PROMOTION';}
 	public function getWrapperClass() {
-		return '\System25\T3stores\Model\Promotion';
+		return 'System25\T3stores\Model\Promotion';
 	}
 
 	protected function getJoins($tableAliases) {

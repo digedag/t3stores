@@ -45,10 +45,10 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		}
 
 		$data = array();
-		$link = $this->createLink($configurations, $this->getConfId().'form.actionURI', array('action' => '\System25\T3stores\Action\OrderCreate'));
+		$link = $this->createLink($configurations, $this->getConfId().'form.actionURI', array('action' => 'System25\T3stores\Action\OrderCreate'));
 		$data['ACTION_PID'] = $link->destination;
 		$data['ACTION_URI'] = $link->makeUrl(false);
-		$data['ACTION_CTRL'] = '\System25\T3stores\Action\OrderCreate';
+		$data['ACTION_CTRL'] = 'System25\T3stores\Action\OrderCreate';
 		$viewdata->offsetSet(\tx_rnbase_view_List::VIEWDATA_MARKER, $data);
 
 		$viewdata->offsetSet('stores', $this->loadStores());
@@ -83,7 +83,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		}
 
 		// Redirect
-		$link = $this->createLink($configurations, $this->getConfId().'redirectURI', array('action' => '\System25\T3stores\Action\OrderShow', 'uid'=>$newOrder->getUid()));
+		$link = $this->createLink($configurations, $this->getConfId().'redirectURI', array('action' => 'System25\T3stores\Action\OrderShow', 'uid'=>$newOrder->getUid()));
 		$link->redirect();
 		exit();
 	}
