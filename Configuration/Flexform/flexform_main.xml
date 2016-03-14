@@ -25,6 +25,10 @@
                     <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.OfferGroupList</numIndex>
                     <numIndex index="1">System25\T3stores\Action\OfferGroupList</numIndex>
                   </numIndex>
+                  <numIndex index="60" type="array">
+                    <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.OfferList</numIndex>
+                    <numIndex index="1">System25\T3stores\Action\OfferList</numIndex>
+                  </numIndex>
                   <numIndex index="100" type="array">
                     <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.ProductList</numIndex>
                     <numIndex index="1">System25\T3stores\Action\ProductList</numIndex>
@@ -45,12 +49,12 @@
       </ROOT>
     </sDEF>
 		<s_offergroup>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.OfferGroupList</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.OfferGroupList</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
           <offergrouplist.item.filter.fields.OFFERGROUP.PROMOTION.OP_EQ_INT>
             <TCEforms>
               <exclude>1</exclude>
@@ -65,16 +69,16 @@
               </config>
             </TCEforms>
           </offergrouplist.item.filter.fields.OFFERGROUP.PROMOTION.OP_EQ_INT>
-				</el>
-			</ROOT>
-		</s_offergroup>
-		<s_productlist>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.ProductList</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
+        </el>
+      </ROOT>
+    </s_offergroup>
+    <s_productlist>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.ProductList</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
           <productlist.item.filter.fields.CATMM.UID_LOCAL.OP_IN_INT>
             <TCEforms>
               <exclude>1</exclude>
@@ -93,16 +97,40 @@
               </config>
             </TCEforms>
           </productlist.item.filter.fields.CATMM.UID_LOCAL.OP_IN_INT>
-				</el>
-			</ROOT>
-		</s_productlist>
-		<s_joblist>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.JobList</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
+        </el>
+      </ROOT>
+    </s_productlist>
+    <s_offerlist>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.OfferList</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <offerlist.item.filter.fields.OFFER.OFFERGROUP.OP_IN_INT>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_offergroup</label>
+              <config>
+                <type>select</type>
+                <foreign_table>tx_t3stores_offergroup</foreign_table>
+                <foreign_table_where>ORDER BY tx_t3stores_offergroup.name ASC</foreign_table_where>
+                <multiple>1</multiple>
+                <maxitems>10</maxitems>
+                <size>10</size>
+              </config>
+            </TCEforms>
+          </offerlist.item.filter.fields.OFFER.OFFERGROUP.OP_IN_INT>
+        </el>
+      </ROOT>
+    </s_offerlist>
+    <s_joblist>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.JobList</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
           <joblist.item.filter.fields.CATMM.UID_LOCAL.OP_IN_INT>
             <TCEforms>
               <exclude>1</exclude>
@@ -121,29 +149,29 @@
               </config>
             </TCEforms>
           </joblist.item.filter.fields.CATMM.UID_LOCAL.OP_IN_INT>
-				</el>
-			</ROOT>
-		</s_joblist>
-		<s_tssetup>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.tab.tssetup</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<flexformTS>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.tssetup</label>
-							<config>
-								<type>text</type>
-								<cols>80</cols>
-								<rows>10</rows>
-							</config>
-						</TCEforms>
-					</flexformTS>
-				</el>
-			</ROOT>
-		</s_tssetup>
+        </el>
+      </ROOT>
+    </s_joblist>
+    <s_tssetup>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.tab.tssetup</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <flexformTS>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.tssetup</label>
+              <config>
+                <type>text</type>
+                <cols>80</cols>
+                <rows>10</rows>
+              </config>
+            </TCEforms>
+          </flexformTS>
+        </el>
+      </ROOT>
+    </s_tssetup>
   </sheets>
 </T3DataStructure>

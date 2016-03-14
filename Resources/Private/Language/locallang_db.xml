@@ -15,6 +15,7 @@
 			<label index="plugin.t3stores.flexform.action.ProductList">List of products</label>
 			<label index="plugin.t3stores.flexform.action.StoreList">List of stores</label>
 			<label index="plugin.t3stores.flexform.action.OfferGroupList">List of offer groups</label>
+			<label index="plugin.t3stores.flexform.action.OfferList">List of offers</label>
 			<label index="plugin.t3stores.flexform.action.StoreShow">Store single view</label>
 			<label index="plugin.t3stores.flexform.template">HTML-Template</label>
 
@@ -54,6 +55,7 @@
 			<label index="tx_t3stores_offer">Offer</label>
 			<label index="tx_t3stores_offer_name">Name</label>
 			<label index="tx_t3stores_offer_hint">Hint</label>
+			<label index="tx_t3stores_offer_teaser">Teaser</label>
 			<label index="tx_t3stores_offer_price">Price</label>
 			<label index="tx_t3stores_offer_pricelabel">Label for price</label>
 
@@ -96,6 +98,7 @@
 			<label index="plugin.t3stores.flexform.action.ProductList">Liste von Produkten</label>
 			<label index="plugin.t3stores.flexform.action.StoreList">Liste von Filialen</label>
 			<label index="plugin.t3stores.flexform.action.OfferGroupList">Liste von Angebotsgruppen</label>
+			<label index="plugin.t3stores.flexform.action.OfferList">Liste von Angeboten</label>
 			<label index="plugin.t3stores.flexform.action.StoreShow">Filiale Detailansicht</label>
 
 			<label index="plugin.t3stores.flexform.stores">Filialen</label>
@@ -133,6 +136,7 @@
 			<label index="tx_t3stores_offer">Angebot</label>
 			<label index="tx_t3stores_offer_name">Name</label>
 			<label index="tx_t3stores_offer_hint">Hinweis</label>
+			<label index="tx_t3stores_offer_teaser">Teasertext</label>
 			<label index="tx_t3stores_offer_price">Preis</label>
 			<label index="tx_t3stores_offer_pricelabel">Preisbezeichnung</label>
 

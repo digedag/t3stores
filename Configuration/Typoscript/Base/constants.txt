@@ -10,6 +10,8 @@ plugin.tx_t3stores {
   storelistTemplate = EXT:t3stores/Resources/Private/Templates/stores.html
   # cat=T3stores (Templates)/offergrouplist; type=string;label=HTML Template of offer group list view
   offergrouplistTemplate = EXT:t3stores/Resources/Private/Templates/offers.html
+  # cat=T3stores (Templates)/offerlist; type=string;label=HTML Template of offer list view
+  offerlistTemplate = EXT:t3stores/Resources/Private/Templates/offers.html
   # cat=T3stores (Templates)/ordercreate; type=string;label=HTML Template of order creation
   ordercreateTemplate = EXT:t3stores/Resources/Private/Templates/orders.html
   # cat=T3stores (Templates)/ordershow; type=string;label=HTML Template of order show
@@ -24,4 +26,12 @@ plugin.tx_t3stores {
   orderemailCustomerFromName = Your company
   # cat=T3stores (Emails)/orderemailcustomerreply; type=string;label=Reply address for customer mail
   orderemailCustomerReply = reply@yourdomain.com
+  # cat=T3stores (Pictures)/maxW_thumb; type=string;label=Max width of thumbnails
+  maxW_thumb = 100
+  # cat=T3stores (Pictures)/maxH_thumb; type=string;label=Max height of thumbnails
+  maxH_thumb = 100
+  # cat=T3stores (Pictures)/maxW_picture; type=string;label=Max width of pictures
+  maxW_picture = 500
+  # cat=T3stores (Pictures)/maxH_picture; type=string;label=Max height of pictures
+  maxH_picture = 500
 }

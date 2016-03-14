@@ -49,6 +49,9 @@ return array(
 				'foreign_table' => 'tx_t3stores_promotion',
 				'foreign_table_where' => 'ORDER BY tx_t3stores_promotion.name',
 				'size' => 1,
+				'items' => Array(
+					Array('',0),
+				),
 				'minitems' => 0,
 				'maxitems' => 1,
 			)
@@ -84,4 +87,3 @@ return array(
 			')
 	)
 );
-				

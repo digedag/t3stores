@@ -14,6 +14,21 @@ plugin.tx_t3stores.locallangFilename = EXT:t3stores/Resources/Private/Language/l
 
 tt_content.list.20.tx_t3stores    =< plugin.tx_t3stores
 
+
+lib.t3stores.pictures.mediaBase {
+  file = IMG_RESOURCE
+  file.file.import.field = file
+  file.file.maxW = {$plugin.tx_t3stores.maxW_picture}
+  file.file.maxH = {$plugin.tx_t3stores.maxH_picture}
+  thumbnail < .file
+  thumbnail = IMAGE
+  thumbnail.file.maxW = {$plugin.tx_t3stores.maxW_thumb}
+  thumbnail.file.maxH = {$plugin.tx_t3stores.maxH_thumb}
+  thumbnail.params = border="0"
+  thumbnail.titleText.field = title
+}
+
+
 lib.t3stores.price.stdWrap {
   numberFormat.decimals = 2
   wrap = |&nbsp;&euro;
@@ -42,10 +57,7 @@ lib.t3stores.store {
 #  distance.number_format.decimal = 2
   distance.stdWrap.numberFormat.decimals = 2 
 }
-lib.t3stores.offer {
-  pricestr.stdWrap.numberFormat.decimals = 2
-  pricestr.stdWrap.wrap = |&nbsp;&euro;
-}
+
 lib.t3stores.offergroup {
   offer =< lib.t3stores.offer
 }
@@ -66,11 +78,26 @@ lib.t3stores.product {
 	dcimage < .dcthumbnail
 	dcimage.file.maxW = 1500
 }
+lib.t3stores.offer {
+  pricestr.stdWrap.numberFormat.decimals = 2
+  pricestr.stdWrap.wrap = |&nbsp;&euro;
+
+  images = USER
+  images {
+    userFunc = tx_rnbase_util_TSFAL->printImages
+    refField = images
+    refTable = tx_t3stores_offer
+    template = EXT:t3stores/Resources/Private/Templates/pictures.html
+    subpartName = ###PICTURES###
+    media =< lib.t3stores.pictures.mediaBase
+  }
+}
 
 # Ab hier Konfiguration der einzelnen Views 
 plugin.tx_t3stores {
   storelistTemplate = {$plugin.tx_t3stores.storelistTemplate}
   offergrouplistTemplate = {$plugin.tx_t3stores.offergrouplistTemplate}
+  offerlistTemplate = {$plugin.tx_t3stores.offerlistTemplate}
   ordercreateTemplate = {$plugin.tx_t3stores.ordercreateTemplate}
   ordershowTemplate = {$plugin.tx_t3stores.ordershowTemplate}
   joblistTemplate = {$plugin.tx_t3stores.joblistTemplate}
@@ -91,6 +118,13 @@ plugin.tx_t3stores {
       class = tx_rnbase_filter_BaseFilter
     }
     item =< lib.t3stores.offergroup
+  }
+  offerlist {
+    template.markerclass = System25\T3stores\Marker\OfferMarker
+    item.filter {
+      class = tx_rnbase_filter_BaseFilter
+    }
+    item =< lib.t3stores.offer
   }
   ordercreate {
     promotion =< lib.t3stores.promotion
