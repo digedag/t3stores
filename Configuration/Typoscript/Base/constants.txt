@@ -4,6 +4,8 @@ plugin.tx_t3stores {
   joblistTemplate = EXT:t3stores/Resources/Private/Templates/jobs.html
   # cat=T3stores (Templates)/productlist; type=string;label=HTML Template of product list view
   productlistTemplate = EXT:t3stores/Resources/Private/Templates/products.html
+  # cat=T3stores (Templates)/promotionlist; type=string;label=HTML Template of promotion list view
+  promotionlistTemplate = EXT:t3stores/Resources/Private/Templates/promotions.html
   # cat=T3stores (Templates)/storeshow; type=string;label=HTML Template of store details view
   storeshowTemplate = EXT:t3sponsors/templates/sponsorshow.html
   # cat=T3stores (Templates)/storelist; type=string;label=HTML Template of store list view

@@ -59,8 +59,21 @@ return array(
 						'rows' => '6',
 				)
 		),
+		'startdate' => Array (
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.starttime',
+			'config' => Array (
+				'type' => 'input',
+				'size' => '13',
+				'max' => '20',
+				'eval' => 'datetime',
+				'checkbox' => '0',
+				'default' => '0'
+			)
+		),
 	),
 	'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1,name, discount, pickupdates')
+			'0' => array('showitem' => 'hidden;;1;;1-1-1,name, discount, pickupdates, startdate')
 	)
 );

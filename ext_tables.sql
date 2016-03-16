@@ -38,6 +38,7 @@ CREATE TABLE tx_t3stores_promotion (
 	name varchar(255) DEFAULT '' NOT NULL,
 	discount tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	pickupdates tinytext,
+	startdate int(11) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

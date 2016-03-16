@@ -5,9 +5,18 @@ tx_rnbase::load('tx_rnbase_util_SearchBase');
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'System25\T3stores\Hook\TceHook';
 
+tx_rnbase_util_Extensions::addService($_EXTKEY,  't3stores' /* sv type */,  'System25\T3stores\Service\Promotion' /* sv key */,
+	array(
+		'title' => 'Promotion', 'description' => 'Handles promotion', 'subtype' => 'promotion',
+		'available' => TRUE, 'priority' => 50, 'quality' => 50,
+		'os' => '', 'exec' => '',
+		'className' => 'System25\T3stores\Service\Promotion',
+	)
+);
+
 tx_rnbase_util_Extensions::addService($_EXTKEY,  't3stores' /* sv type */,  'System25\T3stores\Service\Product' /* sv key */,
 	array(
-		'title' => 'Store', 'description' => 'Handles products', 'subtype' => 'product',
+		'title' => 'Product', 'description' => 'Handles products', 'subtype' => 'product',
 		'available' => TRUE, 'priority' => 50, 'quality' => 50,
 		'os' => '', 'exec' => '',
 		'className' => 'System25\T3stores\Service\Product',

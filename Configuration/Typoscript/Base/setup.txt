@@ -36,6 +36,7 @@ lib.t3stores.price.stdWrap {
 lib.t3stores.promotion {
   discount.wrap = |%
   pickupdate.day.strftime = %d.%m.%Y
+  startdate.strftime = %d.%m.%Y
 }
 lib.t3stores.order {
   promotion =< lib.t3stores.promotion
@@ -102,6 +103,7 @@ plugin.tx_t3stores {
   ordershowTemplate = {$plugin.tx_t3stores.ordershowTemplate}
   joblistTemplate = {$plugin.tx_t3stores.joblistTemplate}
   productlistTemplate = {$plugin.tx_t3stores.productlistTemplate}
+  promotionlistTemplate = {$plugin.tx_t3stores.promotionlistTemplate}
 
   storelist {
     item =< lib.t3stores.store
@@ -112,6 +114,10 @@ plugin.tx_t3stores {
     }
   }
 
+  promotionlist {
+  
+    item =< lib.t3stores.promotion
+  }
   offergrouplist {
     template.markerclass = System25\T3stores\Marker\OfferGroupMarker
     item.filter {

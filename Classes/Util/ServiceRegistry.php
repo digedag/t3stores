@@ -33,6 +33,13 @@ namespace System25\T3stores\Util;
 class ServiceRegistry {
 
 	/**
+	 * Liefert den Promotion-Service
+	 * @return \System25\T3stores\Service\Promotion
+	 */
+	public static function getPromotionService() {
+		return \tx_rnbase_util_Misc::getService('t3stores', 'promotion');
+	}
+	/**
 	 * Liefert den Product-Service
 	 * @return \System25\T3stores\Service\Product
 	 */
