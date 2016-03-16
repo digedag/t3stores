@@ -36,4 +36,7 @@ plugin.tx_t3stores {
   maxW_picture = 500
   # cat=T3stores (Pictures)/maxH_picture; type=string;label=Max height of pictures
   maxH_picture = 500
+
+  # cat=T3stores (Pages)/offerpage; type=string;label=Page of offers
+  offerpage = 0
 }

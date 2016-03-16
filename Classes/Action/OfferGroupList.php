@@ -5,7 +5,7 @@ use System25\T3stores\Util\ServiceRegistry;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Rene Nitzsche (rene@system25.de)
+ *  (c) 2015-2016 Rene Nitzsche (rene@system25.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -36,6 +36,10 @@ class OfferGroupList extends \tx_rnbase_action_BaseIOC {
  		$filter = \tx_rnbase_filter_BaseFilter::createFilter($parameters, $configurations, $viewdata, $this->getConfId(). 'item.filter.');
  		$fields = array();
 		$options = array();
+		if($uid = $parameters->getInt('promotion')) {
+			$fields['OFFERGROUP.PROMOTION'][OP_EQ_INT] = $uid;
+		}
+
 		$filter->init($fields, $options);
 		$items = $srv->searchOfferGroup($fields, $options);
 		$viewdata->offsetSet('items', $items);
