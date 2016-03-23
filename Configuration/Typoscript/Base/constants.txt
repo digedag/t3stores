@@ -29,6 +29,12 @@ plugin.tx_t3stores {
   orderemailCustomerFromName = Your company
   # cat=T3stores (Emails)/orderemailcustomerreply; type=string;label=Reply address for customer mail
   orderemailCustomerReply = reply@yourdomain.com
+  # cat=T3stores (Emails)/orderemailstorefrom; type=string;label=From address for store mail
+  orderemailCustomerFrom = info@yourdomain.com
+  # cat=T3stores (Emails)/orderemailstorefromname; type=string;label=From name for store mail
+  orderemailCustomerFromName = Your company
+  # cat=T3stores (Emails)/orderemailstorereply; type=string;label=Reply address for store mail
+  orderemailCustomerReply = reply@yourdomain.com
 
   # cat=T3stores (Pictures)/maxW_thumb; type=string;label=Max width of thumbnails
   maxW_thumb = 100
