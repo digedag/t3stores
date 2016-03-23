@@ -32,4 +32,6 @@ jQuery(function($) {
 		  console.log(suggestion);
 		  jQuery('#storeUID').val(suggestion.uid);
 	});
+
+
 });

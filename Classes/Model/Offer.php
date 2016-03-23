@@ -27,7 +27,46 @@ namespace System25\T3stores\Model;
 \tx_rnbase::load('tx_rnbase_model_base');
 
 class Offer extends \tx_rnbase_model_base {
+	const UNIT_WEIGHT = 0;
+	const UNIT_ITEM = 1;
+	const OFFERTYPE_SIMPLE = 0;
+	const OFFERTYPE_PRODUCT = 1;
+	private $product = NULL;
 
 	public function getTableName(){return 'tx_t3stores_offer';}
 
+	function init($rowOrUid = NULL) {
+		parent::init($rowOrUid);
+		if($this->isTypeProduct()) {
+			// Werte vom Produkt übernehmen
+			$child = $this->getProduct();
+			$this->record['name'] = $child->getName();
+			$this->record['hint'] = $child->getShortname();
+			if(!$this->record['weight'])
+				$this->record['weight'] = $child->getWeight();
+		}
+
+		// Bei Unit == ITEM den Basispreis pro kg umrechnen
+		if($this->isUnitItem() && ($this->record['weight'] > 0)) {
+			$this->record['price'] = $this->record['price'] * ($this->record['weight'] / 1000);
+		}
+
+	}
+
+	public function isTypeProduct() {
+		return $this->record['offertype'] == self::OFFERTYPE_PRODUCT;
+	}
+	public function isUnitItem() {
+		return $this->record['unit'] == self::UNIT_ITEM;
+	}
+
+	protected function getProduct() {
+		if($this->product === NULL) {
+			$this->setProduct(\tx_rnbase::makeInstance('System25\T3stores\Model\Product', $this->record['product']));
+		}
+		return $this->product;
+	}
+	protected function setProduct($product) {
+		$this->product = $product;
+	}
 }

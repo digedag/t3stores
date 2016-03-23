@@ -18,6 +18,7 @@ plugin.tx_t3stores {
   ordercreateTemplate = EXT:t3stores/Resources/Private/Templates/orders.html
   # cat=T3stores (Templates)/ordershow; type=string;label=HTML Template of order show
   ordershowTemplate = EXT:t3stores/Resources/Private/Templates/orders.html
+
   # cat=T3stores (Emails)/orderemailcustomer; type=string;label=Template of order email to customer
   orderemailTemplateCustomer = EXT:t3stores/Resources/Private/Templates/orders.html
   # cat=T3stores (Emails)/orderemailstore; type=string;label=Template of order email to store
@@ -28,6 +29,7 @@ plugin.tx_t3stores {
   orderemailCustomerFromName = Your company
   # cat=T3stores (Emails)/orderemailcustomerreply; type=string;label=Reply address for customer mail
   orderemailCustomerReply = reply@yourdomain.com
+
   # cat=T3stores (Pictures)/maxW_thumb; type=string;label=Max width of thumbnails
   maxW_thumb = 100
   # cat=T3stores (Pictures)/maxH_thumb; type=string;label=Max height of thumbnails

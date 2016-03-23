@@ -43,10 +43,16 @@ class OrderMarker extends \tx_rnbase_util_SimpleMarker {
  			$template = $this->addPositions($template, $item, $formatter, $confId.'position.', $marker.'_POSITION');
  		if($this->containsMarker($template, $marker.'_PROMOTION_'))
  			$template = $this->addPromotion($template, $item, $formatter, $confId.'promotion.', $marker.'_PROMOTION');
-
-		return $template;
+ 		if($this->containsMarker($template, $marker.'_STORE_'))
+ 			$template = $this->addStore($template, $item, $formatter, $confId.'store.', $marker.'_STORE');
+ 		return $template;
 	}
 
+	protected function addStore($template, $item, $formatter, $confId, $markerPrefix) {
+		$marker = \tx_rnbase::makeInstance('tx_rnbase_util_SimpleMarker');
+		$child = $item->getStore();
+		return $marker->parseTemplate($template, $child, $formatter, $confId, $markerPrefix);
+	}
 	protected function addPromotion($template, $item, $formatter, $confId, $markerPrefix) {
 		$marker = \tx_rnbase::makeInstance('System25\T3stores\Marker\PromotionMarker');
 		$child = $item->getPromotion();

@@ -24,7 +24,7 @@
 	<td class="text-right">###ORDER_POSITION_DCAMOUNT### <input type="hidden" name="t3stores[offer][###ORDER_POSITION_OFFER_UID###][amount]" value="###ORDER_POSITION_AMOUNT###"  /> </td>
 	<td>###ORDER_POSITION_TITLE###
 	</td>
-	<td class="text-right">###ORDER_POSITION_PRICESTR###</td>
+	<td class="text-right">###ORDER_POSITION_PRICELABEL###</td>
 	<td class="text-right">###ORDER_POSITION_TOTALSTR###</td>
 </tr>
 ###ORDER_POSITION###
@@ -36,7 +36,7 @@
 <tr>
 	<td colspan="2"></td>
 	<td>Gesamtpreis:</td>
-	<td class="text-right"tal>###ORDER_TOTALPRICESTR###</td>
+	<td class="text-right">###ORDER_TOTALPRICESTR###</td>
 </tr>
 </table>
 ###ORDER_POSITIONS###
@@ -148,12 +148,6 @@ Bei Übermittlungsproblemen kontaktieren Sie uns bitte unter der Tel.Nr.: (03724
 </form>
 
 
-<script type="text/javascript" src="typo3conf/ext/t3stores/Resources/Public/Scripts/validator.js"></script>
-<script type="text/javascript" src="typo3conf/ext/t3stores/Resources/Public/Scripts/handlebars.min-v4.0.3.js"></script>
-<script type="text/javascript" src="typo3conf/ext/t3stores/Resources/Public/Scripts/typeahead.bundle.js" ></script>
-
-<script type="text/javascript" src="typo3conf/ext/t3stores/Resources/Public/Scripts/orders.js" ></script>
-
 ###ORDERCREATE###
 
 
@@ -188,14 +182,18 @@ Auftragsnummer: ###ORDER_UID###
 </table>
 ###ORDER_POSITIONS###
 
+Der gewählter Abholtermin: ###ORDER_PICKUP###<br/>
+Die Abholfiliale: ###ORDER_STORE_NAME###, ###ORDER_STORE_CITY###
 
 </div>
 ###ORDERSHOW###
 
-###ORDEREMAIL###
-Auftragsbestätigung
-Sehr geehrte(r) Herr/Frau ###ORDER_CUSTOMERNAME###,
-vielen Dank für Ihre Bestellung / Reservierung vom ###ORDER_CRDATE###
+###STOREEMAIL###
+Auftragseingang
+Soeben ist ein neuer Auftrag eingetroffen.
+
+Kunde: ###ORDER_CUSTOMERNAME###,
+Datum: ###ORDER_CRDATE###
 
 ###ORDER_POSITIONS###
 ###ORDER_POSITION###
@@ -206,14 +204,15 @@ abzgl. Online-Rabatt: ###ORDER_DISCOUNTVALUESTR###
 Gesamtsumme: ca. ###ORDER_TOTALPRICESTR###
 ###ORDER_POSITIONS###
 
-Auf den Gesamtbetrag gewähren wir Ihnen ###PROMOTION_DISCOUNT###% Online-Rabatt
-(wird bei Abholung in der Filiale berechnet)
-Ihr gewählter Abholtermin: ###ORDER_PICKUP###
-Ihre Abholfiliale:
+Der gewählter Abholtermin: ###ORDER_PICKUP###
+Die Abholfiliale: ###ORDER_STORE_NAME###
 
 
-###ORDEREMAIL###
+###STOREEMAIL###
 
+###CUSTOMERMAIL###
+
+###CUSTOMERMAIL###
 
 </body>
 </html>

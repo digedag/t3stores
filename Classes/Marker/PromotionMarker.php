@@ -56,6 +56,7 @@ class PromotionMarker extends \tx_rnbase_util_SimpleMarker {
 	 */
 	protected function addPickupDates($template, $item, $formatter, $confId, $markerPrefix) {
 		$days = $item->getPickupDays();
+		$days = array_values($days);
 
 		$listBuilder = \tx_rnbase::makeInstance('tx_rnbase_util_ListBuilder');
 		$out = $listBuilder->render($days,

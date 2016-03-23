@@ -46,7 +46,7 @@ class OfferGroupMarker extends \tx_rnbase_util_SimpleMarker {
 	}
 
 	/**
-	 * Hinzufügen der Teams.
+	 * Hinzufügen der Angebote.
 	 * @param string $template HTML-Template
 	 * @param OfferGroup $item
 	 * @param \tx_rnbase_util_FormatUtil $formatter

@@ -33,9 +33,16 @@ offers = offers || (function () {
 	var offers = {};
 	return {
 		updateOffer: function(offerUid, field) {
-			var weight = parseFloat( field.value.replace( /,/,"." ));
-			weight = isNaN(weight) ? 0 : weight;
 			var offer = offers[offerUid];
+			var weight = 0;
+			if(offer.unit == 0) {
+				weight = parseFloat( field.value.replace( /,/,"." ));
+			}
+			else {
+				weight = parseInt(field.value);
+				field.value = weight;
+			}
+			weight = isNaN(weight) ? 0 : weight;
 			var price = Math.round(weight * offer.price);
 			offer.sum = price;
 			jQuery( "#sum_" + offerUid ).html( this.formatPrice(price) );
@@ -52,10 +59,23 @@ offers = offers || (function () {
 			});
 			jQuery( "#sum" ).html(this.formatPrice(sum));
 		},
-		initOffer: function(uid, price) {
+		initOffers: function() {
+			// Alle Offers durchlaufen
+//			t3stores_offer_amount_
+			var parent = this;
+			jQuery.each(offers, function(uid, offer) {
+				jQuery('#t3stores_offer_amount_'+uid).each(function(idx, field) {
+					parent.updateOffer(uid, field);
+//					console.info('Test2 '+uid);
+				});
+			});
+			
+		},
+		initOffer: function(uid, price, unit) {
 			offers[uid] = {
 					uid: uid,
 					price: price,
+					unit: unit,
 					sum: 0
 			}
 		},
@@ -63,7 +83,7 @@ offers = offers || (function () {
 })();
 
 </script>
-<form action="###ACTION_URI###" method="POST" >
+<form action="###ACTION_URI###" method="POST" data-toggle="validator" role="form" >
 <input type="hidden" name="id" value="###ACTION_PID###"/>
 <input type="hidden" name="t3stores[action]" value="###ACTION_CTRL###"/>
 ###ITEMS###
@@ -87,19 +107,28 @@ offers = offers || (function () {
 
 ###ITEM_OFFER###
 <script type="text/javascript">
-offers.initOffer(###ITEM_OFFER_UID###, ###ITEM_OFFER_PRICE###);
+offers.initOffer(###ITEM_OFFER_UID###, ###ITEM_OFFER_PRICE###, ###ITEM_OFFER_UNIT###);
 </script>
 
 <tr>
 	<td>
+	###ITEM_OFFER_UNIT_WEIGHT###
 		<div class="input-group">
 			<div class="input-group-addon input-sm">kg</div>
-			<input type="text" class="form-control input-sm" name="t3stores[offer][###ITEM_OFFER_UID###][amount]" placeholder="0,00" style="width:70px" onChange="offers.updateOffer(###ITEM_OFFER_UID###, this)" >
+			<input type="number" min="0" step="0.10" class="form-control input-sm t3stores-offer-amount" data-id="###ITEM_OFFER_UID###" name="t3stores[offer][###ITEM_OFFER_UID###][amount]" id="t3stores_offer_amount_###ITEM_OFFER_UID###" placeholder="0,0" style="width:70px" >
 			<input type="hidden" class="form-control" name="t3stores[offer][###ITEM_OFFER_UID###][price]">
 		</div>
+	###ITEM_OFFER_UNIT_WEIGHT###
+	###ITEM_OFFER_UNIT_ITEM###
+		<div class="input-group">
+			<div class="input-group-addon input-sm">Stk</div>
+			<input type="number" min="0" max="###ITEM_OFFER_DCAVAILABLE###" class="form-control input-sm t3stores-offer-amount" data-id="###ITEM_OFFER_UID###" name="t3stores[offer][###ITEM_OFFER_UID###][amount]"  id="t3stores_offer_amount_###ITEM_OFFER_UID###" placeholder="0" style="width:70px" >
+			<input type="hidden" class="form-control" name="t3stores[offer][###ITEM_OFFER_UID###][price]">
+		</div>
+	###ITEM_OFFER_UNIT_ITEM###
 	</td>
 	<td>###ITEM_OFFER_NAME###<br><small>###ITEM_OFFER_HINT###</small> </td>
-	<td class="text-right">###ITEM_OFFER_PRICESTR###/kg</td>
+	<td class="text-right">###ITEM_OFFER_PRICELABEL###</td>
 	<td><span id="sum_###ITEM_OFFER_UID###">0,00</span> &euro;</td>
 </tr>
 ###ITEM_OFFER###
@@ -117,6 +146,7 @@ offers.initOffer(###ITEM_OFFER_UID###, ###ITEM_OFFER_PRICE###);
 </div>
 <input type="submit" class="btn btn-primary" value="Weiter" />
 </form>
+
 
 ###OFFERGROUPLIST###
 

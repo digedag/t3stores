@@ -87,10 +87,43 @@ class Order extends \tx_rnbase_sv1_Base {
 		$newOrder = $this->handleCreation($data);
 		// Now the positions
 		foreach($order->getPositions() As $position) {
-			$newPositionUid = $this->createPosition($position, $newOrder->getUid(), $promotion->getPid());
-			$newOrder->addPosition(new OrderPosition($newPositionUid));
+			try{
+				// Die Menge von der Verfügbarkeit abziehen
+				$this->updateAvailability($position);
+				$newPositionUid = $this->createPosition($position, $newOrder->getUid(), $promotion->getPid());
+				$newOrder->addPosition(new OrderPosition($newPositionUid));
+			}
+			catch(\Exception $e) {
+				\tx_rnbase_util_Logger::error('Position failed for order'.$order->getUid(), 't3stores',
+						array('to' => $order->getCustomeremail(), 'position' => $position->record));
+			}
 		}
 		return $newOrder;
+	}
+	/**
+	 *
+	 * @param \System25\T3stores\Model\OrderPosition $position
+	 * @throws \Exception
+	 */
+	protected function updateAvailability($position) {
+		$offer = $position->getOffer();
+		if($offer->isUnitItem() && $offer->getAvailable() > 0) {
+			// Ein int
+			$amount = (int) $position->getAmount();
+
+			$db = \Tx_Rnbase_Database_Connection::getInstance();
+			$db->doUpdate('tx_t3stores_offer', 'uid='.$offer->getUid(),
+					array('available' => 'available - '.$amount),
+					array() , 'available');
+			$rows = $db->doSelect('available', 'tx_t3stores_offer', array('where'=> 'uid='.$offer->getUid()));
+			$avail = $rows[0]['available'];
+			if($avail < 0) {
+				// Überverkauf!! Zur Sicherheit auf 0
+				$db->doUpdate('tx_t3stores_offer', 'uid='.$offer->getUid(), array('available' => 0));
+				throw new \Exception('Item is sold out ('.$avail.')!');
+			}
+			$offer->record['available'] = $avail;
+		}
 	}
 
 	/**

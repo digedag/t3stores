@@ -31,6 +31,7 @@ use System25\T3stores\Model\Promotion;
 class Order extends \tx_rnbase_model_base {
 	private $positions = array();
 	private $promotion = NULL;
+	private $store = NULL;
 
 	public function getTableName(){return 'tx_t3stores_order';}
 
@@ -48,5 +49,15 @@ class Order extends \tx_rnbase_model_base {
 	 */
 	public function getPromotion() {
 		return $this->promotion;
+	}
+
+	public function getStore() {
+		if($this->store === NULL) {
+			$this->setStore(\tx_rnbase::makeInstance('System25\T3stores\Model\Store', $this->record['store']));
+		}
+		return $this->store;
+	}
+	public function setStore($store) {
+		$this->store = $store;
 	}
 }

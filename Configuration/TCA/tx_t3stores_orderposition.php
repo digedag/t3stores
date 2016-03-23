@@ -49,6 +49,20 @@ return array(
 						'eval' => 'trim',
 				)
 		),
+		'unit' => Array (
+				'exclude' => 1,
+				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_offer_unit',
+				'config' => Array (
+						'type' => 'select',
+						'items' => Array(
+								Array('LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_offer_unit_weight',0),
+								Array('LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_offer_unit_item',1)
+						),
+						'size' => 1,
+						'minitems' => 0,
+						'maxitems' => 1,
+				)
+		),
 		'total' => Array (
 				'exclude' => 1,
 				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_orderposition_total',
@@ -60,6 +74,6 @@ return array(
 		),
 	),
 	'types' => array(
-			'0' => array('showitem' => 'title,price,amount,total')
+			'0' => array('showitem' => 'title,price,amount,unit,total')
 	)
 );

@@ -7,7 +7,7 @@ use System25\T3stores\Model\OrderPosition;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Rene Nitzsche (rene@system25.de)
+ *  (c) 2015-2016 Rene Nitzsche (rene@system25.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -68,10 +68,13 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		// Pickupdate
 		$promotion = $order->getPromotion();
 		$days = $promotion->getPickupDays();
+
 		if(!empty($days) && array_key_exists($order->record['pickup'], $days )) {
 			$day = $days[$order->record['pickup']];
 			$order->record['pickup'] = \tx_rnbase_util_Dates::date_tstamp2mysql($day->record['day']);
 		}
+
+		// jetzt die Order speichern
 		$orderSrv = ServiceRegistry::getOrderService();
 		$newOrder = $orderSrv->createOrder($order, $promotion);
 		// Mail verschicken
@@ -106,11 +109,19 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 				$fields['OFFERGROUP.UID'][OP_EQ_INT] = $offer->record['offergroup'];
 				$promotion = reset($srv->searchPromotion($fields, array()));
 			}
+			// Verfügbarkeit prüfen
+			$amount = $this->validateAmount($offerArr['amount'], $offer);
+			if($amount <= 0)
+				continue;
+
 			$orderPosition = new OrderPosition();
 			$orderPosition->setOffer($offer);
 			$orderPosition->record['title'] = $offer->getName();
-			$orderPosition->record['amount'] = $this->parseFloat($offerArr['amount']);
+			// Die Menge ggf. anpassen
+			$orderPosition->record['amount'] = $amount;
+			$orderPosition->record['pricelabel'] = $offer->getPricelabel();
 			$orderPosition->record['price'] = $offer->getPrice();
+			$orderPosition->record['unit'] = $offer->getUnit();
 			$orderPosition->record['total'] = round($offer->getPrice() * $orderPosition->getAmount());
 			$order->addPosition($orderPosition);
 			$total += $orderPosition->getTotal();
@@ -124,6 +135,27 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		$discount = $promotion->getDiscount();
 		$order->record['totalprice'] = round($total - ($total * $discount/100));
 		return $order;
+	}
+	/**
+	 *
+	 * @param number $amount
+	 * @param \System25\T3stores\Model\Offer $offer
+	 * @return number
+	 */
+	private function validateAmount($amount, $offer) {
+		if($offer->isUnitItem()) {
+			// Ein int
+			$amount = (int) $amount;
+			$avail = $offer->getAvailable();
+			if($avail >= 0) { // bei negativem Amount ist unbegrenzte Bestellung möglich
+				$amount = $amount < $avail ? $amount : $avail;
+			}
+		}
+		else {
+			$amount = $this->parseFloat($amount);
+		}
+
+		return $amount;
 	}
 	private function parseFloat($amount) {
 		$amount = str_replace(',', '.', $amount);

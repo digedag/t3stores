@@ -78,13 +78,19 @@ CREATE TABLE tx_t3stores_offer (
 	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
 
+	offertype tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	name varchar(255) DEFAULT '' NOT NULL,
 	offergroup int(11) DEFAULT '0' NOT NULL,
 	teaser varchar(255) DEFAULT '' NOT NULL,
 	hint varchar(255) DEFAULT '' NOT NULL,
+	unit tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	price int(11) unsigned DEFAULT '0' NOT NULL,
 	pricelabel varchar(255) DEFAULT '' NOT NULL,
+	weight int(11) DEFAULT '0' NOT NULL,
 	images int(11) DEFAULT '0' NOT NULL,
+
+	product int(11) unsigned DEFAULT '0' NOT NULL,
+	available int(11) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -129,6 +135,7 @@ CREATE TABLE tx_t3stores_orderposition (
 	price int(11) unsigned DEFAULT '0' NOT NULL,
 	total int(11) unsigned DEFAULT '0' NOT NULL,
 	amount float(10,2) DEFAULT '0.00' NOT NULL,
+	unit tinyint(4) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -150,6 +157,7 @@ CREATE TABLE tx_t3stores_product (
 	categories int(11) DEFAULT '0' NOT NULL,
 	description text,
 	images int(11) DEFAULT '0' NOT NULL,
+	weight int(11) DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

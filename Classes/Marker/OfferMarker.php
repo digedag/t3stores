@@ -2,10 +2,12 @@
 namespace System25\T3stores\Marker;
 
 use System25\T3stores\Model\OfferGroup;
+use System25\T3stores\Model\Offer;
+use System25\T3stores\Util\ServiceRegistry;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Rene Nitzsche (rene@system25.de)
+ *  (c) 2015-2016 Rene Nitzsche (rene@system25.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -50,6 +52,27 @@ class OfferMarker extends \tx_rnbase_util_SimpleMarker {
 	 * @return String das geparste Template
 	 */
 	public function prepareTemplate($template, $item, $formatter, $confId, $marker) {
+		if($this->containsMarker($template, $marker.'_PRODUCT'))
+			$template = $this->addProduct($template, $item, $formatter, $confId.'product.', $marker.'_PRODUCT');
+
 		return $template;
+	}
+	protected function addProduct($template, $item, $formatter, $confId, $markerPrefix) {
+		$child = $item->getProduct();
+		$marker = \tx_rnbase::makeInstance('System25\T3stores\Marker\ProductMarker');
+		return $marker->parseTemplate($template, $child, $formatter, $confId, $markerPrefix);
+	}
+
+	protected function prepareSubparts(array &$wrappedSubpartArray, array &$subpartArray,
+		$template, $item, $formatter, $confId, $marker) {
+		$unit = $item->getUnit();
+		if(Offer::UNIT_ITEM == $unit) {
+			$wrappedSubpartArray['###ITEM_OFFER_UNIT_ITEM###'] = array('', '');
+			$subpartArray['###ITEM_OFFER_UNIT_WEIGHT###'] = '';
+		}
+		else {
+			$wrappedSubpartArray['###ITEM_OFFER_UNIT_WEIGHT###'] = array('', '');
+			$subpartArray['###ITEM_OFFER_UNIT_ITEM###'] = '';
+		}
 	}
 }

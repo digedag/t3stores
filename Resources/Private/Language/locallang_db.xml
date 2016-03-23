@@ -56,16 +56,25 @@
 
 			<label index="tx_t3stores_offer">Offer</label>
 			<label index="tx_t3stores_offer_name">Name</label>
+			<label index="tx_t3stores_offer_type">Offer Type</label>
+			<label index="tx_t3stores_offer_type_simple">Simple</label>
+			<label index="tx_t3stores_offer_type_product">Product</label>
+			<label index="tx_t3stores_offer_available">Available stock</label>
 			<label index="tx_t3stores_offer_hint">Hint</label>
 			<label index="tx_t3stores_offer_teaser">Teaser</label>
-			<label index="tx_t3stores_offer_price">Price</label>
+			<label index="tx_t3stores_offer_unit">Unit</label>
+			<label index="tx_t3stores_offer_unit_weight">Weight</label>
+			<label index="tx_t3stores_offer_unit_item">Item</label>
+			<label index="tx_t3stores_offer_price">Price per Item or kg</label>
 			<label index="tx_t3stores_offer_pricelabel">Label for price</label>
+			<label index="tx_t3stores_offer_weight">Base weight for price calculation</label>
 
 			<label index="tx_t3stores_product">Product</label>
 			<label index="tx_t3stores_product_name">Name</label>
 			<label index="tx_t3stores_product_shortname">Shortname</label>
 			<label index="tx_t3stores_product_description">Description</label>
 			<label index="tx_t3stores_product_images">Images</label>
+			<label index="tx_t3stores_product_weight">Weight</label>
 
 			<label index="tx_t3stores_job">Job</label>
 			<label index="tx_t3stores_job_title">Title</label>
@@ -138,17 +147,26 @@
 			<label index="tx_t3stores_offergroup_offers">Angebote</label>
 
 			<label index="tx_t3stores_offer">Angebot</label>
+			<label index="tx_t3stores_offer_type">Angebotstyp</label>
+			<label index="tx_t3stores_offer_type_simple">Einfach</label>
+			<label index="tx_t3stores_offer_type_product">Produkt</label>
+			<label index="tx_t3stores_offer_available">Verfügbare Menge</label>
 			<label index="tx_t3stores_offer_name">Name</label>
 			<label index="tx_t3stores_offer_hint">Hinweis</label>
 			<label index="tx_t3stores_offer_teaser">Teasertext</label>
-			<label index="tx_t3stores_offer_price">Preis</label>
+			<label index="tx_t3stores_offer_unit">Einheit</label>
+			<label index="tx_t3stores_offer_unit_weight">Gewicht</label>
+			<label index="tx_t3stores_offer_unit_item">Stück</label>
+			<label index="tx_t3stores_offer_price">Preis pro Stück oder kg</label>
 			<label index="tx_t3stores_offer_pricelabel">Preisbezeichnung</label>
+			<label index="tx_t3stores_offer_weight">Basisgewicht für Preisberechnung (bei Einheit Stück)</label>
 
 			<label index="tx_t3stores_product">Produkt</label>
 			<label index="tx_t3stores_product_name">Name</label>
 			<label index="tx_t3stores_product_shortname">Kurzname</label>
 			<label index="tx_t3stores_product_description">Beschreibung</label>
 			<label index="tx_t3stores_product_images">Bilder</label>
+			<label index="tx_t3stores_product_weight">Gewicht</label>
 
 			<label index="tx_t3stores_job">Job</label>
 			<label index="tx_t3stores_job_title">Titel</label>

@@ -39,8 +39,9 @@ class Promotion extends \tx_rnbase_model_base {
 		return !empty($days);
 	}
 	/**
-	 * Liefert die möglichen Abholtage
-	 * @return multitype:multitype:DateTime
+	 * Liefert die möglichen Abholtage.
+	 * Key des Arrays ist die "UID" des Termins.
+	 * @return multitype:multitype:\tx_rnbase_model_base
 	 */
 	public function getPickupDays($today = null) {
 		$allDays = $this->getAllPickupDays();
@@ -50,7 +51,7 @@ class Promotion extends \tx_rnbase_model_base {
 		foreach ($allDays As $day) {
 			$deadline = $day->deadline;
 			if($deadline->format('U') > $today) {
-				$days[] = $day;
+				$days[$day->getUid()] = $day;
 			}
 		}
 		return $days;
