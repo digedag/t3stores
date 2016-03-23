@@ -66,6 +66,7 @@ lib.t3stores.order {
   positionpricestr < lib.t3stores.price
   discountvaluestr < lib.t3stores.price
   totalpricestr < lib.t3stores.price
+  crdate.strftime = %d.%m.%Y %H:%M Uhr
 }
 lib.t3stores.orderposition {
   dcamount = CASE

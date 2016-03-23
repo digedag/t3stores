@@ -5,7 +5,7 @@ use System25\T3stores\Model\OrderPosition;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Rene Nitzsche (rene@system25.de)
+ *  (c) 2015-2016 Rene Nitzsche (rene@system25.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -42,9 +42,10 @@ class Order extends \tx_rnbase_sv1_Base {
 		$fileName = $configurations->get($confId.'template');
 		$subpart = $configurations->get($confId.'subpart');
 		$template = \tx_rnbase_util_Templates::getSubpartFromFile($fileName, $subpart);
+		$template = trim($template);
 
 		$marker = \tx_rnbase::makeInstance('System25\T3stores\Marker\OrderMarker');
-		$mailtext = $marker->parseTemplate($template, $order, $configurations->getFormatter(), $confId.'order.');
+		$mailtext = $marker->parseTemplate($template, $order, $configurations->getFormatter(), $confId.'order.', 'ORDER');
 		$marker = \tx_rnbase::makeInstance('System25\T3stores\Marker\PromotionMarker');
 		$mailtext = $marker->parseTemplate($mailtext, $promotion, $configurations->getFormatter(), $confId.'promotion.', 'PROMOTION');
 
