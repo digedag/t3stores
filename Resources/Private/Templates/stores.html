@@ -7,7 +7,11 @@
 <h2>Filialen</h2>
 ###SEARCHFORM###
 
+<div id="t3stores_storelist">
 ###ITEMS###
+<div class="panel panel-default">
+<div class="panel-body">
+<p>Zu Ihrer Suchanfrage wurden folgende Ergebnisse ermittelt:</p>
 ###ITEM###
 <address>
   <strong>###ITEM_NAME###</strong><br>
@@ -16,23 +20,62 @@
   <abbr title="Telefon">Tel.:</abbr> ###ITEM_PHONE###<br/>
   Entfernung: ###ITEM_DISTANCE### km
 </address>
-<br/>
-
-
 ###ITEM###
+</div>
+</div>
 ###ITEMS###
-
+</div>
 ###STORELIST###
 
+
+
+
+
+
 ###SEARCH_FORM###
-<form action="###ACTION_URI###" method="GET">
-<input type="hidden" name="id" value="###ACTION_PID###" />
-<div class="form-group">
-    <label for="t3stores_location">Ihr Standort</label>
-    <input type="text" class="form-control" id="t3stores_location" name="t3stores[location]" placeholder="Suchbegriff" value="###SEARCH_LOCATION###">
-</div>
+<div class="panel panel-default">
+<div class="panel-body">
+<form action="###ACTION_URI###" method="GET" class="form-inline" id="t3stores-storesearch">
+	<input type="hidden" name="id" value="###ACTION_PID###" />
+	<div class="form-group">
+	    <input type="text" class="form-control" id="t3stores_location" name="t3stores[location]" placeholder="Ihr Standort" value="###SEARCH_LOCATION###">
+	</div>
+	<button type="submit" class="btn btn-primary" id="t3stores_searchbtn" data-loading-text="<span class='glyphicon glyphicon-refresh spinning'></span> Suchen">
+	<span class="glyphicon glyphicon-refresh "></span> Suchen</button>
 </form>
+</div>
+</div>
 ###SEARCH_FORM###
+
+
+
+
+
+
+
+###STORELIST_AJAX###
+###ITEMS###
+<div class="panel panel-default">
+<div class="panel-body">
+<p>Unser Fachgeschäfte-Verzeichnis hat folgende Ergebnisse zu Ihrer Suchanfrage ermittelt:</p>
+###ITEM###
+<address>
+  <strong>###ITEM_NAME###</strong><br>
+###ITEM_ADDRESS###<br/>
+###ITEM_ZIP### ###ITEM_CITY###<br/>
+  <abbr title="Telefon">Tel.:</abbr> ###ITEM_PHONE###<br/>
+  Entfernung: ###ITEM_DISTANCE### km
+</address>
+###ITEM###
+</div>
+</div>
+###ITEMEMPTYLIST###
+<p>Es wurden leider keine Filialen zu Ihrer Anfrage gefunden.</p>
+###ITEMEMPTYLIST###
+
+###ITEMS###
+
+###STORELIST_AJAX###
 
 </body>
 </html>

@@ -144,8 +144,11 @@ plugin.tx_t3stores {
     item =< lib.t3stores.store
     item.filter {
       class = System25\T3stores\Filter\Store
-      template = EXT:t3stores/Resources/Private/Templates/stores.html
+      template = {$plugin.tx_t3stores.storelistTemplate}
       subpart = ###SEARCH_FORM###
+    }
+    includeJSFooter {
+      5 = EXT:t3stores/Resources/Public/Scripts/stores.js
     }
   }
 
@@ -207,5 +210,24 @@ plugin.tx_t3stores {
   }
   productlist {
   	item =< lib.t3stores.product
+  }
+}
+
+
+storeSearchAjax = PAGE
+storeSearchAjax {
+  typeNum = 2020
+  10 =< plugin.tx_t3stores
+  10 {
+	  action  = System25\T3stores\Action\StoreList
+	  storelist.template.subpart = ###STORELIST_AJAX###
+  }
+
+  config {
+    disableAllHeaderCode = 1
+    xhtml_cleaning = 0
+    admPanel = 0
+    debug = 0
+    no_cache = 1
   }
 }
