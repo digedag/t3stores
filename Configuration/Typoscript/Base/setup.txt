@@ -45,6 +45,7 @@ lib.t3stores.pricelabel.stdWrap {
 lib.t3stores.promotion {
   links.order.pid = {$plugin.tx_t3stores.offerpage}
   links.order._cfg.params.promotion = uid
+  links.order.noHash = 1
 
   discount.wrap = |%
   pickupdate.day.strftime = %d.%m.%Y

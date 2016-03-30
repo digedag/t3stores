@@ -67,7 +67,7 @@
 			<label index="tx_t3stores_offer_unit_item">Item</label>
 			<label index="tx_t3stores_offer_price">Price per Item or kg</label>
 			<label index="tx_t3stores_offer_pricelabel">Label for price</label>
-			<label index="tx_t3stores_offer_weight">Base weight for price calculation</label>
+			<label index="tx_t3stores_offer_weight">Base weight for price calculation (for unit item)</label>
 
 			<label index="tx_t3stores_product">Product</label>
 			<label index="tx_t3stores_product_name">Name</label>
@@ -159,7 +159,7 @@
 			<label index="tx_t3stores_offer_unit_item">Stück</label>
 			<label index="tx_t3stores_offer_price">Preis pro Stück oder kg</label>
 			<label index="tx_t3stores_offer_pricelabel">Preisbezeichnung</label>
-			<label index="tx_t3stores_offer_weight">Basisgewicht für Preisberechnung (bei Einheit Stück)</label>
+			<label index="tx_t3stores_offer_weight">Basisgewicht in g für Preisberechnung (bei Einheit Stück)</label>
 
 			<label index="tx_t3stores_product">Produkt</label>
 			<label index="tx_t3stores_product_name">Name</label>
