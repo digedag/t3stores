@@ -79,10 +79,14 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		$newOrder = $orderSrv->createOrder($order, $promotion);
 		// Mail verschicken
 		if($configurations->getBool($this->getConfId().'sendMail2Customer')) {
-			$orderSrv->sendConfirmationMail($newOrder, $promotion, $configurations, $this->getConfId().'sendMail2Customer.', true);
+			$orderSrv->sendConfirmationMail(array($order->getCustomeremail() => $order->getCustomername()),
+					$newOrder, $promotion, $configurations, $this->getConfId().'sendMail2Customer.', true);
 		}
 		if($configurations->getBool($this->getConfId().'sendMail2Store')) {
-			$orderSrv->sendConfirmationMail($newOrder, $promotion, $configurations, $this->getConfId().'sendMail2Store.', false);
+			$emailTo = $configurations->get($this->getConfId().'sendMail2Store.emailTo');
+			$emailToName = $configurations->get($this->getConfId().'sendMail2Store.emailToName');
+			$orderSrv->sendConfirmationMail(array($emailTo => $emailToName),
+					$newOrder, $promotion, $configurations, $this->getConfId().'sendMail2Store.', false);
 		}
 
 		// Redirect

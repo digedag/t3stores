@@ -37,7 +37,7 @@ class Order extends \tx_rnbase_sv1_Base {
 	 * @param \tx_rnbase_configurations $configurations
 	 * @param string $confId
 	 */
-	public function sendConfirmationMail(\System25\T3stores\Model\Order $order, $promotion, $configurations, $confId, $saveToOrder) {
+	public function sendConfirmationMail(array $toAddress, \System25\T3stores\Model\Order $order, $promotion, $configurations, $confId, $saveToOrder) {
 		\tx_rnbase::load('tx_rnbase_util_Templates');
 		$fileName = $configurations->get($confId.'template');
 		$subpart = $configurations->get($confId.'subpart');
@@ -51,16 +51,18 @@ class Order extends \tx_rnbase_sv1_Base {
 
 		$emailFrom = $configurations->get($confId.'emailFrom');
 		$emailFromName = $configurations->get($confId.'emailFromName');
-		$emailReply = $configurations->get($confId.'emailReply');
+
 		$parts = explode(LF, $mailtext, 2);		// First line is subject
 		$subject=trim($parts[0]);
 		$mailtext=trim($parts[1]);
-		/* @var $mail \tx_rnbase_util_Mail */
-		$mail = \tx_rnbase::makeInstance('tx_rnbase_util_Mail');
+		/* @var $mail \Tx_Rnbase_Utility_Mail */
+		$mail = \tx_rnbase::makeInstance('Tx_Rnbase_Utility_Mail');
 		$mail->setSubject($subject);
 		$mail->setFrom($emailFrom, $emailFromName);
-		$mail->setTo($order->getCustomeremail(), $order->getCustomername());
-		if($emailReply)
+
+		list($address, $name) = each($toAddress);
+		$mail->addTo($address, $name);
+		if($emailReply = $configurations->get($confId.'emailReply'))
 			$mail->setReplyTo($emailReply);
 
 		if($configurations->getBool($confId.'isHtmlMail')) {

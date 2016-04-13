@@ -202,6 +202,9 @@ plugin.tx_t3stores {
       emailFrom = {$plugin.tx_t3stores.orderemailStoreFrom}
       emailFromName = {$plugin.tx_t3stores.orderemailStoreFromName}
       emailReply = {$plugin.tx_t3stores.orderemailStoreReply}
+      emailTo = {$plugin.tx_t3stores.orderemailStoreTo}
+      emailToName = {$plugin.tx_t3stores.orderemailStoreToName}
+
     }
   }
   ordershow {
