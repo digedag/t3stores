@@ -7,7 +7,7 @@ use System25\T3stores\Model\OrderPosition;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Rene Nitzsche (rene@system25.de)
+ *  (c) 2015-2016 Rene Nitzsche (rene@system25.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -36,8 +36,18 @@ use System25\T3stores\Model\OrderPosition;
 class OrderShow extends \tx_rnbase_action_BaseIOC {
 	protected function handleRequest(&$parameters, &$configurations, &$viewdata) {
 
+		$key = $parameters->get('key');
 		$itemId = $parameters->getInt('uid');
+		/* @var $item \System25\T3stores\Model\Order */
 		$item = \tx_rnbase::makeInstance('System25\T3stores\Model\Order', $itemId);
+		if(!$item->isValid() || !$key) {
+			throw new \Exception("Access denied");
+		}
+
+		$validKey = ServiceRegistry::getOrderService()->generateOrderKey($item);
+		if($key != $validKey) {
+			throw new \Exception("Access denied");
+		}
 
 		$viewdata->offsetSet('order', $item);
 		return null;

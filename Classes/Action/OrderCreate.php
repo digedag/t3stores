@@ -90,7 +90,11 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		}
 
 		// Redirect
-		$link = $this->createLink($configurations, $this->getConfId().'redirectURI', array('action' => 'System25\T3stores\Action\OrderShow', 'uid'=>$newOrder->getUid()));
+		$link = $this->createLink($configurations, $this->getConfId().'redirectURI', array(
+				'action' => 'System25\T3stores\Action\OrderShow',
+				'uid'=>$newOrder->getUid(),
+				'key'=>$orderSrv->generateOrderKey($newOrder),
+		));
 		$link->redirect();
 		exit();
 	}

@@ -157,6 +157,8 @@ plugin.tx_t3stores {
     item.filter.options.orderby.PROMOTION.STARTDATE = ASC
   }
   offergrouplist {
+    toUserInt = 1
+    form.actionURI.noHash = 1
     template.markerclass = System25\T3stores\Marker\OfferGroupMarker
     includeJSFooter {
 #      1 = EXT:t3stores/Resources/Public/Scripts/validator.js

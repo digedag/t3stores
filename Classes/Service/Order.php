@@ -74,6 +74,18 @@ class Order extends \tx_rnbase_sv1_Base {
 		$mail->send();
 	}
 	/**
+	 * Create a hash to secure access to this order
+	 * @param \System25\T3stores\Model\Order $order
+	 * @return string
+	 */
+	public function generateOrderKey(\System25\T3stores\Model\Order $order) {
+		$key = $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey'];
+		$params = array();
+		$params[] = $order->getCrdate();
+		$params[] = $order->getUid();
+		return \tx_rnbase_util_Misc::createHash($params, $key, TRUE);
+	}
+	/**
 	 * Persist new order in database
 	 * @param \System25\T3stores\Model\Order $order
 	 * @return model
