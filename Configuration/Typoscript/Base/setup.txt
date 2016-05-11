@@ -127,6 +127,37 @@ lib.t3stores.offer {
     subpartName = ###PICTURES###
     media =< lib.t3stores.pictures.mediaBase
   }
+  subparts {
+    unit {
+      marker {
+        ### Definiert den Marker für den Subpart, der angezeigt werden soll (optional). Default ist VISIBLE
+        visible = ITEM
+        ### Definiert den Marker für den Subpart, der ausgeblendet werden soll (optional). Default ist HIDDEN
+        hidden = WEIGHT
+      }
+      visible = TEXT
+      visible.value = 1
+      visible.if {
+        value = 1
+        equals.data = field:unit
+      }
+    }
+    available {
+      marker {
+        ### Definiert den Marker für den Subpart, der angezeigt werden soll (optional). Default ist VISIBLE
+        visible = YES
+        ### Definiert den Marker für den Subpart, der ausgeblendet werden soll (optional). Default ist HIDDEN
+        hidden = NO
+      }
+      visible = TEXT
+      visible.value = 1
+      visible.if {
+        value = 0
+        isGreaterThan.data = field:available
+      }
+    }
+    
+  }
 }
 
 # Ab hier Konfiguration der einzelnen Views 

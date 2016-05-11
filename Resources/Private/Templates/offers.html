@@ -113,18 +113,28 @@ offers.initOffer(###ITEM_OFFER_UID###, ###ITEM_OFFER_PRICE###, ###ITEM_OFFER_UNI
 <tr>
 	<td>
 	###ITEM_OFFER_UNIT_WEIGHT###
+		###ITEM_OFFER_AVAILABLE_YES###
 		<div class="input-group">
 			<div class="input-group-addon input-sm">kg</div>
 			<input type="number" min="0" step="0.10" class="form-control input-sm t3stores-offer-amount" data-id="###ITEM_OFFER_UID###" name="t3stores[offer][###ITEM_OFFER_UID###][amount]" id="t3stores_offer_amount_###ITEM_OFFER_UID###" placeholder="0,0" style="width:70px" >
 			<input type="hidden" class="form-control" name="t3stores[offer][###ITEM_OFFER_UID###][price]">
 		</div>
+		###ITEM_OFFER_AVAILABLE_YES###
+		###ITEM_OFFER_AVAILABLE_NO###
+		<span class="label label-info">Ausverkauft</span>
+		###ITEM_OFFER_AVAILABLE_NO###
 	###ITEM_OFFER_UNIT_WEIGHT###
 	###ITEM_OFFER_UNIT_ITEM###
+		###ITEM_OFFER_AVAILABLE_YES###
 		<div class="input-group">
 			<div class="input-group-addon input-sm">Stk</div>
 			<input type="number" min="0" max="###ITEM_OFFER_DCAVAILABLE###" class="form-control input-sm t3stores-offer-amount" data-id="###ITEM_OFFER_UID###" name="t3stores[offer][###ITEM_OFFER_UID###][amount]"  id="t3stores_offer_amount_###ITEM_OFFER_UID###" placeholder="0" style="width:70px" >
 			<input type="hidden" class="form-control" name="t3stores[offer][###ITEM_OFFER_UID###][price]">
 		</div>
+		###ITEM_OFFER_AVAILABLE_YES###
+		###ITEM_OFFER_AVAILABLE_NO###
+		<span class="label label-info">Ausverkauft</span>
+		###ITEM_OFFER_AVAILABLE_NO###
 	###ITEM_OFFER_UNIT_ITEM###
 	</td>
 	<td>###ITEM_OFFER_NAME###<br><small>###ITEM_OFFER_HINT###</small> </td>

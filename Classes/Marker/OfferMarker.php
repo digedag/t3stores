@@ -62,17 +62,4 @@ class OfferMarker extends \tx_rnbase_util_SimpleMarker {
 		$marker = \tx_rnbase::makeInstance('System25\T3stores\Marker\ProductMarker');
 		return $marker->parseTemplate($template, $child, $formatter, $confId, $markerPrefix);
 	}
-
-	protected function prepareSubparts(array &$wrappedSubpartArray, array &$subpartArray,
-		$template, $item, $formatter, $confId, $marker) {
-		$unit = $item->getUnit();
-		if(Offer::UNIT_ITEM == $unit) {
-			$wrappedSubpartArray['###ITEM_OFFER_UNIT_ITEM###'] = array('', '');
-			$subpartArray['###ITEM_OFFER_UNIT_WEIGHT###'] = '';
-		}
-		else {
-			$wrappedSubpartArray['###ITEM_OFFER_UNIT_WEIGHT###'] = array('', '');
-			$subpartArray['###ITEM_OFFER_UNIT_ITEM###'] = '';
-		}
-	}
 }
