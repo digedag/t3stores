@@ -26,7 +26,7 @@ namespace System25\T3stores\Service;
 
 \tx_rnbase::load('tx_rnbase_util_DB');
 
-class Store extends \TYPO3\CMS\Core\Service\AbstractService {
+class StoreSrv extends \TYPO3\CMS\Core\Service\AbstractService {
 	/**
 	 * Search database for stores
 	 *
@@ -39,5 +39,5 @@ class Store extends \TYPO3\CMS\Core\Service\AbstractService {
 		$searcher = \tx_rnbase_util_SearchBase::getInstance('System25\T3stores\Search\Store');
 		return $searcher->search($fields, $options);
 	}
-	
+
 }

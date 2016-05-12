@@ -26,17 +26,17 @@ namespace System25\T3stores\Service;
 
 \tx_rnbase::load('tx_rnbase_util_DB');
 
-class Promotion extends \TYPO3\CMS\Core\Service\AbstractService {
+class JobSrv extends \TYPO3\CMS\Core\Service\AbstractService {
 	/**
-	 * Search database for promotions
+	 * Search database for stores
 	 *
 	 * @param array $fields
 	 * @param array $options
-	 * @return array[System25\T3stores\Model\Promotion]
+	 * @return array[System25\T3stores\Model\Job]
 	 */
 	public function search($fields, $options) {
 		\tx_rnbase::load('tx_rnbase_util_SearchBase');
-		$searcher = \tx_rnbase_util_SearchBase::getInstance('System25\T3stores\Search\Promotion');
+		$searcher = \tx_rnbase_util_SearchBase::getInstance('System25\T3stores\Search\Job');
 		return $searcher->search($fields, $options);
 	}
 

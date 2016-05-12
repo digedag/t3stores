@@ -4,7 +4,7 @@ namespace System25\T3stores\Service;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Rene Nitzsche (rene@system25.de)
+ *  (c) 2016 Rene Nitzsche (rene@system25.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -27,7 +27,7 @@ namespace System25\T3stores\Service;
 \tx_rnbase::load('tx_rnbase_util_DB');
 \tx_rnbase::load('tx_rnbase_sv1_Base');
 
-class Offer extends \tx_rnbase_sv1_Base {
+class OfferSrv extends \tx_rnbase_sv1_Base {
 	/**
 	 * Search database for stores
 	 *

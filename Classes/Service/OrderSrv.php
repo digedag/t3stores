@@ -29,7 +29,7 @@ use System25\T3stores\Model\OrderPosition;
 \tx_rnbase::load('tx_rnbase_sv1_Base');
 \tx_rnbase::load('tx_rnbase_util_Logger');
 
-class Order extends \tx_rnbase_sv1_Base {
+class OrderSrv extends \tx_rnbase_sv1_Base {
 	/**
 	 *
 	 * @param \System25\T3stores\Model\Order $order
