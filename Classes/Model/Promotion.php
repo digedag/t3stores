@@ -64,15 +64,15 @@ class Promotion extends \tx_rnbase_model_base {
 			$dateArr = \tx_rnbase_util_Strings::trimExplode("|", $line);
 			$date1 = $dateArr[0];
 			$date2 = isset($dateArr[1]) ? $dateArr[1] : $date1;
-			$date1 = new \DateTime($date1);
-			$date2 = new \DateTime($date2);
+			$pickupDay = new \DateTime($date1);
+			$deadline = new \DateTime($date2);
 			$model = \tx_rnbase::makeInstance('tx_rnbase_model_base', array(
 					'uid' => ++$idx,
-					'day' => $date1->format('U'),
-					'deadline' => $date2->format('U'),
+					'day' => $pickupDay->format('U'),
+					'deadline' => $deadline->format('U'),
 			));
-			$model->day = $date1;
-			$model->deadline = $date2;
+			$model->day = $pickupDay;
+			$model->deadline = $deadline;
 			$days[] = $model;
 		}
 		return $days;
