@@ -15,6 +15,8 @@ return array(
 		'dividers2tabs' => TRUE,
 		'enablecolumns' => array (
 			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
 		),
 		'iconfile' => tx_rnbase_util_Extensions::extRelPath('t3stores') . 'Resources/Public/Icon/icon_stores.png',
 //		'shadowColumnsForNewPlaceholders' => 'scope,title',
@@ -72,8 +74,38 @@ return array(
 				'default' => '0'
 			)
 		),
+		'starttime' => Array (
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.starttime',
+			'config' => Array (
+				'type' => 'input',
+				'size' => '13',
+				'max' => '20',
+				'eval' => 'datetime',
+				'checkbox' => '0',
+				'default' => '0'
+			)
+		),
+		'endtime' => Array (
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.endtime',
+			'config' => Array (
+				'type' => 'input',
+				'size' => '13',
+				'max' => '20',
+				'eval' => 'datetime',
+				'checkbox' => '0',
+				'default' => '0',
+				'range' => Array (
+					'upper' => mktime(0,0,0,12,31,2030),
+					'lower' => mktime(0,0,0,date('m')-1,date('d'),date('Y'))
+				)
+			)
+		),
 	),
 	'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1,name, discount, pickupdates, startdate')
+			'0' => array('showitem' => 'hidden;;1;;1-1-1,name, discount, pickupdates, startdate,--div--;LLL:EXT:cms/locallang_tca.xlf:fe_users.tabs.access, starttime, endtime')
 	)
 );
