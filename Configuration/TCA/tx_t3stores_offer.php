@@ -186,6 +186,6 @@ return array(
 	),
 	'types' => array(
 			'0' => array('showitem' => 'hidden;;1;;1-1-1,offertype,name,hint,offergroup,teaser,unit,price,pricelabel,weight,available,images,--div--;LLL:EXT:cms/locallang_tca.xlf:fe_users.tabs.access, starttime, endtime,'),
-			'1' => array('showitem' => 'hidden;;1;;1-1-1,offertype,offergroup,product,unit,price,pricelabel,weight,available,--div--;LLL:EXT:cms/locallang_tca.xlf:fe_users.tabs.access, starttime, endtime,'),
+			'1' => array('showitem' => 'hidden;;1;;1-1-1,offertype,offergroup,product,unit,price,pricelabel,available,--div--;LLL:EXT:cms/locallang_tca.xlf:fe_users.tabs.access, starttime, endtime,'),
 	)
 );

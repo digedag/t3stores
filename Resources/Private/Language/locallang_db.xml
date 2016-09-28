@@ -65,16 +65,16 @@
 			<label index="tx_t3stores_offer_unit">Unit</label>
 			<label index="tx_t3stores_offer_unit_weight">Weight</label>
 			<label index="tx_t3stores_offer_unit_item">Item</label>
-			<label index="tx_t3stores_offer_price">Price per Item or kg</label>
+			<label index="tx_t3stores_offer_price">Price per Item or kg in Cent</label>
 			<label index="tx_t3stores_offer_pricelabel">Label for price</label>
-			<label index="tx_t3stores_offer_weight">Base weight for price calculation (for unit item)</label>
+			<label index="tx_t3stores_offer_weight">Base weight for price calculation in gram (for unit item)</label>
 
 			<label index="tx_t3stores_product">Product</label>
 			<label index="tx_t3stores_product_name">Name</label>
 			<label index="tx_t3stores_product_shortname">Shortname</label>
 			<label index="tx_t3stores_product_description">Description</label>
 			<label index="tx_t3stores_product_images">Images</label>
-			<label index="tx_t3stores_product_weight">Weight</label>
+			<label index="tx_t3stores_product_weight">Weight in gram</label>
 
 			<label index="tx_t3stores_job">Job</label>
 			<label index="tx_t3stores_job_title">Title</label>
@@ -157,7 +157,7 @@
 			<label index="tx_t3stores_offer_unit">Einheit</label>
 			<label index="tx_t3stores_offer_unit_weight">Gewicht</label>
 			<label index="tx_t3stores_offer_unit_item">Stück</label>
-			<label index="tx_t3stores_offer_price">Preis pro Stück oder kg</label>
+			<label index="tx_t3stores_offer_price">Preis pro Stück oder kg in Cent</label>
 			<label index="tx_t3stores_offer_pricelabel">Preisbezeichnung</label>
 			<label index="tx_t3stores_offer_weight">Basisgewicht in g für Preisberechnung (bei Einheit Stück)</label>
 
@@ -166,7 +166,7 @@
 			<label index="tx_t3stores_product_shortname">Kurzname</label>
 			<label index="tx_t3stores_product_description">Beschreibung</label>
 			<label index="tx_t3stores_product_images">Bilder</label>
-			<label index="tx_t3stores_product_weight">Gewicht</label>
+			<label index="tx_t3stores_product_weight">Gewicht in Gramm</label>
 
 			<label index="tx_t3stores_job">Job</label>
 			<label index="tx_t3stores_job_title">Titel</label>
