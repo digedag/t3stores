@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Frontend language labels belonging to extension 'ruecktransport'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+
+			<label index="ERROR_1000">System error. Request invalid.</label>
+			<label index="ERROR_1001">Internal error: promotion not found.</label>
+		</languageKey>
+	</data>
+</T3locallang>

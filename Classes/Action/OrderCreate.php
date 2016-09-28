@@ -4,6 +4,7 @@ namespace System25\T3stores\Action;
 use System25\T3stores\Util\ServiceRegistry;
 use System25\T3stores\Model\Order;
 use System25\T3stores\Model\OrderPosition;
+use System25\T3stores\Util\Errors;
 /***************************************************************
  *  Copyright notice
  *
@@ -105,6 +106,9 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		$order = new Order();
  		$srv = ServiceRegistry::getOfferService();
 		$offers = $parameters->getCleaned('offer');
+		if(!is_array($offers) || empty($offers)) {
+			throw new \Exception('No offers found', Errors::CODE_INVALID_REQUEST);
+		}
 		$total = 0;
 		$promotion = null;
 		foreach ($offers As $uid => $offerArr) {
@@ -135,7 +139,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 			$total += $orderPosition->getTotal();
 		}
 		if($promotion === NULL) {
-			throw new \Exception('Promotion not found');
+			throw new \Exception('Promotion not found', Errors::CODE_PROMOTION_NOT_FOUND);
 		}
 		$order->setPromotion($promotion);
 		$order->record['promotion'] = $promotion->getUid();
