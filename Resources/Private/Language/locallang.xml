@@ -9,6 +9,7 @@
 
 			<label index="ERROR_1000">System error. Request invalid.</label>
 			<label index="ERROR_1001">Internal error: promotion not found.</label>
+			<label index="ERROR_1002">No valid positions found.</label>
 		</languageKey>
 	</data>
 </T3locallang>

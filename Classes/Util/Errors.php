@@ -32,4 +32,5 @@ namespace System25\T3stores\Util;
 class Errors {
 	const CODE_INVALID_REQUEST = 1000;
 	const CODE_PROMOTION_NOT_FOUND = 1001;
+	const CODE_NO_POSITIONS_FOUND = 1002;
 }

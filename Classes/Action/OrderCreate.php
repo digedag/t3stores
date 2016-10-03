@@ -111,6 +111,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		}
 		$total = 0;
 		$promotion = null;
+		$positionCnt = 0;
 		foreach ($offers As $uid => $offerArr) {
 			// offer laden
 			if(empty($offerArr['amount']))
@@ -126,6 +127,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 			if($amount <= 0)
 				continue;
 
+			$positionCnt += 1;
 			$orderPosition = new OrderPosition();
 			$orderPosition->setOffer($offer);
 			$orderPosition->record['title'] = $offer->getName();
@@ -137,6 +139,9 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 			$orderPosition->record['total'] = round($offer->getPrice() * $orderPosition->getAmount());
 			$order->addPosition($orderPosition);
 			$total += $orderPosition->getTotal();
+		}
+		if($positionCnt == 0) {
+			throw new \Exception('No positions found.', Errors::CODE_NO_POSITIONS_FOUND);
 		}
 		if($promotion === NULL) {
 			throw new \Exception('Promotion not found', Errors::CODE_PROMOTION_NOT_FOUND);
