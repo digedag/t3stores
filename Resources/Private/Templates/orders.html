@@ -9,6 +9,7 @@
 ###ORDERCREATE###
 
 
+<div id="t3stores-offerform">
 <form action="###ACTION_URI###" method="POST" data-toggle="validator" role="form" >
 <input type="hidden" name="id" value="###ACTION_PID###"/>
 <input type="hidden" name="t3stores[action]" value="###ACTION_CTRL###"/>
@@ -146,6 +147,17 @@ Bei Übermittlungsproblemen kontaktieren Sie uns bitte unter der Tel.Nr.: (03724
 	<input type="submit" name="t3stores[finish]" class="btn btn-primary" value="Bestellung absenden" />
 </div>
 </form>
+</div>
+
+<noscript>
+    <style type="text/css">
+        #t3stores-offerform {display:none;}
+    </style>
+    
+    <div class="alert alert-warning">
+    Für die Bestellfunktion ist Javascript notwendig. Bitte aktivieren Sie Javascript in Ihrem Browser.
+    </div>
+</noscript>
 
 
 ###ORDERCREATE###
