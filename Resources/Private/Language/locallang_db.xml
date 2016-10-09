@@ -45,6 +45,7 @@
 
 			<label index="tx_t3stores_promotion">Promotion</label>
 			<label index="tx_t3stores_promotion_name">Name</label>
+			<label index="tx_t3stores_promotion_startdate">Sale startdate</label>
 			<label index="tx_t3stores_promotion_discount">Discount in percent</label>
 			<label index="tx_t3stores_promotion_pickupdates">Pickup dates</label>
 
@@ -137,6 +138,7 @@
 
 			<label index="tx_t3stores_promotion">Aktion</label>
 			<label index="tx_t3stores_promotion_name">Name</label>
+			<label index="tx_t3stores_promotion_startdate">Verkaufsstart</label>
 			<label index="tx_t3stores_promotion_discount">Rabatt in Prozent</label>
 			<label index="tx_t3stores_promotion_pickupdates">Abholtermine</label>
 

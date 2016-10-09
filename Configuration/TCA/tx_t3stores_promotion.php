@@ -10,7 +10,7 @@ return array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 // 		'sortby' => 'sorting',
-// 		'default_sortby' => 'ORDER BY name',
+ 		'default_sortby' => 'ORDER BY startdate desc',
 		'delete' => 'deleted',
 		'dividers2tabs' => TRUE,
 		'enablecolumns' => array (
@@ -23,7 +23,7 @@ return array(
 	),
 	'interface' => array(
 			'showRecordFieldList' => 'hidden,name',
-			'maxDBListItems' => 60,
+			'maxDBListItems' => 10,
 	),
 	'columns' => array(
 		'hidden' => array (
@@ -64,7 +64,7 @@ return array(
 		'startdate' => Array (
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.starttime',
+			'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_promotion_startdate',
 			'config' => Array (
 				'type' => 'input',
 				'size' => '13',
