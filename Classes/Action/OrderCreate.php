@@ -65,15 +65,17 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 	protected function handleCreate($order, $parameters, $configurations) {
 		// Die restliche Daten sammeln
 		$orderData = $parameters->get('order');
-		$order->record = array_merge($order->record, $orderData);
+		$order->setProperty(array_merge($order->getProperty(), $orderData));
 		// Pickupdate
 		$promotion = $order->getPromotion();
 		$days = $promotion->getPickupDays();
 
 		if(!empty($days) && array_key_exists($order->record['pickup'], $days )) {
 			$day = $days[$order->record['pickup']];
-			$order->record['pickup'] = \tx_rnbase_util_Dates::date_tstamp2mysql($day->record['day']);
+			$order->setProperty('pickup', \tx_rnbase_util_Dates::date_tstamp2mysql($day->record['day']));
 		}
+		// Daten prüfen, wirft ggf eine Exception
+		$this->validateOrder($order);
 
 		// jetzt die Order speichern
 		$orderSrv = ServiceRegistry::getOrderService();
@@ -99,6 +101,21 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		$link->redirect();
 		exit();
 	}
+	/**
+	 *
+	 * @param Order $order
+	 */
+	protected function validateOrder($order) {
+		// Abholdatum
+		if(!$order->getProperty('pickup')) {
+			throw new \Exception('No pickup date found', Errors::CODE_NO_PICKUPDATE_FOUND);
+		}
+		// Filiale
+		if(!$order->getProperty('store')) {
+			throw new \Exception('No store found', Errors::CODE_NO_STORE_FOUND);
+		}
+	}
+
 	protected function loadStores() {
 		return ServiceRegistry::getStoreService()->search(array(), array());
 	}
@@ -130,13 +147,13 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 			$positionCnt += 1;
 			$orderPosition = new OrderPosition();
 			$orderPosition->setOffer($offer);
-			$orderPosition->record['title'] = $offer->getName();
+			$orderPosition->setProperty('title', $offer->getName());
 			// Die Menge ggf. anpassen
-			$orderPosition->record['amount'] = $amount;
-			$orderPosition->record['pricelabel'] = $offer->getPricelabel();
-			$orderPosition->record['price'] = $offer->getPrice();
-			$orderPosition->record['unit'] = $offer->getUnit();
-			$orderPosition->record['total'] = round($offer->getPrice() * $orderPosition->getAmount());
+			$orderPosition->setProperty('amount', $amount);
+			$orderPosition->setProperty('pricelabel', $offer->getPricelabel());
+			$orderPosition->setProperty('price', $offer->getPrice());
+			$orderPosition->setProperty('unit', $offer->getUnit());
+			$orderPosition->setProperty('total', round($offer->getPrice() * $orderPosition->getAmount()));
 			$order->addPosition($orderPosition);
 			$total += $orderPosition->getTotal();
 		}
@@ -147,10 +164,10 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 			throw new \Exception('Promotion not found', Errors::CODE_PROMOTION_NOT_FOUND);
 		}
 		$order->setPromotion($promotion);
-		$order->record['promotion'] = $promotion->getUid();
-		$order->record['positionprice'] = $total;
+		$order->setProperty('promotion', $promotion->getUid());
+		$order->setProperty('positionprice', $total);
 		$discount = $promotion->getDiscount();
-		$order->record['totalprice'] = round($total - ($total * $discount/100));
+		$order->setProperty('totalprice', round($total - ($total * $discount/100)));
 		return $order;
 	}
 	/**

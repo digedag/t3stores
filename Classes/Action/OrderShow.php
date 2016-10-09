@@ -4,6 +4,7 @@ namespace System25\T3stores\Action;
 use System25\T3stores\Util\ServiceRegistry;
 use System25\T3stores\Model\Order;
 use System25\T3stores\Model\OrderPosition;
+use System25\T3stores\Util\Errors;
 /***************************************************************
  *  Copyright notice
  *
@@ -41,12 +42,12 @@ class OrderShow extends \tx_rnbase_action_BaseIOC {
 		/* @var $item \System25\T3stores\Model\Order */
 		$item = \tx_rnbase::makeInstance('System25\T3stores\Model\Order', $itemId);
 		if(!$item->isValid() || !$key) {
-			throw new \Exception("Access denied");
+			throw new \Exception('Access denied', Errors::CODE_ORDER_INVALID);
 		}
 
 		$validKey = ServiceRegistry::getOrderService()->generateOrderKey($item);
 		if($key != $validKey) {
-			throw new \Exception("Access denied");
+			throw new \Exception('Access denied', Errors::CODE_ORDER_KEY_INVALID);
 		}
 
 		$viewdata->offsetSet('order', $item);

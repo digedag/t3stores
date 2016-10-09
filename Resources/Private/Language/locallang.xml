@@ -10,6 +10,10 @@
 			<label index="ERROR_1000">System error. Request invalid.</label>
 			<label index="ERROR_1001">Internal error: promotion not found.</label>
 			<label index="ERROR_1002">No valid positions found.</label>
+			<label index="ERROR_1010">No pickup date found.</label>
+			<label index="ERROR_1011">No store found.</label>
+			<label index="ERROR_2000">Access denied.</label>
+			<label index="ERROR_2001">Access denied.</label>
 		</languageKey>
 	</data>
 </T3locallang>

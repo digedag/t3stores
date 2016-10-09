@@ -120,6 +120,9 @@ return array(
 			'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store',
 			'config' => Array (
 				'type' => 'select',
+				'items' => Array (
+					Array(' ', '0'),
+				),
 				'foreign_table' => 'tx_t3stores_store',
 				'foreign_table_where' => 'ORDER BY tx_t3stores_store.city',
 				'size' => 1,
