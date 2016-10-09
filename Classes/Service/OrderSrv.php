@@ -70,8 +70,11 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 		}
 		else
 			$mail->setTextPart($mailtext);
-		\tx_rnbase_util_Logger::info('Order mail send for '.$order->getUid(), 't3stores', array('to' => $order->getCustomeremail()));
 		$mail->send();
+		\tx_rnbase_util_Logger::info('Order mail send for '.$order->getUid(), 't3stores', array('to' => $order->getCustomeremail()));
+		if($saveToOrder) {
+			$this->handleUpdate($order, ['mailtext' => $mailtext]);
+		}
 	}
 	/**
 	 * Create a hash to secure access to this order
