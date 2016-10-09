@@ -19,7 +19,7 @@ return array(
 	),
 	'interface' => array(
 			'showRecordFieldList' => 'title, price, amount',
-			'maxDBListItems' => 60,
+			'maxDBListItems' => 5,
 	),
 	'columns' => array(
 		'title' => Array (

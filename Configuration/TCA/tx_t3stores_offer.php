@@ -25,7 +25,7 @@ return array(
 	),
 	'interface' => array(
 			'showRecordFieldList' => 'hidden,name',
-			'maxDBListItems' => 60,
+			'maxDBListItems' => 10,
 	),
 	'columns' => array(
 		'starttime' => Array (

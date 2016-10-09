@@ -19,7 +19,7 @@ return array(
 	),
 	'interface' => array(
 			'showRecordFieldList' => 'hidden,title',
-			'maxDBListItems' => 60,
+			'maxDBListItems' => 5,
 	),
 	'columns' => array(
 		'promotion' => Array (
