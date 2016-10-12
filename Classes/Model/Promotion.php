@@ -38,6 +38,7 @@ class Promotion extends \tx_rnbase_model_base {
 		$days = $this->getDays($today);
 		return !empty($days);
 	}
+
 	/**
 	 * Liefert die möglichen Abholtage.
 	 * Key des Arrays ist die "UID" des Termins.

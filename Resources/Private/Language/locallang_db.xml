@@ -28,12 +28,12 @@
 
 			<label index="tx_t3stores_store">Store</label>
 			<label index="tx_t3stores_store_tabcontact">Contact</label>
-			<label index="tx_t3stores_store_name1">Name</label>
-			<label index="tx_t3stores_store_name2">More name</label>
+			<label index="tx_t3stores_store_name">Name</label>
 			<label index="tx_t3stores_store_description">Description</label>
 			<label index="tx_t3stores_store_openingtime">Opening times</label>
 			<label index="tx_t3stores_store_pictures">Pictures</label>
 			<label index="tx_t3stores_store_phone">Phone</label>
+			<label index="tx_t3stores_store_email">E-Mail address</label>
 			<label index="tx_t3stores_store_contactperson">Contact person</label>
 			<label index="tx_t3stores_store_address">Address</label>
 			<label index="tx_t3stores_store_zip">Zip</label>
@@ -128,6 +128,7 @@
 			<label index="tx_t3stores_stores_openingtime">Öffnungszeiten</label>
 			<label index="tx_t3stores_stores_pictures">Bilder</label>
 			<label index="tx_t3stores_stores_phone">Telefon</label>
+			<label index="tx_t3stores_store_email">E-Mail Addresse</label>
 			<label index="tx_t3stores_stores_contactperson">Kontaktperson</label>
 			<label index="tx_t3stores_stores_address">Strasse</label>
 			<label index="tx_t3stores_stores_zip">PLZ</label>

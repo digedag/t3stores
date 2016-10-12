@@ -15,6 +15,7 @@ CREATE TABLE tx_t3stores_store (
 	city varchar(150) DEFAULT '' NOT NULL,
 	countrycode varchar(20) DEFAULT '' NOT NULL,
 	phone varchar(120) DEFAULT '' NOT NULL,
+	email varchar(150) DEFAULT '' NOT NULL,
  	contactperson varchar(150) DEFAULT '' NOT NULL,
 	lng tinytext,
 	lat tinytext,
@@ -22,8 +23,25 @@ CREATE TABLE tx_t3stores_store (
 	pictures int(11) DEFAULT '0' NOT NULL,
 	hasreport tinyint(4) DEFAULT '0' NOT NULL,
 
+	items int(11) DEFAULT '0' NOT NULL,
+	categories int(11) DEFAULT '0' NOT NULL,
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
+);
+
+#
+# Table structure for table 'tx_t3stores_store2promo_mm'
+# uid_local used for store
+#
+CREATE TABLE tx_t3stores_stores_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	tablenames varchar(50) DEFAULT '' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
 );
 
 CREATE TABLE tx_t3stores_promotion (
@@ -41,6 +59,7 @@ CREATE TABLE tx_t3stores_promotion (
 	discount tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	pickupdates tinytext,
 	startdate int(11) unsigned DEFAULT '0' NOT NULL,
+	stores int(11) DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

@@ -58,7 +58,7 @@ return array(
 			'config' => Array (
 				'type' => 'select',
 				'foreign_table' => 'tx_t3stores_promotion',
-				'foreign_table_where' => 'AND tx_t3stores_promotion.pid=###CURRENT_PID### ORDER BY tx_t3stores_promotion.name',
+				'foreign_table_where' => 'AND tx_t3stores_promotion.pid=###CURRENT_PID### ORDER BY tx_t3stores_promotion.startdate desc',
 				'size' => 1,
 				'items' => Array(
 					Array('',0),

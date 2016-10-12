@@ -30,7 +30,7 @@ namespace System25\T3stores\Filter;
 class Store extends \tx_rnbase_filter_BaseFilter {
 	private $searchLocation;
 	private $geoCode;
-	
+
 	/**
 	 * Abgeleitete Filter können diese Methode überschreiben und zusätzliche Filter setzen
 	 *
@@ -44,7 +44,9 @@ class Store extends \tx_rnbase_filter_BaseFilter {
 		$configurations->convertToUserInt();
 		$this->searchLocation = $parameters->getCleaned('location');
 		if($this->searchLocation) {
+			/* @var $geoCoder \tx_rnbase_maps_google_Util */
 			$geoCoder = \tx_rnbase::makeInstance('tx_rnbase_maps_google_Util');
+			// TODO: change to lookupGeoCodeCached
 			$this->geoCode = $geoCoder->lookupGeoCode($this->searchLocation);
 		}
 		if($this->geoCode) {
@@ -52,9 +54,9 @@ class Store extends \tx_rnbase_filter_BaseFilter {
 			$options['forcewrapper'] = 1;
 			$lat = $this->geoCode['lat'];
 			$long = $this->geoCode['lng'];
-			$options['what'] = 'STORE.*,((ACOS(SIN('.$lat.' * PI() / 180) 
-					* SIN(`lat` * PI() / 180) + COS('.$lat.' * PI() / 180) 
-					* COS(`lat` * PI() / 180) * COS(('.$long.' - `lng`) * PI() / 180)) 
+			$options['what'] = 'STORE.*,((ACOS(SIN('.$lat.' * PI() / 180)
+					* SIN(`lat` * PI() / 180) + COS('.$lat.' * PI() / 180)
+					* COS(`lat` * PI() / 180) * COS(('.$long.' - `lng`) * PI() / 180))
 					* 180 / PI()) * 60 * 1.1515 * 1.60934) AS `distance`';
 			$options['orderby'][SEARCH_FIELD_CUSTOM] = 'distance asc';
 		}
@@ -69,7 +71,7 @@ class Store extends \tx_rnbase_filter_BaseFilter {
 		$params = $this->getParameters()->getAll();
 		return $params ? FALSE : TRUE;
 	}
-	
+
 	function parseTemplate($template, &$formatter, $confId, $marker = 'FILTER') {
 		if(!\tx_rnbase_util_BaseMarker::containsMarker($template, 'SEARCHFORM'))
 			return $template;

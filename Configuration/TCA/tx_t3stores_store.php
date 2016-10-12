@@ -17,7 +17,7 @@ return array(
 		'label_alt' => 'city',
 		'label_alt_force' => 1,
 //		'label_userFunc' => 'EXT:templavoila/Classes/Service/UserFunc/Label.php:&Extension\Templavoila\Service\UserFunc\Label->getLabel',
-		'searchFields' => 'uid,name,address,city,zip,contactperson',
+		'searchFields' => 'uid,name,address,city,zip,contactperson,email,phone',
 		'tstamp' => 'tstamp',
 		'EXT' => $wecmap,
 		'crdate' => 'crdate',
@@ -120,6 +120,15 @@ return array(
 								'eval' => 'trim',
 						)
 				),
+				'email' => Array (
+						'exclude' => 1,
+						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_email',
+						'config' => Array (
+								'type' => 'input',
+								'size' => '30',
+								'eval' => 'trim',
+						)
+				),
 				'contactperson' => Array (
 						'exclude' => 1,
 						'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_contactperson',
@@ -155,12 +164,39 @@ return array(
 								'rows' => '5',
 						)
 				),
+				'categories' => Array (
+					'exclude' => 1,
+					'label' => 'LLL:EXT:lang/locallang_tca.xlf:sys_category.categories',
+					'config' => Array (
+							'type' => 'select',
+							'size' => 10,
+							'autoSizeMax' => 50,
+							'foreign_table' => 'sys_category',
+							'foreign_table_where' => 'AND sys_category.sys_language_uid IN (-1, 0) ORDER BY sys_category.sorting ASC',
+							'MM' => 'sys_category_record_mm',
+							'MM_match_fields' => Array(
+									'fieldname' => 'categories',
+									'tablenames' => 'tx_t3stores_store',
+							),
+							'MM_opposite_field' => 'items',
+							'renderMode' => 'tree',
+							'treeConfig' => Array(
+									'appearance' => Array(
+											'expandAll' => 0,
+											'maxLevels' => 99,
+											'showHeader' => 1,
+											),
+									'parentField' => 'parent',
+									),
+							'minitems' => 0,
+							'maxitems' => 999,
+						)
+				),
 				'pictures' => tx_rnbase_util_TSFAL::getMediaTCA('pictures'),
 	),
 	'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1,name,description;;;richtext[cut|copy|paste|formatblock|textcolor|bold|italic|underline|left|center|right|orderedlist|unorderedlist|outdent|indent|link|table|image|line|chMode]:rte_transform[mode=ts_css|imgpath=uploads/rte/],hasreport,pictures,
-			--div--;LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_tabcontact,contactperson,phone,address,zip,city,countrycode,lng,lat,openingtime;;;richtext[cut|copy|paste|formatblock|textcolor|bold|italic|underline|left|center|right|orderedlist|unorderedlist|outdent|indent|link|table|image|line|chMode]:rte_transform[mode=ts_css|imgpath=uploads/rte/]
+			'0' => array('showitem' => 'hidden;;1;;1-1-1,name,description;;;richtext[cut|copy|paste|formatblock|textcolor|bold|italic|underline|left|center|right|orderedlist|unorderedlist|outdent|indent|link|table|image|line|chMode]:rte_transform[mode=ts_css|imgpath=uploads/rte/],hasreport,categories,pictures,
+			--div--;LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_store_tabcontact,contactperson,phone,email,address,zip,city,countrycode,lng,lat,openingtime;;;richtext[cut|copy|paste|formatblock|textcolor|bold|italic|underline|left|center|right|orderedlist|unorderedlist|outdent|indent|link|table|image|line|chMode]:rte_transform[mode=ts_css|imgpath=uploads/rte/]
 			')
 	)
 );
-				

@@ -1,6 +1,9 @@
 <?php
 namespace System25\T3stores\Service;
 
+use System25\T3stores\Model\Promotion;
+use System25\T3stores\Model\Store;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -27,6 +30,16 @@ namespace System25\T3stores\Service;
 \tx_rnbase::load('tx_rnbase_util_DB');
 
 class StoreSrv extends \TYPO3\CMS\Core\Service\AbstractService {
+	/**
+	 *
+	 * @param Promotion $promotion
+	 * @return [Store]
+	 */
+	public function searchByPromotion($promotion) {
+		$fields = $options = array();
+		$fields['STOREMM.UID_FOREIGN'][OP_EQ_INT] = $promotion->getUid();
+		return $this->search($fields, $options);
+	}
 	/**
 	 * Search database for stores
 	 *

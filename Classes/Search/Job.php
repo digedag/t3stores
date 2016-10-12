@@ -49,7 +49,7 @@ class Job extends \tx_rnbase_util_SearchBase {
 	protected function getJoins($tableAliases) {
 		$join = '';
 		if(isset($tableAliases['CATMM'])) {
-			$join .= ' JOIN sys_category_record_mm CATMM ON CATMM.uid_foreign = JOB.uid ';
+			$join .= ' JOIN sys_category_record_mm CATMM ON CATMM.uid_foreign = JOB.uid AND CATMM.tablenames=\'tx_t3stores_job\'';
 		}
 		// Hook to append other tables
 		\tx_rnbase_util_Misc::callHook('t3stores','search_Job_getJoins_hook',

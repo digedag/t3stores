@@ -31,6 +31,9 @@ class Store extends \tx_rnbase_util_SearchBase {
 	protected function getTableMappings() {
 		$tableMapping = array();
 		$tableMapping['STORE'] = 'tx_t3stores_store';
+		$tableMapping['CATMM'] = 'sys_category_record_mm';
+		$tableMapping['STOREMM'] = 'tx_t3stores_stores_mm';
+
 		// Hook to append other tables
 		\tx_rnbase_util_Misc::callHook('t3stores','search_Store_getTableMapping_hook',
 		array('tableMapping' => &$tableMapping), $this);
@@ -47,6 +50,13 @@ class Store extends \tx_rnbase_util_SearchBase {
 
 	protected function getJoins($tableAliases) {
 		$join = '';
+		if(isset($tableAliases['CATMM'])) {
+			$join .= ' JOIN sys_category_record_mm CATMM ON CATMM.uid_foreign = STORE.uid AND CATMM.tablenames=\'tx_t3stores_store\' ';
+		}
+		if(isset($tableAliases['STOREMM'])) {
+			$join .= ' JOIN tx_t3stores_stores_mm STOREMM ON STOREMM.uid_local = STORE.uid ';
+		}
+
 		// Hook to append other tables
 		\tx_rnbase_util_Misc::callHook('t3stores','search_Store_getJoins_hook',
 		array('join' => &$join, 'tableAliases' => $tableAliases), $this);

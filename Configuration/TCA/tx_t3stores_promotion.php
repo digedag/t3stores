@@ -104,8 +104,38 @@ return array(
 				)
 			)
 		),
+
+		'stores' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_promotion_stores',
+			'config' => Array (
+				'type' => 'select',
+				'size' => 15,
+				'autoSizeMax' => 50,
+				'minitems' => 0,
+				'maxitems' => 100,
+				'foreign_table' => 'tx_t3stores_store',
+				'foreign_table_where' => 'ORDER BY city',
+				'MM' => 'tx_t3stores_stores_mm',
+				'MM_foreign_select' => 1,
+				'MM_opposite_field' => 'items',
+				'MM_match_fields' => Array (
+					'tablenames' => 'tx_t3stores_promotion',
+				),
+				'wizards' => Array(
+					'edit' => array(
+						'type' => 'popup',
+						'title' => 'Edit',
+						'popup_onlyOpenIfSelected' => 1,
+						'icon' => 'edit2.gif',
+						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+					),
+				)
+			),
+		),
+
 	),
 	'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1,name, discount, pickupdates, startdate,--div--;LLL:EXT:cms/locallang_tca.xlf:fe_users.tabs.access, starttime, endtime')
+			'0' => array('showitem' => 'hidden;;1;;1-1-1,name, discount, pickupdates, startdate, stores,--div--;LLL:EXT:cms/locallang_tca.xlf:fe_users.tabs.access, starttime, endtime')
 	)
 );

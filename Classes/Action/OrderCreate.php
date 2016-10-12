@@ -5,6 +5,7 @@ use System25\T3stores\Util\ServiceRegistry;
 use System25\T3stores\Model\Order;
 use System25\T3stores\Model\OrderPosition;
 use System25\T3stores\Util\Errors;
+use System25\T3stores\Model\Promotion;
 /***************************************************************
  *  Copyright notice
  *
@@ -52,7 +53,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		$data['ACTION_CTRL'] = 'System25\T3stores\Action\OrderCreate';
 		$viewdata->offsetSet(\tx_rnbase_view_List::VIEWDATA_MARKER, $data);
 
-		$viewdata->offsetSet('stores', $this->loadStores());
+		$viewdata->offsetSet('stores', $this->loadStores($order->getPromotion()));
 		return null;
 	}
 
@@ -116,8 +117,25 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		}
 	}
 
-	protected function loadStores() {
-		return ServiceRegistry::getStoreService()->search(array(), array());
+	/**
+	 * Returns the available stores
+	 * can be configured by categories in plugin
+	 * or by store relation in promotion record
+	 * @param Promotion $promotion
+	 */
+	protected function loadStores($promotion) {
+		// Die Stores in der Promotion haben Vorrang
+		$stores = ServiceRegistry::getStoreService()->searchByPromotion($promotion);
+		if($stores)
+			return $stores;
+
+		// Jetzt im Plugin suchen
+		$fields = $options = array();
+
+		\tx_rnbase_util_SearchBase::setConfigFields($fields, $this->getConfigurations(), $this->getConfId().'form.stores.filter.fields.');
+		\tx_rnbase_util_SearchBase::setConfigOptions($options, $this->getConfigurations(), $this->getConfId().'form.stores.filter.options.');
+
+		return ServiceRegistry::getStoreService()->search($fields, $options);
 	}
 	protected function buildOrder($parameters) {
 		$order = new Order();
