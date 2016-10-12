@@ -52,6 +52,7 @@
 			<label index="tx_t3stores_offergroup">Offer group</label>
 			<label index="tx_t3stores_offergroup_taboffers">Offers</label>
 			<label index="tx_t3stores_offergroup_name">Name</label>
+			<label index="tx_t3stores_offergroup_internalname">Internal Name</label>
 			<label index="tx_t3stores_offergroup_offers">Offers</label>
 			<label index="tx_t3stores_offergroup_description">Description</label>
 
@@ -144,6 +145,7 @@
 
 			<label index="tx_t3stores_offergroup">Angebotsgruppe</label>
 			<label index="tx_t3stores_offergroup_name">Name</label>
+			<label index="tx_t3stores_offergroup_internalname">Internal Name</label>
 			<label index="tx_t3stores_offergroup_taboffers">Angebote</label>
 			<label index="tx_t3stores_offergroup_description">Beschreibung</label>
 			<label index="tx_t3stores_offergroup_offers">Angebote</label>

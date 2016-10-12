@@ -5,7 +5,9 @@ return array(
 	'ctrl' => array(
 		'title' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_offergroup',
 		'label' => 'name',
-		'searchFields' => 'uid,name',
+		'label_alt' => 'internalname',
+		'label_alt_force' => 1,
+		'searchFields' => 'uid,name,internalname',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -35,6 +37,15 @@ return array(
 		'name' => Array (
 				'exclude' => 1,
 				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_offergroup_name',
+				'config' => Array (
+						'type' => 'input',
+						'size' => '30',
+						'eval' => 'trim',
+				)
+		),
+		'internalname' => Array (
+				'exclude' => 1,
+				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_offergroup_internalname',
 				'config' => Array (
 						'type' => 'input',
 						'size' => '30',
@@ -82,7 +93,7 @@ return array(
 		),
 	),
 	'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1,name,promotion,description,
+			'0' => array('showitem' => 'hidden;;1;;1-1-1,internalname,name,promotion,description,
 			--div--;LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_offergroup_taboffers,offers
 			')
 	)
