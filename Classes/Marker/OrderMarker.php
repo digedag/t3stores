@@ -73,8 +73,8 @@ class OrderMarker extends \tx_rnbase_util_SimpleMarker {
 			$fields = array();
 			$fields['ORDERPOSITION.ORDERUID'][OP_EQ_INT] = $item->getUid();
 			$options = array();
-			\tx_rnbase_util_SearchBase::setConfigFields($fields, $formatter->configurations, $confId.'fields.');
-			\tx_rnbase_util_SearchBase::setConfigOptions($options, $formatter->configurations, $confId.'options.');
+			\tx_rnbase_util_SearchBase::setConfigFields($fields, $formatter->getConfigurations(), $confId.'fields.');
+			\tx_rnbase_util_SearchBase::setConfigOptions($options, $formatter->getConfigurations(), $confId.'options.');
 			$positions = $srv->searchOrderPosition($fields, $options);
 		}
 
@@ -85,18 +85,18 @@ class OrderMarker extends \tx_rnbase_util_SimpleMarker {
 		return $out;
 	}
 	protected function prepareItem(
-			\tx_rnbase_model_base $item,
+			\Tx_Rnbase_Domain_Model_DataInterface $item,
 			\tx_rnbase_configurations $configurations,
 			$confId
 	) {
-		if (empty($item->record)) {
+		if ($item->isEmpty()) {
 			return;
 		}
 		parent::prepareItem($item, $configurations, $confId);
-		$item->record['positionpricestr'] = $item->record['positionprice'] /100;
-		$item->record['totalpricestr'] = $item->record['totalprice'] /100;
-		$item->record['discountvalue'] = $item->record['totalprice'] - $item->record['positionprice'];
-		$item->record['discountvaluestr'] = $item->record['discountvalue'] /100;
+		$item->setProperty('positionpricestr', $item->getProperty('positionprice') /100);
+		$item->setProperty('totalpricestr', $item->getProperty('totalprice') /100);
+		$item->setProperty('discountvalue', $item->getProperty('totalprice') - $item->getProperty('positionprice'));
+		$item->setProperty('discountvaluestr', $item->getProperty('discountvalue') /100);
 	}
 
 }

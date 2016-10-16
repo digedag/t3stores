@@ -47,6 +47,8 @@ lib.t3stores.promotion {
   links.order._cfg.params.promotion = uid
   links.order.noHash = 1
 
+  offergroup =< lib.t3stores.offergroup
+
   discount.wrap = |%
   pickupdate.day.strftime = %d.%m.%Y
   startdate.strftime = %d.%m.%Y
@@ -60,6 +62,17 @@ lib.t3stores.promotion {
     isLessThan.cObject = TEXT
     isLessThan.cObject.field = startdate
   }
+  subparts.ispickupdatesdynamic {
+    marker.visible = YES
+    marker.hidden = NO
+    visible = TEXT
+    visible.value = 1
+    visible.if {
+      value = 1
+      equals.data = field:pickupdatesdynamic
+    }
+  }
+
 }
 lib.t3stores.order {
   promotion =< lib.t3stores.promotion
@@ -212,7 +225,8 @@ plugin.tx_t3stores {
       1 = EXT:t3stores/Resources/Public/Scripts/validator.js
       2 = EXT:t3stores/Resources/Public/Scripts/handlebars.min-v4.0.3.js
       3 = EXT:t3stores/Resources/Public/Scripts/typeahead.bundle.js
-      5 = EXT:t3stores/Resources/Public/Scripts/orders.js
+      5 = EXT:t3stores/Resources/Public/Scripts/offers.js
+      6 = EXT:t3stores/Resources/Public/Scripts/orders.js
     }
     promotion =< lib.t3stores.promotion
     order =< lib.t3stores.order

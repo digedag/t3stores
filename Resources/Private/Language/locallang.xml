@@ -14,6 +14,8 @@
 			<label index="ERROR_1011">No store found.</label>
 			<label index="ERROR_2000">Access denied.</label>
 			<label index="ERROR_2001">Access denied.</label>
+			<label index="label_msg_no_pickupdates_found">Sorry, no pickup dates found.</label>
+			
 		</languageKey>
 	</data>
 </T3locallang>

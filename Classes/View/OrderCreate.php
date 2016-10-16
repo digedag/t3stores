@@ -1,7 +1,6 @@
 <?php
 namespace System25\T3stores\View;
 
-use System25\T3stores\Util\ServiceRegistry;
 /***************************************************************
  *  Copyright notice
  *

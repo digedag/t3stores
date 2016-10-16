@@ -41,6 +41,10 @@
                     <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.JobList</numIndex>
                     <numIndex index="1">System25\T3stores\Action\JobList</numIndex>
                   </numIndex>
+                  <numIndex index="200" type="array">
+                    <numIndex index="0">LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.OrderCreate</numIndex>
+                    <numIndex index="1">System25\T3stores\Action\OrderCreate</numIndex>
+                  </numIndex>
 
                 </items>
                 <multiple>0</multiple>
@@ -154,6 +158,63 @@
         </el>
       </ROOT>
     </s_offergroup>
+		<s_ordercreate>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.action.OrderCreate</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <ordercreate.promotionId>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_promotion</label>
+              <config>
+                <type>select</type>
+                <foreign_table>tx_t3stores_promotion</foreign_table>
+                <foreign_table_where>ORDER BY tx_t3stores_promotion.startdate desc</foreign_table_where>
+                <multiple>0</multiple>
+                <maxitems>1</maxitems>
+                <size>1</size>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0"></numIndex>
+                    <numIndex index="1"></numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </ordercreate.promotionId>
+
+          <ordercreateTemplate>
+            <TCEforms>
+              <exclude>1</exclude>
+              <label>LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:plugin.t3stores.flexform.template</label>
+              <config>
+                <type>input</type>
+                <size>24</size>
+                <max>256</max>
+                <eval>trim</eval>
+                <wizards type="array">
+                  <_PADDING>2</_PADDING>
+                  <link type="array">
+                    <type>popup</type>
+                    <title>Link</title>
+                    <icon>link_popup.gif</icon>
+                    <script>browse_links.php?mode=wizard&amp;act=file</script>
+                    <params type="array">
+                      <blindLinkOptions>page,url,mail,spec</blindLinkOptions>
+                      <allowedExtensions>htm,html,tmpl,tpl</allowedExtensions>
+                    </params>
+                    <JSopenParams>height=300,width=500,status=0,menubar=0,scrollbars=1</JSopenParams>
+                  </link>
+                </wizards>
+              </config>
+            </TCEforms>
+          </ordercreateTemplate>
+        </el>
+      </ROOT>
+    </s_ordercreate>
     <s_productlist>
       <ROOT>
         <TCEforms>

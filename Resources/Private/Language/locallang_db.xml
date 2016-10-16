@@ -19,6 +19,7 @@
 			<label index="plugin.t3stores.flexform.action.OfferGroupList">List of offer groups</label>
 			<label index="plugin.t3stores.flexform.action.OfferList">List of offers</label>
 			<label index="plugin.t3stores.flexform.action.StoreShow">Store single view</label>
+			<label index="plugin.t3stores.flexform.action.OrderCreate">Order creation form</label>
 			<label index="plugin.t3stores.flexform.template">HTML-Template</label>
 
 			<label index="plugin.t3stores.flexform.stores">Stores</label>
@@ -115,6 +116,7 @@
 			<label index="plugin.t3stores.flexform.action.OfferGroupList">Liste von Angebotsgruppen</label>
 			<label index="plugin.t3stores.flexform.action.OfferList">Liste von Angeboten</label>
 			<label index="plugin.t3stores.flexform.action.StoreShow">Filiale Detailansicht</label>
+			<label index="plugin.t3stores.flexform.action.OrderCreate">Auftragsformular</label>
 
 			<label index="plugin.t3stores.flexform.stores">Filialen</label>
 			<label index="plugin.t3stores.flexform.stores.rand">Zufällige Sortierung</label>

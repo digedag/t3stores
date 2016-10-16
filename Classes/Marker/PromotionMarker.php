@@ -1,9 +1,8 @@
 <?php
 namespace System25\T3stores\Marker;
 
-use System25\T3stores\Util\ServiceRegistry;
-use System25\T3stores\Model\Order;
 use System25\T3stores\Model\Promotion;
+use System25\T3stores\Util\ServiceRegistry;
 /***************************************************************
  *  Copyright notice
  *
@@ -40,10 +39,35 @@ class PromotionMarker extends \tx_rnbase_util_SimpleMarker {
 	 * @return String das geparste Template
 	 */
 	protected function prepareTemplate($template, $item, $formatter, $confId, $marker) {
- 		if($this->containsMarker($template, $marker.'_PICKUPDATES'))
+		if($this->containsMarker($template, $marker.'_OFFERGROUPS'))
+			$template = $this->addOfferGroups($template, $item, $formatter, $confId.'offergroup.', $marker.'_OFFERGROUP');
+		if($this->containsMarker($template, $marker.'_PICKUPDATES'))
  			$template = $this->addPickupDates($template, $item, $formatter, $confId.'pickupdate.', $marker.'_PICKUPDATE');
-
 		return $template;
+	}
+
+	/**
+	 * Hinzufügen der Angebotsgruppen.
+	 * @param string $template HTML-Template
+	 * @param Promotion $item
+	 * @param \tx_rnbase_util_FormatUtil $formatter
+	 * @param string $confId Config-String
+	 * @param string $markerPrefix
+	 */
+	protected function addOfferGroups($template, $item, $formatter, $confId, $markerPrefix) {
+		$srv = ServiceRegistry::getOfferService();
+		$fields = array();
+		$fields['OFFERGROUP.PROMOTION'][OP_EQ_INT] = $item->getUid();
+		$options = array();
+		\tx_rnbase_util_SearchBase::setConfigFields($fields, $formatter->configurations, $confId.'fields.');
+		\tx_rnbase_util_SearchBase::setConfigOptions($options, $formatter->configurations, $confId.'options.');
+		$children = $srv->searchOfferGroup($fields, $options);
+
+		$listBuilder = \tx_rnbase::makeInstance('tx_rnbase_util_ListBuilder');
+		$out = $listBuilder->render($children,
+				false, $template, 'System25\T3stores\Marker\OfferGroupMarker',
+				$confId, $markerPrefix, $formatter);
+		return $out;
 	}
 
 	/**
@@ -57,6 +81,14 @@ class PromotionMarker extends \tx_rnbase_util_SimpleMarker {
 	protected function addPickupDates($template, $item, $formatter, $confId, $markerPrefix) {
 		$days = $item->getPickupDays();
 		$days = array_values($days);
+
+		$date = new \DateTime();
+		$date->setTimestamp($days[0]->getDay());
+		$item->setProperty('pickupmin', $date->format('d.m.Y'));
+
+		$last = end($days);
+		$date->setTimestamp($last->getDay());
+		$item->setProperty('pickupmax', $date->format('d.m.Y'));
 
 		$listBuilder = \tx_rnbase::makeInstance('tx_rnbase_util_ListBuilder');
 		$out = $listBuilder->render($days,

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+###ORDERCREATE###
+
+
+<div id="t3stores-offerform">
+<form action="###ACTION_URI###" method="POST" data-toggle="validator" role="form" >
+<input type="hidden" name="id" value="###ACTION_PID###"/>
+<input type="hidden" name="t3stores[action]" value="###ACTION_CTRL###"/>
+
+
+###PROMOTION_OFFERGROUPS###
+<div class="well form-horizontal t3stores-order-form" id="t3stores-offerlist">
+	<h2>1. Schritt - Abholdatum und Artikel</h2>
+
+
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputPickup">Abholtermin</label>
+		<div class="col-sm-10">
+		###PROMOTION_PICKUPDATES###
+		###PROMOTION_PICKUPDATE###
+			<div class="radio">
+				<label><input type="radio" name="t3stores[order][pickup]" id="optionsRadios###PROMOTION_PICKUPDATE_UID###" value="###PROMOTION_PICKUPDATE_UID###" required>###PROMOTION_PICKUPDATE_DAY###</label>
+			</div>
+			<span class="help-block with-errors"></span>
+		###PROMOTION_PICKUPDATE###
+		###PROMOTION_PICKUPDATEEMPTYLIST###
+		<div class="alert alert-warning">###LABEL_MSG_NO_PICKUPDATES_FOUND###</div>
+		###PROMOTION_PICKUPDATEEMPTYLIST###
+
+		###PROMOTION_PICKUPDATES###
+		</div>
+	</div>
+
+
+<script type="text/javascript">
+var offers;
+offers = offers || (function () {
+	var offers = {};
+	return {
+		updateOffer: function(offerUid, field) {
+			var offer = offers[offerUid];
+			var weight = 0;
+			if(offer.unit == 0) {
+				weight = parseFloat( field.value.replace( /,/,"." ));
+			}
+			else {
+				weight = parseInt(field.value);
+				field.value = weight;
+			}
+			weight = isNaN(weight) ? 0 : weight;
+			var price = Math.round(weight * offer.price);
+			offer.sum = price;
+			jQuery( "#sum_" + offerUid ).html( this.formatPrice(price) );
+			this.updateSum();
+			
+		},
+		formatPrice: function(price) {
+			return (price/100).toFixed(2);
+		},
+		updateSum: function() {
+			var sum = 0;
+			jQuery.each(offers, function(idx, offer) {
+				sum += offer.sum;
+			});
+			jQuery( "#sum" ).html(this.formatPrice(sum));
+		},
+		initOffers: function() {
+			// Alle Offers durchlaufen
+//			t3stores_offer_amount_
+			var parent = this;
+			jQuery.each(offers, function(uid, offer) {
+				jQuery('#t3stores_offer_amount_'+uid).each(function(idx, field) {
+					parent.updateOffer(uid, field);
+//					console.info('Test2 '+uid);
+				});
+			});
+
+		},
+		initOffer: function(uid, price, unit) {
+			offers[uid] = {
+					uid: uid,
+					price: price,
+					unit: unit,
+					sum: 0
+			}
+		},
+	};
+})();
+
+</script>
+
+###PROMOTION_OFFERGROUP###
+
+
+<div>
+<strong>###PROMOTION_OFFERGROUP_NAME###</strong><br/>
+###PROMOTION_OFFERGROUP_DESCRIPTION###
+</div>
+
+###PROMOTION_OFFERGROUP_OFFERS###
+<table class="table table-striped table-condensed">
+<tr>
+<th>Menge</th>
+<th>Artikel</th>
+<th>Preis in €</th>
+<th>Gesamtpreis</th>
+</tr>
+
+###PROMOTION_OFFERGROUP_OFFER###
+<script type="text/javascript">
+offers.initOffer(###PROMOTION_OFFERGROUP_OFFER_UID###, ###PROMOTION_OFFERGROUP_OFFER_PRICE###, ###PROMOTION_OFFERGROUP_OFFER_UNIT###);
+</script>
+
+<tr>
+	<td>
+	###PROMOTION_OFFERGROUP_OFFER_UNIT_WEIGHT###
+		###PROMOTION_OFFERGROUP_OFFER_AVAILABLE_YES###
+		<div class="input-group">
+			<div class="input-group-addon input-sm">kg</div>
+			<input type="number" min="0" step="0.10" class="form-control input-sm t3stores-offer-amount" data-id="###PROMOTION_OFFERGROUP_OFFER_UID###" name="t3stores[offer][###PROMOTION_OFFERGROUP_OFFER_UID###][amount]" id="t3stores_offer_amount_###PROMOTION_OFFERGROUP_OFFER_UID###" placeholder="0,0" style="width:70px" >
+			<input type="hidden" class="form-control" name="t3stores[offer][###PROMOTION_OFFERGROUP_OFFER_UID###][price]">
+		</div>
+		###PROMOTION_OFFERGROUP_OFFER_AVAILABLE_YES###
+		###PROMOTION_OFFERGROUP_OFFER_AVAILABLE_NO###
+		<span class="label label-info">Ausverkauft</span>
+		###PROMOTION_OFFERGROUP_OFFER_AVAILABLE_NO###
+	###PROMOTION_OFFERGROUP_OFFER_UNIT_WEIGHT###
+	###PROMOTION_OFFERGROUP_OFFER_UNIT_ITEM###
+		###PROMOTION_OFFERGROUP_OFFER_AVAILABLE_YES###
+		<div class="input-group">
+			<div class="input-group-addon input-sm">Stk</div>
+			<input type="number" min="0" max="###PROMOTION_OFFERGROUP_OFFER_DCAVAILABLE###" class="form-control input-sm t3stores-offer-amount" data-id="###PROMOTION_OFFERGROUP_OFFER_UID###" name="t3stores[offer][###PROMOTION_OFFERGROUP_OFFER_UID###][amount]"  id="t3stores_offer_amount_###PROMOTION_OFFERGROUP_OFFER_UID###" placeholder="0" style="width:70px" >
+			<input type="hidden" class="form-control" name="t3stores[offer][###PROMOTION_OFFERGROUP_OFFER_UID###][price]">
+		</div>
+		###PROMOTION_OFFERGROUP_OFFER_AVAILABLE_YES###
+		###PROMOTION_OFFERGROUP_OFFER_AVAILABLE_NO###
+		<span class="label label-info">Ausverkauft</span>
+		###PROMOTION_OFFERGROUP_OFFER_AVAILABLE_NO###
+	###PROMOTION_OFFERGROUP_OFFER_UNIT_ITEM###
+	</td>
+	<td>###PROMOTION_OFFERGROUP_OFFER_NAME###<br><small>###PROMOTION_OFFERGROUP_OFFER_HINT###</small> </td>
+	<td class="text-right">###PROMOTION_OFFERGROUP_OFFER_PRICELABEL###</td>
+	<td><span id="sum_###PROMOTION_OFFERGROUP_OFFER_UID###">0,00</span> &euro;</td>
+</tr>
+###PROMOTION_OFFERGROUP_OFFER###
+</table>
+###PROMOTION_OFFERGROUP_OFFERS###
+
+###PROMOTION_OFFERGROUP###
+
+###PROMOTION_OFFERGROUPEMPTYLIST###
+<p>Für diese Aktion wurden noch keine Angebote erstellt.</p>
+###PROMOTION_OFFERGROUPEMPTYLIST###
+<div>
+<strong>Gesamtpreis:</strong> <span id="sum">0,00</span> &euro;
+</div>
+
+
+</div><!-- End well t3stores-offerlist -->
+###PROMOTION_OFFERGROUPS###
+
+
+
+<div class="well form-horizontal t3stores-order-form">
+	<h2>2. Schritt - Adressdaten</h2>
+	<p>
+	Tragen Sie jetzt Ihre Adressdaten und Ihre eMail-Adresse ein.
+	</p>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputName">Name</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputName" name="t3stores[order][customername]" placeholder="Ihr Name" required>
+			<span class="help-block with-errors"></span>
+		</div>
+	</div>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputName">Anschrift</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputName" name="t3stores[order][customeraddress]" placeholder="Strasse mit Hausnummer" required>
+			<span class="help-block with-errors"></span>
+		</div>
+	</div>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputZip">PLZ*</label>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" id="inputZip" name="t3stores[order][customerzip]" placeholder="PLZ" required>
+		</div>
+		<label class="col-sm-1 control-label" for="inputCity">Ort*</label>
+		<div class="col-sm-7">
+			<input type="text" class="form-control" id="inputCity" name="t3stores[order][customercity]" placeholder="Ort" required>
+		</div>
+	</div>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputPhone">Telefon</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputPhone" name="t3stores[order][customerphone]" placeholder="Ihre Telefonnummer">
+		</div>
+	</div>
+
+	<div class="form-group form-group-sm">
+		<label class="col-sm-2 control-label" for="inputEmail">Email*</label>
+		<div class="col-sm-10">
+			<div class="input-group">
+				<span class="input-group-addon" id="sizing-email">@</span>
+				<input type="email" class="form-control" aria-describedby="sizing-email" id="inputEmail" name="t3stores[order][customeremail]" placeholder="Ihre Emailadresse" required>
+			</div>
+			<span class="help-block with-errors"></span>
+		</div>
+	</div>
+
+
+</div>
+
+<div class="well form-horizontal t3stores-order-form" id="stores">
+	<h2>3. Schritt - Bestimmen Sie Ihr Abholfachgeschäft</h2>
+	<p>Suchen Sie über die PLZ oder den Ort nach ihrer gewünschten Filiale.</p>
+
+	<div class="form-group form-group-sm" style="margin-top:10px">
+		<label class="col-sm-2 control-label" for="inputEmail">Filiale</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control typeahead" id="storeSearch" name="t3stores[store_search]" placeholder="Suchen Sie nach ihrer Abhol-Filiale" required/>
+			<input type="hidden" class="form-control" id="storeUID" name="t3stores[order][store]" value=""/>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+var storeData = [
+
+###STORES###
+###STORE###
+{search:'###STORE_ZIP### ###STORE_NAME### ###STORE_CITY### ###STORE_ADDRESS###' , 
+	value: '###STORE_NAME### - ###STORE_CITY###, ###STORE_ADDRESS### ',
+	name: '###STORE_NAME###', city: '###STORE_CITY###', zip: '###STORE_ZIP###',
+	address: '###STORE_ADDRESS###', uid: '###STORE_UID###'
+	},
+###STORE###
+###STORES###
+];
+
+</script>
+
+<div class="well form-horizontal">
+	<h2>Bestellung ausführen</h2>
+	<p>Sie erhalten nach Klicken auf "Bestellung absenden" eine Bestätigungs-eMail mit allen Daten.
+Bei Übermittlungsproblemen kontaktieren Sie uns bitte unter der Tel.Nr.: (03724) 1840-0.
+	</p>
+	<input type="submit" name="t3stores[finish]" class="btn btn-primary" value="Bestellung absenden" />
+</div>
+</form>
+</div>
+
+<noscript>
+    <style type="text/css">
+        #t3stores-offerform {display:none;}
+    </style>
+    
+    <div class="alert alert-warning">
+    Für die Bestellfunktion ist Javascript notwendig. Bitte aktivieren Sie Javascript in Ihrem Browser.
+    </div>
+</noscript>
+
+
+###ORDERCREATE###
+
+
+
+
+
+</body>
+</html>

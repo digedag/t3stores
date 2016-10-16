@@ -39,7 +39,18 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 	protected function handleRequest(&$parameters, &$configurations, &$viewdata) {
 		$configurations->convertToUserInt();
 
-		$order = $this->buildOrder($parameters);
+		// es gibt zwei Modi:
+		// 1. Promotion wird direkt in OrderCreate konfiguriert
+		if($promotionId = $configurations->getInt($this->getConfId().'promotionId')) {
+			$promotion = ServiceRegistry::getPromotionService()->get($promotionId);
+			$viewdata->offsetSet('promotion', $promotion);
+			$order = $this->buildFullOrderForm($promotion, $parameters);
+		}
+		else {
+			// 2. Zugriff über OfferGroupList
+			$order = $this->buildOrder($parameters);
+		}
+
 		$viewdata->offsetSet('order', $order);
 
 		if($parameters->get('finish')) {
@@ -70,11 +81,18 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		// Pickupdate
 		$promotion = $order->getPromotion();
 		$days = $promotion->getPickupDays();
-
-		if(!empty($days) && array_key_exists($order->record['pickup'], $days )) {
-			$day = $days[$order->record['pickup']];
-			$order->setProperty('pickup', \tx_rnbase_util_Dates::date_tstamp2mysql($day->record['day']));
+		if(preg_match('/\d{1,2}\.\d{1,2}\.\d{4}/', $order->getProperty('pickup'))) {
+			// Datum direkt übergeben
+			$date = new \DateTime($order->getProperty('pickup') . ' 12:00');
+			$order->setProperty('pickup', $date->format('U'));
 		}
+		if(!empty($days) && array_key_exists($order->getProperty('pickup'), $days )) {
+			$day = $days[$order->getProperty('pickup')];
+			$order->setProperty('pickup', \tx_rnbase_util_Dates::date_tstamp2mysql($day->getProperty('day')));
+		}
+		else
+			$order->setProperty('pickup', '');
+
 		// Daten prüfen, wirft ggf eine Exception
 		$this->validateOrder($order);
 
@@ -88,6 +106,12 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		}
 		if($configurations->getBool($this->getConfId().'sendMail2Store')) {
 			$emailTo = $configurations->get($this->getConfId().'sendMail2Store.emailTo');
+
+			if($configurations->getBool($this->getConfId().'sendMail2Store.useStoreMail', false)) {
+				if($store = $order->getStore()) {
+					$emailTo = $store->getEmail() ? $store->getEmail() : $emailTo;
+				}
+			}
 			$emailToName = $configurations->get($this->getConfId().'sendMail2Store.emailToName');
 			$orderSrv->sendConfirmationMail(array($emailTo => $emailToName),
 					$newOrder, $promotion, $configurations, $this->getConfId().'sendMail2Store.', false);
@@ -113,7 +137,16 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		}
 		// Filiale
 		if(!$order->getProperty('store')) {
-			throw new \Exception('No store found', Errors::CODE_NO_STORE_FOUND);
+			// Handelt es sich um eine Aktion mit nur einer Filiale?
+			$stores = $this->loadStores($order->getPromotion());
+			if(count($stores) == 1) {
+				$order->setStore(reset($stores));
+			}
+			else
+				throw new \Exception('No store found', Errors::CODE_NO_STORE_FOUND);
+		}
+		if(empty($order->getPositions())) {
+			throw new \Exception('No order positions found', Errors::CODE_NO_POSITIONS_FOUND);
 		}
 	}
 
@@ -126,8 +159,9 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 	protected function loadStores($promotion) {
 		// Die Stores in der Promotion haben Vorrang
 		$stores = ServiceRegistry::getStoreService()->searchByPromotion($promotion);
-		if($stores)
+		if($stores) {
 			return $stores;
+		}
 
 		// Jetzt im Plugin suchen
 		$fields = $options = array();
@@ -135,7 +169,49 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		\tx_rnbase_util_SearchBase::setConfigFields($fields, $this->getConfigurations(), $this->getConfId().'form.stores.filter.fields.');
 		\tx_rnbase_util_SearchBase::setConfigOptions($options, $this->getConfigurations(), $this->getConfId().'form.stores.filter.options.');
 
-		return ServiceRegistry::getStoreService()->search($fields, $options);
+		$stores = ServiceRegistry::getStoreService()->search($fields, $options);
+		return $stores;
+	}
+	/**
+	 *
+	 * @param Promotion $promotion
+	 * @param \tx_rnbase_parameters $parameters
+	 */
+	protected function buildFullOrderForm($promotion, $parameters) {
+ 		$offerSrv = ServiceRegistry::getOfferService();
+		$order = new Order();
+		$order->setPromotion($promotion);
+		$offers = $parameters->getCleaned('offer');
+		if(!empty($offers)) {
+			$total = 0;
+			$positionCnt = 0;
+			foreach ($offers As $uid => $offerArr) {
+				// offer laden
+				if(empty($offerArr['amount']))
+					continue;
+					$offer = $offerSrv->get($uid);
+					// Verfügbarkeit prüfen
+					$amount = $this->validateAmount($offerArr['amount'], $offer);
+					if($amount <= 0)
+						continue;
+
+					$positionCnt += 1;
+					$orderPosition = $this->createPosition($offer, $amount);
+					$order->addPosition($orderPosition);
+					$total += $orderPosition->getTotal();
+			}
+			if($positionCnt == 0) {
+				throw new \Exception('No positions found.', Errors::CODE_NO_POSITIONS_FOUND);
+			}
+			$order->setProperty('positionprice', $total);
+			$discount = $promotion->getDiscount();
+			$order->setProperty('totalprice', round($total - ($total * $discount/100)));
+		}
+
+		$order->setPromotion($promotion);
+		$order->setProperty('promotion', $promotion->getUid());
+
+		return $order;
 	}
 	protected function buildOrder($parameters) {
 		$order = new Order();
@@ -163,15 +239,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 				continue;
 
 			$positionCnt += 1;
-			$orderPosition = new OrderPosition();
-			$orderPosition->setOffer($offer);
-			$orderPosition->setProperty('title', $offer->getName());
-			// Die Menge ggf. anpassen
-			$orderPosition->setProperty('amount', $amount);
-			$orderPosition->setProperty('pricelabel', $offer->getPricelabel());
-			$orderPosition->setProperty('price', $offer->getPrice());
-			$orderPosition->setProperty('unit', $offer->getUnit());
-			$orderPosition->setProperty('total', round($offer->getPrice() * $orderPosition->getAmount()));
+			$orderPosition = $this->createPosition($offer, $amount);
 			$order->addPosition($orderPosition);
 			$total += $orderPosition->getTotal();
 		}
@@ -188,6 +256,19 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		$order->setProperty('totalprice', round($total - ($total * $discount/100)));
 		return $order;
 	}
+	protected function createPosition($offer, $amount) {
+		$orderPosition = new OrderPosition();
+		$orderPosition->setOffer($offer);
+		$orderPosition->setProperty('title', $offer->getName());
+		// Die Menge ggf. anpassen
+		$orderPosition->setProperty('amount', $amount);
+		$orderPosition->setProperty('pricelabel', $offer->getPricelabel());
+		$orderPosition->setProperty('price', $offer->getPrice());
+		$orderPosition->setProperty('unit', $offer->getUnit());
+		$orderPosition->setProperty('total', round($offer->getPrice() * $orderPosition->getAmount()));
+		return $orderPosition;
+	}
+
 	/**
 	 *
 	 * @param number $amount

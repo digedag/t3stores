@@ -2,6 +2,7 @@
 namespace System25\T3stores\Service;
 
 use System25\T3stores\Model\OrderPosition;
+use System25\T3stores\Model\Promotion;
 /***************************************************************
  *  Copyright notice
  *
@@ -91,6 +92,7 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 	/**
 	 * Persist new order in database
 	 * @param \System25\T3stores\Model\Order $order
+	 * @param Promotion $promotion
 	 * @return model
 	 */
 	public function createOrder(\System25\T3stores\Model\Order $order, $promotion) {
@@ -98,8 +100,8 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 		$data['pid'] = $promotion->getPid();
 		$cols = array_keys(\tx_rnbase_util_TCA::getTcaColumns('tx_t3stores_order'));
 		foreach ($cols As $colName) {
-			if(array_key_exists($colName, $order->record)) {
-				$data[$colName] = $order->record[$colName];
+			if($order->hasProperty($colName)) {
+				$data[$colName] = $order->getProperty($colName);
 			}
 		}
 		$newOrder = $this->handleCreation($data);
@@ -113,7 +115,7 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 			}
 			catch(\Exception $e) {
 				\tx_rnbase_util_Logger::error('Position failed for order'.$order->getUid(), 't3stores',
-						array('to' => $order->getCustomeremail(), 'position' => $position->record));
+						array('to' => $order->getCustomeremail(), 'position' => $position->getProperty()));
 			}
 		}
 		return $newOrder;
@@ -140,7 +142,7 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 				$db->doUpdate('tx_t3stores_offer', 'uid='.$offer->getUid(), array('available' => 0));
 				throw new \Exception('Item is sold out ('.$avail.')!');
 			}
-			$offer->record['available'] = $avail;
+			$offer->setProperty('available', $avail);
 		}
 	}
 
@@ -160,8 +162,8 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 
 		$cols = array_keys(\tx_rnbase_util_TCA::getTcaColumns('tx_t3stores_orderposition'));
 		foreach ($cols As $colName) {
-			if(array_key_exists($colName, $position->record)) {
-				$data[$colName] = $position->record[$colName];
+			if($position->hasProperty($colName)) {
+				$data[$colName] = $position->getProperty($colName);
 			}
 		}
 

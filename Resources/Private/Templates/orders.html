@@ -103,6 +103,10 @@
 				<label><input type="radio" name="t3stores[order][pickup]" id="optionsRadios###PROMOTION_PICKUPDATE_UID###" value="###PROMOTION_PICKUPDATE_UID###" required>###PROMOTION_PICKUPDATE_DAY###</label>
 			</div>
 		###PROMOTION_PICKUPDATE###
+		###PROMOTION_PICKUPDATEEMPTYLIST###
+		<div class="alert alert-warning">###LABEL_MSG_NO_PICKUPDATES_FOUND###</div>
+		###PROMOTION_PICKUPDATEEMPTYLIST###
+
 		###PROMOTION_PICKUPDATES###
 		</div>
 	</div>
@@ -116,7 +120,7 @@
 	<div class="form-group form-group-sm" style="margin-top:10px">
 		<label class="col-sm-2 control-label" for="inputEmail">Filiale</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control typeahead" id="inputName" name="t3stores[store_search]" placeholder="Suchen Sie nach ihrer Abhol-Filiale" required/>
+			<input type="text" class="form-control typeahead" id="storeSearch" name="t3stores[store_search]" placeholder="Suchen Sie nach ihrer Abhol-Filiale" required/>
 			<input type="hidden" class="form-control" id="storeUID" name="t3stores[order][store]" value=""/>
 		</div>
 	</div>

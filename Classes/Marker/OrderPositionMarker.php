@@ -1,8 +1,6 @@
 <?php
 namespace System25\T3stores\Marker;
 
-use System25\T3stores\Util\ServiceRegistry;
-use System25\T3stores\Model\Order;
 /***************************************************************
  *  Copyright notice
  *
@@ -52,16 +50,16 @@ class OrderPositionMarker extends \tx_rnbase_util_SimpleMarker {
 	}
 
 	protected function prepareItem(
-			\tx_rnbase_model_base $item,
+			\Tx_Rnbase_Domain_Model_DataInterface $item,
 			\tx_rnbase_configurations $configurations,
 			$confId
 	) {
-		if (empty($item->record)) {
+		if ($item->isEmpty()) {
 			return;
 		}
 		parent::prepareItem($item, $configurations, $confId);
-		$item->record['pricestr'] = $item->record['price'] /100;
-		$item->record['totalstr'] = $item->record['total'] /100;
+		$item->setProperty('pricestr', $item->getProperty('price') /100);
+		$item->setProperty('totalstr', $item->getProperty('total') /100);
 	}
 
 }
