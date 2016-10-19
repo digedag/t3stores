@@ -133,6 +133,7 @@ CREATE TABLE tx_t3stores_order (
 	customercity varchar(100) DEFAULT '' NOT NULL,
 	customerphone varchar(100) DEFAULT '' NOT NULL,
 	customeremail varchar(255) DEFAULT '' NOT NULL,
+	customernote text,
 	mailtext text,
 	store int(11) DEFAULT '0' NOT NULL,
 	pickup date DEFAULT '0000-00-00',

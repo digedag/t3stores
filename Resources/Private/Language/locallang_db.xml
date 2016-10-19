@@ -91,6 +91,7 @@
 			<label index="tx_t3stores_order_customercity">Customer City</label>
 			<label index="tx_t3stores_order_customerphone">Customer Phone</label>
 			<label index="tx_t3stores_order_customeremail">Customer Email</label>
+			<label index="tx_t3stores_order_customernote">Customer Note</label>
 			<label index="tx_t3stores_order_emailtext">Email Text</label>
 			<label index="tx_t3stores_order_pickup">Pickup date</label>
 			<label index="tx_t3stores_order_positionprice">Price of positions</label>
@@ -187,6 +188,7 @@
 			<label index="tx_t3stores_order_customercity">Stadt</label>
 			<label index="tx_t3stores_order_customerphone">Telefon</label>
 			<label index="tx_t3stores_order_customeremail">Email</label>
+			<label index="tx_t3stores_order_customernote">Hinweise des Kunden</label>
 			<label index="tx_t3stores_order_emailtext">Email Text</label>
 			<label index="tx_t3stores_order_pickup">Abholtag</label>
 			<label index="tx_t3stores_order_positionprice">Preis der Position</label>

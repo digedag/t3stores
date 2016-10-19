@@ -88,6 +88,16 @@ return array(
 						'eval' => 'trim',
 				)
 		),
+		'customernote' => Array (
+				'exclude' => 1,
+				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_order_customernote',
+				'config' => Array (
+					'type' => 'text',
+					'cols' => '40',
+					'rows' => '15',
+					'eval' => 'trim',
+				)
+		),
 		'positionprice' => Array (
 				'exclude' => 1,
 				'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_order_positionprice',
@@ -158,7 +168,7 @@ return array(
 	),
 	'types' => array(
 			'0' => array('showitem' => 'promotion,customername,customeraddress,customerzip,customerzip,customercity,customerphone,
-			customeremail,store,pickup,positionprice,totalprice,mailtext,
+			customeremail,store,pickup,positionprice,totalprice,customernote,mailtext,
 			--div--;LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_order_tabpositions,positions')
 	)
 );
