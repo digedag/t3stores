@@ -8,7 +8,7 @@ jQuery(function($) {
 	function getStoresWithDefault (q, sync) {
 		if (q === '') {
 			//console.log('Default liste suchen');
-			sync(stores.all().slice(0,4));
+			sync(stores.all().slice(0,5));
 		}
 		else {
 			stores.search(q, sync);
@@ -16,22 +16,23 @@ jQuery(function($) {
 	};
 
 	jQuery('#stores .typeahead').typeahead({
-	  hint: true,
+		hint: true,
 //	  highlight: true,
-	  minLength: 0
+		minLength: 0
 	},
 	{
-	  name: 'states',
-	  display: 'value',
-	  source: getStoresWithDefault,
-	  templates: {
+		name: 'states',
+		display: 'value',
+		limit: 10,
+		source: getStoresWithDefault,
+		templates: {
 		    empty: [
 		      '<div style="margin-left:20px">',
 		        'Leider wurde keine Filiale gefunden.',
 		      '</div>'
 		    ].join('\n'),
 		    suggestion: Handlebars.compile('<div><strong>{{name}}</strong> – {{zip}} {{city}}<br/>{{address}}</div>')
-		  }
+		}
 	});
 
 	jQuery('#stores .typeahead').bind('typeahead:select', function(ev, suggestion) {
