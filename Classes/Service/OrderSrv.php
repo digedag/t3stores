@@ -72,7 +72,12 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 		else
 			$mail->setTextPart($mailtext);
 		$mail->send();
-		\tx_rnbase_util_Logger::info('Order mail send for '.$order->getUid(), 't3stores', array('to' => $order->getCustomeremail()));
+		\tx_rnbase_util_Logger::info('Order mail send for promotion '.($order->getPromotion() ? $order->getPromotion()->getName() : '-' ), 't3stores',
+				array(
+					'to' => $toAddress,
+					'order'=>$order->getUid(),
+					'promotion'=> $order->getProperty('promotion'),
+				));
 		if($saveToOrder) {
 			$this->handleUpdate($order, ['mailtext' => $mailtext]);
 		}
@@ -118,6 +123,7 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 						array('to' => $order->getCustomeremail(), 'position' => $position->getProperty()));
 			}
 		}
+		$newOrder->setPromotion($promotion);
 		return $newOrder;
 	}
 	/**
