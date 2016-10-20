@@ -181,7 +181,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
  		$offerSrv = ServiceRegistry::getOfferService();
 		$order = new Order();
 		$order->setPromotion($promotion);
-		$offers = $parameters->getCleaned('offer');
+		$offers = $parameters->get('offer');
 		if(!empty($offers)) {
 			$total = 0;
 			$positionCnt = 0;
@@ -216,7 +216,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 	protected function buildOrder($parameters) {
 		$order = new Order();
  		$srv = ServiceRegistry::getOfferService();
-		$offers = $parameters->getCleaned('offer');
+		$offers = $parameters->get('offer');
 		if(!is_array($offers) || empty($offers)) {
 			throw new \Exception('No offers found', Errors::CODE_INVALID_REQUEST);
 		}
