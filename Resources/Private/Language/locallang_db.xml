@@ -124,22 +124,22 @@
 			<label index="plugin.t3stores.flexform.stores.limit">Maximale Anzahl</label>
 			<label index="plugin.t3stores.flexform.stores.singlepid">Seite für Detailanzeige</label>
 
-			<label index="tx_t3stores_stores">Filiale</label>
-			<label index="tx_t3stores_stores_tabcontact">Kontakt</label>
-			<label index="tx_t3stores_stores_name">Name</label>
-			<label index="tx_t3stores_stores_description">Beschreibung</label>
-			<label index="tx_t3stores_stores_openingtime">Öffnungszeiten</label>
-			<label index="tx_t3stores_stores_pictures">Bilder</label>
-			<label index="tx_t3stores_stores_phone">Telefon</label>
+			<label index="tx_t3stores_store">Filiale</label>
+			<label index="tx_t3stores_store_tabcontact">Kontakt</label>
+			<label index="tx_t3stores_store_name">Name</label>
+			<label index="tx_t3stores_store_description">Beschreibung</label>
+			<label index="tx_t3stores_store_openingtime">Öffnungszeiten</label>
+			<label index="tx_t3stores_store_pictures">Bilder</label>
+			<label index="tx_t3stores_store_phone">Telefon</label>
 			<label index="tx_t3stores_store_email">E-Mail Addresse</label>
-			<label index="tx_t3stores_stores_contactperson">Kontaktperson</label>
-			<label index="tx_t3stores_stores_address">Strasse</label>
-			<label index="tx_t3stores_stores_zip">PLZ</label>
-			<label index="tx_t3stores_stores_city">Stadt</label>
-			<label index="tx_t3stores_stores_countrycode">Länderkürzel</label>
-			<label index="tx_t3stores_stores_lng">Longitude</label>
-			<label index="tx_t3stores_stores_lat">Latitude</label>
-			<label index="tx_t3stores_stores_hasreport">Link zur Detailseite</label>
+			<label index="tx_t3stores_store_contactperson">Kontaktperson</label>
+			<label index="tx_t3stores_store_address">Strasse</label>
+			<label index="tx_t3stores_store_zip">PLZ</label>
+			<label index="tx_t3stores_store_city">Stadt</label>
+			<label index="tx_t3stores_store_countrycode">Länderkürzel</label>
+			<label index="tx_t3stores_store_lng">Longitude</label>
+			<label index="tx_t3stores_store_lat">Latitude</label>
+			<label index="tx_t3stores_store_hasreport">Link zur Detailseite</label>
 
 			<label index="tx_t3stores_promotion">Aktion</label>
 			<label index="tx_t3stores_promotion_name">Name</label>

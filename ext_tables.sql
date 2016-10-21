@@ -57,7 +57,7 @@ CREATE TABLE tx_t3stores_promotion (
 
 	name varchar(255) DEFAULT '' NOT NULL,
 	discount tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	pickupdates tinytext,
+	pickupdates mediumtext,
 	startdate int(11) unsigned DEFAULT '0' NOT NULL,
 	stores int(11) DEFAULT '0' NOT NULL,
 
