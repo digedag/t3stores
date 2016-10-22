@@ -48,5 +48,11 @@ jQuery(function($) {
 		  jQuery('#storeUID').val('');
 	});
 
+	jQuery( "#t3stores-orderform" ).validator().on('submit', function( event ) {
+		if (!event.isDefaultPrevented()) {
+			jQuery('#t3stores_finishbtn').button('loading');
+		}
+	});
+	jQuery('#t3stores_finishbtn').button('reset');
 
 });

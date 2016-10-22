@@ -10,9 +10,10 @@
 
 
 <div id="t3stores-offerform">
-<form action="###ACTION_URI###" method="POST" data-toggle="validator" role="form" >
+<form action="###ACTION_URI###" method="POST" data-toggle="validator" role="form" id="t3stores-orderform">
 <input type="hidden" name="id" value="###ACTION_PID###"/>
 <input type="hidden" name="t3stores[action]" value="###ACTION_CTRL###"/>
+<input type="hidden" name="t3stores[finish]" value="1" />
 
 
 ###PROMOTION_OFFERGROUPS###
@@ -258,7 +259,9 @@ var storeData = [
 	<p>Sie erhalten nach Klicken auf "Bestellung absenden" eine Bestätigungs-eMail mit allen Daten.
 Bei Übermittlungsproblemen kontaktieren Sie uns bitte unter der Tel.Nr.: (03724) 1840-0.
 	</p>
-	<input type="submit" name="t3stores[finish]" class="btn btn-primary" value="Bestellung absenden" />
+
+	<button type="submit" id="t3stores_finishbtn" class="btn btn-primary" data-loading-text="<span class='glyphicon glyphicon-refresh spinning'></span> Bitte warten...">
+	<span class="glyphicon glyphicon-shopping-cart "></span> Bestellung absenden</button>
 </div>
 </form>
 </div>
