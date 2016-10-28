@@ -38,7 +38,7 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 	 * @param \tx_rnbase_configurations $configurations
 	 * @param string $confId
 	 */
-	public function sendConfirmationMail(array $toAddress, \System25\T3stores\Model\Order $order, $promotion, $configurations, $confId, $saveToOrder) {
+	public function sendConfirmationMail(array $toAddress, \System25\T3stores\Model\Order $order, $promotion, $configurations, $confId, $mailOptions) {
 		\tx_rnbase::load('tx_rnbase_util_Templates');
 		$fileName = $configurations->get($confId.'template');
 		$subpart = $configurations->get($confId.'subpart');
@@ -65,7 +65,10 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 		$mail->addTo($address, $name);
 		if($emailReply = $configurations->get($confId.'emailReply'))
 			$mail->setReplyTo($emailReply);
-
+		elseif (isset($mailOptions['replyTo'])) {
+			list($address, $name) = each($mailOptions['replyTo']);
+			$mail->setReplyTo($address, $name);
+		}
 		if($configurations->getBool($confId.'isHtmlMail')) {
 			$mail->setHtmlPart($mailtext);
 		}
@@ -78,7 +81,7 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 					'order'=>$order->getUid(),
 					'promotion'=> $order->getProperty('promotion'),
 				));
-		if($saveToOrder) {
+		if(isset($mailOptions['saveToOrder']) && $mailOptions['saveToOrder']) {
 			$this->handleUpdate($order, ['mailtext' => $mailtext]);
 		}
 	}

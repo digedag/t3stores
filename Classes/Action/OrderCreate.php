@@ -101,8 +101,11 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		$newOrder = $orderSrv->createOrder($order, $promotion);
 		// Mail verschicken
 		if($configurations->getBool($this->getConfId().'sendMail2Customer')) {
+			$mailOptions = [
+					'saveToOrder' => true,
+			];
 			$orderSrv->sendConfirmationMail(array($order->getCustomeremail() => $order->getCustomername()),
-					$newOrder, $promotion, $configurations, $this->getConfId().'sendMail2Customer.', true);
+					$newOrder, $promotion, $configurations, $this->getConfId().'sendMail2Customer.', $mailOptions);
 		}
 		if($configurations->getBool($this->getConfId().'sendMail2Store')) {
 			$emailTo = $configurations->get($this->getConfId().'sendMail2Store.emailTo');
@@ -113,10 +116,13 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 				}
 			}
 			$emailToName = $configurations->get($this->getConfId().'sendMail2Store.emailToName');
+			$mailOptions = [
+					'saveToOrder' => false,
+					'replyTo' => array($order->getCustomeremail() => $order->getCustomername()),
+			];
 			$orderSrv->sendConfirmationMail(array($emailTo => $emailToName),
-					$newOrder, $promotion, $configurations, $this->getConfId().'sendMail2Store.', false);
+					$newOrder, $promotion, $configurations, $this->getConfId().'sendMail2Store.', $mailOptions);
 		}
-
 		// Redirect
 		$link = $this->createLink($configurations, $this->getConfId().'redirectURI', array(
 				'action' => 'System25\T3stores\Action\OrderShow',
