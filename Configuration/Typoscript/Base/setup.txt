@@ -81,6 +81,7 @@ lib.t3stores.order {
   discountvaluestr < lib.t3stores.price
   totalpricestr < lib.t3stores.price
   crdate.strftime = %d.%m.%Y %H:%M Uhr
+  pickupstr.strftime = %d.%m.%Y
   customernote.stripHtml = 1
   customernote.br = 1
 }

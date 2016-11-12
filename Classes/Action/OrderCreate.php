@@ -95,7 +95,6 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 
 		// Daten prüfen, wirft ggf eine Exception
 		$this->validateOrder($order);
-
 		// jetzt die Order speichern
 		$orderSrv = ServiceRegistry::getOrderService();
 		$newOrder = $orderSrv->createOrder($order, $promotion);
@@ -151,9 +150,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 			else
 				throw new \Exception('No store found', Errors::CODE_NO_STORE_FOUND);
 		}
-		if(empty($order->getPositions())) {
-			throw new \Exception('No order positions found', Errors::CODE_NO_POSITIONS_FOUND);
-		}
+		$this->assertPositions(empty($order->getPositions()) ? 0 : count($order->getPositions()));
 	}
 
 	/**
@@ -206,9 +203,7 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 					$order->addPosition($orderPosition);
 					$total += $orderPosition->getTotal();
 			}
-			if($positionCnt == 0) {
-				throw new \Exception('No positions found.', Errors::CODE_NO_POSITIONS_FOUND);
-			}
+			$this->assertPositions($positionCnt);
 			$order->setProperty('positionprice', $total);
 			$discount = $promotion->getDiscount();
 			$order->setProperty('totalprice', round($total - ($total * $discount/100)));
@@ -218,6 +213,11 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 		$order->setProperty('promotion', $promotion->getUid());
 
 		return $order;
+	}
+	protected function assertPositions($positionCnt) {
+		if($this->getConfigurations()->getBool($this->getConfId().'form.validate.positions', false, true) && $positionCnt == 0) {
+			throw new \Exception('No positions found.', Errors::CODE_NO_POSITIONS_FOUND);
+		}
 	}
 	protected function buildOrder($parameters) {
 		$order = new Order();

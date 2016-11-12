@@ -93,6 +93,8 @@ class OrderMarker extends \tx_rnbase_util_SimpleMarker {
 			return;
 		}
 		parent::prepareItem($item, $configurations, $confId);
+		$item->setProperty('pickupstr', $item->getProperty('pickup') ?
+				\tx_rnbase_util_Dates::date_mysql2tstamp($item->getProperty('pickup')) : 0);
 		$item->setProperty('positionpricestr', $item->getProperty('positionprice') /100);
 		$item->setProperty('totalpricestr', $item->getProperty('totalprice') /100);
 		$item->setProperty('discountvalue', $item->getProperty('totalprice') - $item->getProperty('positionprice'));
