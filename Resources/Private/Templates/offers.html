@@ -85,7 +85,7 @@ offers = offers || (function () {
 </script>
 
 <div id="t3stores-offerform">
-<form action="###ACTION_URI###" method="POST" data-toggle="validator" role="form" >
+<form action="###ACTION_URI###" method="POST" data-toggle="validator" role="form" id="t3stores-offerform-form" >
 <input type="hidden" name="id" value="###ACTION_PID###"/>
 <input type="hidden" name="t3stores[action]" value="###ACTION_CTRL###"/>
 ###ITEMS###
@@ -151,11 +151,17 @@ offers.initOffer(###ITEM_OFFER_UID###, ###ITEM_OFFER_PRICE###, ###ITEM_OFFER_UNI
 ###ITEMEMPTYLIST###
 <p>Für diese Aktion wurden noch keine Angebote erstellt.</p>
 ###ITEMEMPTYLIST###
-<div>
-<strong>Gesamtpreis:</strong> <span id="sum">0,00</span> &euro;
-</div>
-<input type="submit" class="btn btn-primary" value="Weiter" />
 
+
+<div class="well">
+	<div>
+	<strong>Gesamtpreis:</strong> <span id="sum">0,00</span> &euro;
+	</div>
+
+
+	<button type="submit" id="t3stores_finishbtn" class="btn btn-primary" style="margin-top:1em">
+	<span class="glyphicon glyphicon-shopping-cart "></span> Zum nächsten Schritt</button>
+</div>
 ###ITEMS###
 </form>
 </div>

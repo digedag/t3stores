@@ -82,13 +82,15 @@ class PromotionMarker extends \tx_rnbase_util_SimpleMarker {
 		$days = $item->getPickupDays();
 		$days = array_values($days);
 
-		$date = new \DateTime();
-		$date->setTimestamp($days[0]->getDay());
-		$item->setProperty('pickupmin', $date->format('d.m.Y'));
+		if(!empty($days)) { // Ohne Pickupdates geht hier nichts
+			$date = new \DateTime();
+			$date->setTimestamp($days[0]->getDay());
+			$item->setProperty('pickupmin', $date->format('d.m.Y'));
 
-		$last = end($days);
-		$date->setTimestamp($last->getDay());
-		$item->setProperty('pickupmax', $date->format('d.m.Y'));
+			$last = end($days);
+			$date->setTimestamp($last->getDay());
+			$item->setProperty('pickupmax', $date->format('d.m.Y'));
+		}
 
 		$listBuilder = \tx_rnbase::makeInstance('tx_rnbase_util_ListBuilder');
 		$out = $listBuilder->render($days,

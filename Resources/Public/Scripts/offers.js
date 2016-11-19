@@ -5,5 +5,14 @@ jQuery(function($) {
 		var id = jQuery(this).data('id');
 		offers.updateOffer(id, this)
 	});
+	
+	jQuery( "#t3stores-offerform-form" ).submit(function( event ) {
+		// Anzahl prüfen
+		if(jQuery( "#sum" ).html() == '0.00' ) {
+			alert('Bitte zunächst die Artikel auswählen.')
+			event.preventDefault();
+		}
+	});
+
 });
 
