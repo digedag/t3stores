@@ -33,6 +33,7 @@ use System25\T3stores\Model\Promotion;
 \tx_rnbase::load('tx_rnbase_filter_BaseFilter');
 \tx_rnbase::load('tx_rnbase_view_List');
 \tx_rnbase::load('tx_rnbase_util_Dates');
+\tx_rnbase::load('tx_rnbase_util_Logger');
 
 
 class OrderCreate extends \tx_rnbase_action_BaseIOC {
@@ -235,9 +236,16 @@ class OrderCreate extends \tx_rnbase_action_BaseIOC {
 				continue;
 			$offer = $srv->get($uid);
 			if($promotion === NULL) {
-				$fields = array();
-				$fields['OFFERGROUP.UID'][OP_EQ_INT] = $offer->record['offergroup'];
-				$promotion = reset($srv->searchPromotion($fields, array()));
+				$fields = $options = array();
+				$fields['OFFERGROUP.UID'][OP_EQ_INT] = $offer->getProperty('offergroup');
+				$promotion = reset($srv->searchPromotion($fields, $options));
+				if(!$promotion) {
+					\tx_rnbase_util_Logger::warn('Possible data error: promotion not found.', 't3stores', [
+						'offer' => $offer->getProperty(),
+						'fields' => $fields,
+					]);
+					$promotion = null;
+				}
 			}
 			// Verfügbarkeit prüfen
 			$amount = $this->validateAmount($offerArr['amount'], $offer);
