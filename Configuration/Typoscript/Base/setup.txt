@@ -72,7 +72,7 @@ lib.t3stores.promotion {
       equals.data = field:pickupdatesdynamic
     }
   }
-
+  description.parseFunc =< lib.parseFunc_RTE
 }
 lib.t3stores.order {
   promotion =< lib.t3stores.promotion
@@ -211,6 +211,7 @@ plugin.tx_t3stores {
     toUserInt = 1
     form.actionURI.noHash = 1
     template.markerclass = System25\T3stores\Marker\OfferGroupMarker
+    template.entities.promotion =< lib.t3stores.promotion
     includeJSFooter {
 #      1 = EXT:t3stores/Resources/Public/Scripts/validator.js
       5 = EXT:t3stores/Resources/Public/Scripts/offers.js

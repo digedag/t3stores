@@ -5,7 +5,7 @@ return array(
 	'ctrl' => array(
 		'title' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_promotion',
 		'label' => 'name',
-		'searchFields' => 'uid,name',
+		'searchFields' => 'uid,name,description',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -104,6 +104,15 @@ return array(
 				)
 			)
 		),
+		'description' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:t3stores/Resources/Private/Language/locallang_db.xml:tx_t3stores_promotion_description',
+			'config' => Array (
+				'type' => 'text',
+				'cols' => '30',
+				'rows' => '5',
+			)
+		),
 
 		'stores' => Array (
 			'exclude' => 1,
@@ -136,6 +145,6 @@ return array(
 
 	),
 	'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1,name, discount, pickupdates, startdate, stores,--div--;LLL:EXT:cms/locallang_tca.xlf:fe_users.tabs.access, starttime, endtime')
+			'0' => array('showitem' => 'hidden;;1;;1-1-1,name, discount, pickupdates, startdate, description;;;richtext[cut|copy|paste|formatblock|textcolor|bold|italic|underline|left|center|right|orderedlist|unorderedlist|outdent|indent|link|table|image|line|chMode]:rte_transform[mode=ts_css|imgpath=uploads/rte/], stores,--div--;LLL:EXT:cms/locallang_tca.xlf:fe_users.tabs.access, starttime, endtime')
 	)
 );

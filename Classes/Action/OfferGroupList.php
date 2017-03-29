@@ -2,6 +2,8 @@
 namespace System25\T3stores\Action;
 
 use System25\T3stores\Util\ServiceRegistry;
+use System25\T3stores\Marker\PromotionMarker;
+use System25\T3stores\Model\Promotion;
 /***************************************************************
  *  Copyright notice
  *
@@ -42,7 +44,18 @@ class OfferGroupList extends \tx_rnbase_action_BaseIOC {
 
 		$filter->init($fields, $options);
 		$items = $srv->searchOfferGroup($fields, $options);
+		$promotion = null;
+		if(!empty($items)) {
+			$promotion = \tx_rnbase::makeInstance(Promotion::class, $items[0]->getPromotion());
+		}
 		$viewdata->offsetSet('items', $items);
+		$viewdata->offsetSet(\tx_rnbase_view_List::VIEWDATA_ENTITIES, [
+				'promotion' => [
+					'entity' => $promotion,
+					'markerclass' => PromotionMarker::class,
+				]
+			]
+		);
 		$data = array();
 		$link = $this->createLink($configurations, $this->getConfId().'form.actionURI', array('action' => 'System25\T3stores\Action\OrderCreate'));
 		$data['ACTION_PID'] = $link->destination;

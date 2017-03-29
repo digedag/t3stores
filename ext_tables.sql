@@ -60,6 +60,7 @@ CREATE TABLE tx_t3stores_promotion (
 	pickupdates mediumtext,
 	startdate int(11) unsigned DEFAULT '0' NOT NULL,
 	stores int(11) DEFAULT '0' NOT NULL,
+	description text,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
