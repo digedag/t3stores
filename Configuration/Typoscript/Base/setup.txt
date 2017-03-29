@@ -73,6 +73,8 @@ lib.t3stores.promotion {
     }
   }
   description.parseFunc =< lib.parseFunc_RTE
+  description.required = 1
+  description.wrap = <div class="well">|</div>
 }
 lib.t3stores.order {
   promotion =< lib.t3stores.promotion
