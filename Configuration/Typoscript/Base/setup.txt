@@ -199,6 +199,7 @@ plugin.tx_t3stores {
       class = System25\T3stores\Filter\Store
       template = {$plugin.tx_t3stores.storelistTemplate}
       subpart = ###SEARCH_FORM###
+      api_key = {$plugin.tx_t3stores.api_key}
     }
     includeJSFooter {
       5 = EXT:t3stores/Resources/Public/Scripts/stores.js

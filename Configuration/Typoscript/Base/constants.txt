@@ -52,4 +52,8 @@ plugin.tx_t3stores {
 
   # cat=T3stores (Pages)/offerpage; type=string;label=Page of offers
   offerpage = 0
+
+  # cat=T3stores (Misc)/api_key; type=string;label=Google API-Code for geocoding api
+  api_key = 0
+
 }
