@@ -48,7 +48,7 @@ class Store extends \tx_rnbase_filter_BaseFilter {
 			$geoCoder = \tx_rnbase::makeInstance('tx_rnbase_maps_google_Util');
 			// TODO: change to lookupGeoCodeCached
 			$apiKey = $configurations->get($confId.'api_key');
-			$this->geoCode = $geoCoder->lookupGeoCode($this->searchLocation);
+			$this->geoCode = $geoCoder->lookupGeoCode($this->searchLocation, ['key' => $apiKey]);
 		}
 		if($this->geoCode) {
 			//$options['debug'] = 1;
