@@ -72,6 +72,17 @@ lib.t3stores.promotion {
       equals.data = field:pickupdatesdynamic
     }
   }
+  subparts.hasdiscount {
+    marker.visible = YES
+    marker.hidden = NO
+    visible = TEXT
+    visible.value = 1
+    visible.if {
+      value = 0
+      isGreaterThan.data = field:discount
+    }
+  }
+
   description.parseFunc =< lib.parseFunc_RTE
   description.required = 1
   description.wrap = <div class="well">|</div>
