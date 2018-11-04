@@ -77,7 +77,13 @@ class TceHook {
 				$address = implode(',', $address);
 
 				$geoCoder = \tx_rnbase::makeInstance('tx_rnbase_maps_google_Util');
-				$geo = $geoCoder->lookupGeoCode($address);
+				try {
+				    $geo = $geoCoder->lookupGeoCode($address);
+				}
+				catch (\Exception $e) {
+				    \tx_rnbase::load('tx_rnbase_util_Logger');
+				    \tx_rnbase_util_Logger::warn('Error on Google address lookup ', 't3stores', array('address' => $address, 'exception' => $e->getMessage()));
+				}
 				$fieldArray['lat'] = $geo['lat'];
 				$fieldArray['lng'] = $geo['lng'];
 			}
