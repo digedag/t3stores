@@ -76,16 +76,19 @@ class TceHook {
 				}
 				$address = implode(',', $address);
 
+				/* @var $geoCoder \tx_rnbase_maps_google_Util */
 				$geoCoder = \tx_rnbase::makeInstance('tx_rnbase_maps_google_Util');
 				try {
-				    $geo = $geoCoder->lookupGeoCode($address);
+				    $apiKey = isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['rn_base']['mapsApiKey']) ?
+    				    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['rn_base']['mapsApiKey'] : '';
+				    $geo = $geoCoder->lookupGeoCode($address, ['key' => $apiKey]);
+				    $fieldArray['lat'] = $geo['lat'];
+				    $fieldArray['lng'] = $geo['lng'];
 				}
 				catch (\Exception $e) {
 				    \tx_rnbase::load('tx_rnbase_util_Logger');
 				    \tx_rnbase_util_Logger::warn('Error on Google address lookup ', 't3stores', array('address' => $address, 'exception' => $e->getMessage()));
 				}
-				$fieldArray['lat'] = $geo['lat'];
-				$fieldArray['lng'] = $geo['lng'];
 			}
 		}
 	}
