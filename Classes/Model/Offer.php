@@ -40,10 +40,11 @@ class Offer extends \tx_rnbase_model_base {
 		if($this->isTypeProduct()) {
 			// Werte vom Produkt übernehmen
 			$child = $this->getProduct();
-			$this->record['name'] = $child->getName();
-			$this->record['hint'] = $child->getShortname();
-			if(!$this->record['weight'])
-				$this->record['weight'] = $child->getWeight();
+			$this->setProperty('name', $child->getName());
+			$this->setProperty('hint', $child->getShortname());
+			if(!$this->getProperty('weight')) {
+			    $this->setProperty('weight', $child->getWeight());
+			}
 		}
 
 		// Bei Unit == ITEM den Basispreis pro kg umrechnen
@@ -54,15 +55,15 @@ class Offer extends \tx_rnbase_model_base {
 	}
 
 	public function isTypeProduct() {
-		return $this->record['offertype'] == self::OFFERTYPE_PRODUCT;
+	    return $this->getProperty('offertype') == self::OFFERTYPE_PRODUCT;
 	}
 	public function isUnitItem() {
-		return $this->record['unit'] == self::UNIT_ITEM;
+		return $this->getProperty('unit') == self::UNIT_ITEM;
 	}
 
 	protected function getProduct() {
 		if($this->product === NULL) {
-			$this->setProduct(\tx_rnbase::makeInstance('System25\T3stores\Model\Product', $this->record['product']));
+			$this->setProduct(\tx_rnbase::makeInstance('System25\T3stores\Model\Product', $this->getProperty('product')));
 		}
 		return $this->product;
 	}

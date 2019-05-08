@@ -104,7 +104,7 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 	 * @return model
 	 */
 	public function createOrder(\System25\T3stores\Model\Order $order, $promotion) {
-		$data = array();
+		$data = [];
 		$data['pid'] = $promotion->getPid();
 		$cols = array_keys(\tx_rnbase_util_TCA::getTcaColumns('tx_t3stores_order'));
 		foreach ($cols As $colName) {
@@ -123,7 +123,7 @@ class OrderSrv extends \tx_rnbase_sv1_Base {
 			}
 			catch(\Exception $e) {
 				\tx_rnbase_util_Logger::error('Position failed for order'.$order->getUid(), 't3stores',
-						array('to' => $order->getCustomeremail(), 'position' => $position->getProperty()));
+						['to' => $order->getCustomeremail(), 'position' => $position->getProperty()]);
 			}
 		}
 		$newOrder->setPromotion($promotion);
